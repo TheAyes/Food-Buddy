@@ -2,6 +2,13 @@
 	"name": "grosshop",
 	"version": "1.0.0",
 	"type": "module",
-	"dependencies": {
+	"dev-dependencies": {
+		"concurrently": "^8.2.0"
+	},
+	"scripts": {
+		"api:start": "cd ./api && npm run start",
+		"client:start": "cd ./client && npm run start",
+		"client:build": "cd ./client && npm run build",
+		"start": "concurrently -n \"api,client\" \"npm run api:start\" \"npm run client:start\""
 	}
 }

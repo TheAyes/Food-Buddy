@@ -8,5 +8,8 @@
   "devDependencies": {
     "@types/node": "^20.3.1",
     "@types/express": "^4.17.17"
+  },
+  "scripts": {
+    "start": "node --watch ./src/api.js"
   }
 }
