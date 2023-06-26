@@ -2,7 +2,7 @@
 	"name": "grosshop",
 	"version": "1.0.0",
 	"type": "module",
-	"dev-dependencies": {
+	"devDependencies": {
 		"concurrently": "^8.2.0"
 	},
 	"scripts": {
