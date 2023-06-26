@@ -9,6 +9,7 @@
 		"api:start": "cd ./api && npm run start",
 		"client:start": "cd ./client && npm run start",
 		"client:build": "cd ./client && npm run build",
-		"start": "concurrently -n \"api,client\" \"npm run api:start\" \"npm run client:start\""
+		"start": "concurrently -n \"api,client\" \"npm run api:start\" \"npm run client:start\"",
+		"initialize": "npm install && cd ./api && npm install && ./client && npm install"
 	}
 }
