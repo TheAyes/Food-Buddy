@@ -6,7 +6,14 @@ export default defineConfig({
 
 	server: {
 		// eslint-disable-next-line no-undef
-		port: process.env.CLIENT_PORT ? Number(process.env.CLIENT_PORT) : 3000
+		port: process.env.CLIENT_PORT ? Number(process.env.CLIENT_PORT) : 3000,
+		proxy: {
+			"/api": {
+				target: "http://localhost:4000",
+				changeOrigin: true,
+				secure: false
+			}
+		}
 	},
 
 	build: {
