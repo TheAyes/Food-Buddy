@@ -6,10 +6,10 @@
 		"concurrently": "^8.2.0"
 	},
 	"scripts": {
-		"api:start": "cd ./api && npm run start",
-		"client:start": "cd ./client && npm run start",
-		"client:build": "cd ./client && npm run build",
+		"api:start": "cd api && npm run start",
+		"client:start": "cd client && npm run start",
+		"client:build": "cd client && npm run build",
 		"start": "concurrently -n \"api,client\" \"npm run api:start\" \"npm run client:start\"",
-		"inst": "npm install && cd ./api && npm install && cd ./client && npm install"
+		"inst": "npm install && cd api && npm install && cd client && npm install"
 	}
 }
