@@ -1,5 +1,4 @@
-const GroceryDeals = () => {
+export const GroceryDeals = () => {
 	return <></>;
 };
 
-export default GroceryDeals;
