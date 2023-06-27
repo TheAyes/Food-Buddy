@@ -1,5 +1,4 @@
-const OrderHistoryItem = () => {
+export const OrderHistoryItem = () => {
 	return <></>;
 };
 
-export default OrderHistoryItem;

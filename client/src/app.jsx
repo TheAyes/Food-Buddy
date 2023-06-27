@@ -8,7 +8,7 @@ import { CartPage } from "./pages/MyCartPage/cart-page.jsx";
 import { WishlistPage } from "./pages/WishList/wishlist-page.jsx";
 import { OrderHistoryPage } from "./pages/OrderHistory/order-history-page.jsx";
 import { ItemList } from "./pages/ItemList/item-list.jsx";
-import { Filter } from "./pages/Filter/filter-page.jsx";
+import { FilterPage } from "./pages/Filter/filter-page.jsx";
 
 export const App = () => {
 	return (
