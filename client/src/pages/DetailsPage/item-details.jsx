@@ -1,5 +1,5 @@
-import '../DetailsPage/item-details.scss';
-import GoBackButton from "../../components/GoBackButton/GoBackButton";
+import styles from './item-details.module.scss';
+import { GoBackButton } from "../../components/GoBackButton/GoBackButton";
 import React, { useState } from 'react';
 
 export const ItemDetails = (props) => {
@@ -21,7 +21,7 @@ export const ItemDetails = (props) => {
 	};
 
 	return (
-		<section className="itemDetails">
+		<section className={styles.itemDetails}>
 			<div>
 				<GoBackButton />
 				{/* Titel erstellen */}
