@@ -1,0 +1,58 @@
+// @import "./variable.scss"; DENKEN. verlinkung anpassen bitte!
+
+@font-face {
+    font-family: Roboto;
+    src: url("./fonts/Roboto/Roboto-Regular.ttf");
+}
+
+
+// Variable für Font-Family's:
+$ff-roboto: "Roboto", Roboto;
+
+// Variablen für Global-Colors:
+$gc-1: #40AA54;
+$gc-2: #FFFFFF;
+$gc-3: #000000;
+$gc-4: #777777;
+
+// BackgroundColor:
+$bgc: #F5F5F5;
+
+// Variablen für Font-Colors:
+// Farben ändern, falls Dark-Mode eingebaut wird
+$fc-1: #40AA54;
+$fc-2: #FFFFFF;
+$fc-3: #000000;
+$fc-4: #777777;
+$fc-5: #2C3066;
+
+// Variablen für Button Farben
+// Button-Color:
+$bc-1: #40AA54;
+$bc-2: #D8EEDC;
+$bc-3: #707070;
+$bc-star: #FFC107;
+
+// Variablen für OrderHistory:
+// Order-Color:
+$oc-pending: #04D9D2;
+$oc-shipped: #C73BD6;
+$oc-canceled: #D90504;
+$oc-picked: #0459D9;
+$oc-paid: #40AA54;
+$oc-processing: #FF960C;
+$oc-refunded: #DEFFE4;
+
+// Variablen für FontSizes:
+$fz-small-1: 1.0rem;
+$fz-small-2: 1.2rem;
+$fz-small-3: 1.4rem;
+$fz-small-4: 1.6rem;
+$fz-small-5: 1.8rem;
+
+$fz-medium-1: 2.2rem;
+$fz-medium-2: 2.4rem;
+
+$fz-large-1: 3.6rem;
+$fz-large-2: 4.1rem;
+$fz-large-3: 4.4rem;

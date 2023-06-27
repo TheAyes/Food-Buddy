@@ -6,12 +6,12 @@ export const ItemDetails = (props) => {
 	const [quantity, setQuantity] = useState(0);
 
 	const incrementQuantity = () => {
-		setQuantity(quantity + 1);
+		setQuantity(previousQuantity => previousQuantity + 1);
 	};
 
 	const decrementQuantity = () => {
 		if (quantity > 0) {
-			setQuantity(quantity - 1);
+			setQuantity(previousQuantity => Math.max(previousQuantity - 1, 0));
 		}
 	};
 
@@ -39,7 +39,7 @@ export const ItemDetails = (props) => {
 					<h3>{props.numOfRatings}</h3>
 				</div>
 			</article>
-			<div className="sectionDivider"></div>
+			<hr></hr>
 			<div>
 				<h3>Quantity</h3>
 				<div>
@@ -52,3 +52,4 @@ export const ItemDetails = (props) => {
 		</section>
 	);
 };
+
