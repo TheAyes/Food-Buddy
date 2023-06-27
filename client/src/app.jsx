@@ -13,21 +13,33 @@ import { ProductItems } from "./components/ProductItems/ProductItems.jsx";
 
 export const App = () => {
 	return (
+<<<<<<< HEAD
 		<div>
 			<ItemList />
+=======
+		<>
+>>>>>>> origin/main
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
 				<Route path="/home" element={<HomePage />} />
 				<Route path="/itemlist" element={<ItemList />} />
 				<Route path="/item/:id" element={<ItemDetails />} />
+<<<<<<< HEAD
 				<Route path="filter" element={<FilterPage />} />
+=======
+>>>>>>> origin/main
 				<Route path="/user/:id" element={<ProfilePage />} />
 				<Route path="user/:id/cart" element={<CartPage />} />
 				<Route path="user/:id/wishlist" element={<WishlistPage />} />
 				<Route path="user/:id/order-history" element={<OrderHistoryPage />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
+<<<<<<< HEAD
 		</div>
+=======
+			<ItemDetails></ItemDetails>
+		</>
+>>>>>>> origin/main
 	);
 };
 

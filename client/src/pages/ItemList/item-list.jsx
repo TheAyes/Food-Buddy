@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { ProductItems } from "../../components/ProductItems/ProductItems.jsx";
+<<<<<<< HEAD
 import groceryData from "../../data/grocery-data.json";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./ItemList.module.scss";
+=======
+import data from "../../data/data.json";
+>>>>>>> origin/main
 
 export const ItemList = () => {
 	const [products, setProducts] = useState([]);
