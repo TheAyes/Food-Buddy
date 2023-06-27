@@ -1,0 +1,23 @@
+.ProductItems {
+	* {
+		color: black;
+	}
+	a {
+		text-decoration: none;
+	}
+
+	div {
+		text-align: center;
+	}
+	img {
+		width: 50%;
+		height: 50%;
+	}
+	p {
+	}
+	.flex {
+		display: flex;
+		justify-content: space-around;
+	}
+}
+
