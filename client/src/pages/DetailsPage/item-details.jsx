@@ -1,4 +1,4 @@
-import '../DetailsPage/itemDetails.scss';
+import '../DetailsPage/item-details.scss';
 import GoBackButton from "../../components/GoBackButton/GoBackButton";
 import React, { useState } from 'react';
 
