@@ -1,4 +1,4 @@
-const ItemList = () => {
+export const ItemList = () => {
 	return <></>;
 };
 

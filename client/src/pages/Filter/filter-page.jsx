@@ -1,4 +1,4 @@
-const FilterPage = () => {
+export const FilterPage = () => {
 	return <></>;
 };
 

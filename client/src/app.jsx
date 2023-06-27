@@ -8,21 +8,23 @@ import { CartPage } from "./pages/MyCartPage/cart-page.jsx";
 import { WishlistPage } from "./pages/WishList/wishlist-page.jsx";
 import { OrderHistoryPage } from "./pages/OrderHistory/order-history-page.jsx";
 import { ItemList } from "./pages/ItemList/item-list.jsx";
-import { Filter } from "./pages/Filter/filter-page.jsx";
+import { FilterPage } from "./pages/Filter/filter-page.jsx";
+import { NavBar } from "./components/NavBar/NavBar.jsx";
 
 export const App = () => {
 	return (
-		<Routes>
-			<Route path="/" element={<LandingPage />} />
-			<Route path="/home" element={<HomePage />} />
-			<Route path="/itemlist" element={<ItemList />} />
-			<Route path="/item/:id" element={<ItemDetails />} />
-			<Route path="/user/:id" element={<ProfilePage />} />
-			<Route path="user/:id/cart" element={<CartPage />} />
-			<Route path="user/:id/wishlist" element={<WishlistPage />} />
-			<Route path="user/:id/order-history" element={<OrderHistoryPage />} />
-			<Route path="*" element={<NotFound />} />
-		</Routes>
+		<>
+			<Routes>
+				<Route path="/" element={<LandingPage />} />
+				<Route path="/home" element={<HomePage />} />
+				<Route path="/itemlist" element={<ItemList />} />
+				<Route path="/item/:id" element={<ItemDetails />} />
+				<Route path="/user/:id" element={<ProfilePage />} />
+				<Route path="/user/:id/cart" element={<CartPage />} />
+				<Route path="/user/:id/wishlist" element={<WishlistPage />} />
+				<Route path="/user/:id/order-history" element={<OrderHistoryPage />} />
+				<Route path="*" element={<NotFound />} />
+			</Routes>
+		</>
 	);
 };
-
