@@ -1,0 +1,4 @@
+export const GroceryDeals = () => {
+	return <></>;
+};
+
