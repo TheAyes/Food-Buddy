@@ -10,9 +10,7 @@ export const ItemDetails = (props) => {
 	};
 
 	const decrementQuantity = () => {
-		if (quantity > 0) {
-			setQuantity(previousQuantity => Math.max(previousQuantity - 1, 0));
-		}
+		setQuantity(previousQuantity => Math.max(previousQuantity - 1, 0));
 	};
 
 	const addToCart = () => {
@@ -44,7 +42,7 @@ export const ItemDetails = (props) => {
 				<h3>Quantity</h3>
 				<div>
 					<button onClick={decrementQuantity}>-</button>
-					<span>{quantity}</span>
+					<p>{quantity}</p>
 					<button onClick={incrementQuantity}>+</button>
 				</div>
 				<button onClick={addToCart}>Add to Cart</button>
