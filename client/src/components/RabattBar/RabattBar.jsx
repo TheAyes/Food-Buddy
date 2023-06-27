@@ -1,5 +1,4 @@
-const RabattBar = () => {
+export const RabattBar = () => {
 	return <></>;
 };
 
-export default RabattBar;

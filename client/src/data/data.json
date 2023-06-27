@@ -1,0 +1,11 @@
+{
+	"name": "Baby Plum Tomatoes",
+	"price": {
+		"value": 56.99,
+		"unit": "Euro"
+	},
+	"image": "https://images.unsplash.com/photo-1606588260160-0c4707ab7db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2330&q=80",
+	"category": "vegetables",
+	"rating": "2.2",
+	"numOfRatings": 153
+}

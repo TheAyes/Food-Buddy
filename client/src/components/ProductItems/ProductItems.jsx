@@ -1,5 +1,4 @@
-const ProductItems = () => {
+export const ProductItems = () => {
 	return <></>;
 };
 
-export default ProductItems;

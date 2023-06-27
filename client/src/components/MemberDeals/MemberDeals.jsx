@@ -1,5 +1,4 @@
-const MemberDeals = () => {
+export const MemberDeals = () => {
 	return <></>;
 };
 
-export default MemberDeals;

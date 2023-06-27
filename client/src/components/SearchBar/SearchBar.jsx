@@ -1,5 +1,4 @@
-const SearchBar = () => {
+export const SearchBar = () => {
 	return <></>;
 };
 
-export default SearchBar;
