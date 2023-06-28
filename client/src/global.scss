@@ -2,19 +2,16 @@
 // @import "./global.scss"; DENKEN. verlinkung anpassen bitte!
 @import "./variable.scss";
 
-// Font-Family's
-@font-face {
-    font-family: Roboto;
-    src: url("./fonts/Roboto/Roboto-Regular.ttf");
-}
-
 // Global
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
+@media only screen and (max-width: 600px) {
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
 
-html {
-    font-size: 10px;
+    html {
+        font-size: 62.50%;
+        scroll-behavior: smooth;
+    }
 }
