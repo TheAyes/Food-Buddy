@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import home from "../../pics/homeLogoBlack.svg"
 import orders from "../../pics/ordersLogoBlack.svg"
 import shoppingcart from "../../pics/Cart.svg"
 import wishlist from "../../pics/wishlistLogoBlack.svg"
 import profile from "../../pics/profileLogoBlack.svg"
 import styles from "./NavBar.module.scss"
+
+
+
+
 
 export const NavBar = () => {
 	return <>
