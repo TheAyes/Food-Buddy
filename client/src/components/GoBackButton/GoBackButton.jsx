@@ -7,7 +7,7 @@ export const GoBackButton = () => {
     return (
         // in einen Pfeil nach links umändern
         <>
-            <button onClick={() => navigate(-1)}>go Back - später löschen</button>
+            <button onClick={() => navigate(-1)}>go Back</button>
         </>
     );
 };
