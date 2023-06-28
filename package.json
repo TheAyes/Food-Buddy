@@ -3,7 +3,8 @@
 	"version": "1.0.0",
 	"type": "module",
 	"devDependencies": {
-		"concurrently": "^8.2.0"
+		"concurrently": "^8.2.0",
+		"dotenv": "^16.3.1"
 	},
 	"scripts": {
 		"api:start": "cd api && npm run start",
