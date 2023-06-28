@@ -25,9 +25,9 @@ export const ItemDetails = (props) => {
 				{/* Titel erstellen */}
 				{/* Favorites Button */}
 			</div>
-			<article>
+			<article className={styles.testi1}>
 				<img src={props.image} alt={props.title} />
-				<h3>{quantity}</h3>
+				<h3 className='quantityIndicator'>{quantity}</h3>
 				<h3>{props.quantity}</h3>
 				<h3>{props.price}</h3>
 				<h3>{props.name}</h3>
@@ -39,10 +39,10 @@ export const ItemDetails = (props) => {
 			</article>
 			<hr></hr>
 			<div>
-				<h3>Quantity</h3>
+				<h3 className={styles.quantitySelection}>Quantity</h3>
 				<div>
 					<button onClick={decrementQuantity}>-</button>
-					<p>{quantity}</p>
+					<p >{quantity}</p>
 					<button onClick={incrementQuantity}>+</button>
 				</div>
 				<button onClick={addToCart}>Add to Cart</button>
