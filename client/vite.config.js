@@ -1,6 +1,17 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
+import { config } from "dotenv";
+import { fileURLToPath } from "url";
+import path, { dirname } from "path";
+import * as process from "process";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Customize path to .env
+const envPath = path.join(__dirname, "/../.env");
+
+config({ path: envPath });
 export default defineConfig({
 	plugins: [react()],
 
@@ -11,7 +22,7 @@ export default defineConfig({
 
 		proxy: {
 			"/api": {
-				target: "http://localhost:4000",
+				target: `http://localhost:${process.env.API_PORT ?? 4000}`,
 				changeOrigin: true,
 				secure: false
 			}
