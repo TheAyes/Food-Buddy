@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-export const ItemList = () => {
-=======
 import React, { useState, useEffect } from "react";
 import { ProductItems } from "../../components/ProductItems/ProductItems.jsx";
 import data from "../../data/data.json";
@@ -22,7 +19,6 @@ export const ItemList = () => {
 		fetchData();
 	}, []);
 
->>>>>>> origin/main
 	return <></>;
 };
 
