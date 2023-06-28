@@ -181,7 +181,7 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variable files
-api/.env
+.env
 .env.development.local
 .env.test.local
 .env.production.local
@@ -1161,3 +1161,4 @@ secring.*
 
 node_modules
 .idea
+.env

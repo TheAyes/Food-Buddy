@@ -3,7 +3,8 @@
 	"version": "1.0.0",
 	"type": "module",
 	"devDependencies": {
-		"concurrently": "^8.2.0"
+		"concurrently": "^8.2.0",
+		"dotenv": "^16.3.1"
 	},
 	"scripts": {
 		"api:start": "cd api && npm run start",
@@ -11,5 +12,8 @@
 		"client:build": "cd client && npm run build",
 		"start": "concurrently -n \"api,client\" \"npm run api:start\" \"npm run client:start\"",
 		"inst": "npm install && cd api && npm install && cd ../ && cd client && npm install"
+	},
+	"dependencies": {
+		"@fontsource/roboto": "^5.0.3"
 	}
 }
