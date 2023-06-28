@@ -20,32 +20,36 @@ export const ItemDetails = (props) => {
 
 	return (
 		<section className={styles.itemDetails}>
-			<div>
+			<div className={styles.upperPart}>
 				<GoBackButton />
+				<h4 className={styles.pageTitle}>testName</h4>
 				{/* Titel erstellen */}
 				{/* Favorites Button */}
 			</div>
-			<article className={styles.testi1}>
-				<img src={props.image} alt={props.title} />
-				<h3 className='quantityIndicator'>{quantity}</h3>
-				<h3>{props.quantity}</h3>
-				<h3>{props.price}</h3>
-				<h3>{props.name}</h3>
-				<div>
+			<article className={styles.imageSection}>
+				<img src="https://source.unsplash.com/random/1600x900"
+					// {props.image} EINFÜGEN
+					alt={props.title} />
+				<h3 className={styles.quantityIndicator}>{quantity}</h3>
+				{/* <h3>{props.quantity}</h3> */}
+				<h2 className={styles.priceIndicator}>99,99€{props.price}</h2>
+				<h3 className={styles.nameIndicator}>testProdukt{props.name}</h3>
+				<div className={styles.ratingSection}>
 					{/* Sternsymbol für Ratings */}
-					<h3>{props.rating}</h3>
-					<h3>{props.numOfRatings}</h3>
+					<h3 className={styles.ratingIndicator}>9,9{props.rating}</h3>
+					<h3 className={styles.reviewIndicator}>(999 Reviews){props.numOfRatings}</h3>
 				</div>
 			</article>
 			<hr></hr>
-			<div>
-				<h3 className={styles.quantitySelection}>Quantity</h3>
-				<div>
-					<button onClick={decrementQuantity}>-</button>
-					<p >{quantity}</p>
-					<button onClick={incrementQuantity}>+</button>
+			<div className={styles.quantitySection}>
+				<h3 className={styles.quantityTitle}>Quantity</h3>
+				<div className={styles.selectQuantity}>
+					<button className={styles.minusQuantity} onClick={decrementQuantity}>-</button>
+					<p className={styles.numberQuantity}>{quantity}</p>
+					<button className={styles.plusQuantity} onClick={incrementQuantity}>+</button>
 				</div>
-				<button onClick={addToCart}>Add to Cart</button>
+				{/* {Einkaufswagensymbol einbauen} */}
+				<button className={styles.addCartButton} onClick={addToCart}>Add to Cart</button>
 			</div>
 		</section>
 	);
