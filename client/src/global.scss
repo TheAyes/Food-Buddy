@@ -3,12 +3,14 @@
 @import "./variable.scss";
 
 // Global
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
+@media only screen and (max-width: 600px) {
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
 
-html {
-    font-size: 62.50%;
+    html {
+        font-size: 62.50%;
+    }
 }
