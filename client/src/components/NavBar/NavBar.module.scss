@@ -1,34 +1,46 @@
+@import "../../global.scss";
+
 .NavBar {
     background-position: center;
     background-size: cover;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 5px;
+    width: 100vw;
+    padding: 0 4rem;
+    background: linear-gradient(180deg, rgba(245, 245, 255, 1) 29%, rgba(255, 255, 255, 1) 52%);
+    border-radius: 2rem 2rem 0 0;
+
 
     a {
         display: flex;
         flex-direction: column;
         align-items: center;
         text-decoration: none;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 14px;
-        color: black;
-        padding: 0 10px;
+        font-family: $ff-roboto;
+        font-size: $fz-small-4;
+        color: $fc-3;
 
         &:nth-of-type(3) {
+            aspect-ratio: 1/1;
+            width: 9rem;
+            height: auto;
 
             img {
-                height: 65px;
-                padding-bottom: 10px;
+                flex: 1;
+                max-width: 100%;
                 padding-top: 0;
             }
         }
     }
 
     img {
-        height: 25px;
-        margin-bottom: 5px;
-        padding-top: 20px;
+        height: 5.3rem;
+        margin-bottom: 0.5rem;
+        padding-top: 2.5rem;
     }
+}
+
+.selected {
+    filter: invert(67%) sepia(40%) saturate(608%) hue-rotate(85deg) brightness(96%) contrast(90%);
 }
