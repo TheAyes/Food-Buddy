@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import star from "../../images/star.png";
+import heart from "../../images/heart.png";
 import styles from "./ProductItems.module.scss";
 
 export const ProductItems = (props) => {
@@ -8,15 +10,17 @@ export const ProductItems = (props) => {
 
 	return (
 		<div className={styles.ProductItems}>
+			<img src={heart} className={styles.heartIcon} />
 			<Link to={`ItemDetails/${props.id}`}>
 				<div>
-					<img src={props.image} alt="image" />
+					<img src={props.image} alt="image" className={styles.itemImages} />
 					<p>{props.name}</p>
 					<div className={styles.flex}>
 						<p>
 							{value} {unit}
 						</p>
-						<p>{props.rating}</p>
+						<img src={star} className={styles.star} />
+						<p> {props.rating}</p>
 					</div>
 				</div>
 			</Link>

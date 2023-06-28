@@ -1,6 +1,12 @@
 .ProductItems {
 	* {
 		color: black;
+		margin-left: 2%;
+		margin-right: 2%;
+	}
+	.heartIcon {
+		width: 25px;
+		padding: 7px 0 0 7px;
 	}
 	a {
 		text-decoration: none;
@@ -9,9 +15,14 @@
 	div {
 		text-align: center;
 	}
-	img {
-		width: 50%;
-		height: 50%;
+
+	.itemImages {
+		width: 17vw;
+		height: 13vh;
+	}
+	.star {
+		height: 1.8vh;
+		margin-left: 15vw;
 	}
 	p {
 	}
