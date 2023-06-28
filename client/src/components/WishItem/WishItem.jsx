@@ -1,5 +1,4 @@
-const WishItem = () => {
+export const WishItem = () => {
 	return <></>;
 };
 
-export default WishItem;

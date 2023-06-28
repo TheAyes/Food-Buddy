@@ -1,0 +1,17 @@
+// ACHTUNG!!!
+// @import "./global.scss"; DENKEN. verlinkung anpassen bitte!
+@import "./variable.scss";
+
+// Global
+@media only screen and (max-width: 600px) {
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        font-size: 62.50%;
+        scroll-behavior: smooth;
+    }
+}

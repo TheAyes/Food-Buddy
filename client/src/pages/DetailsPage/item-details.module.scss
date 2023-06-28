@@ -1,0 +1,27 @@
+@import "../../global.scss";
+
+
+.itemDetails {
+    .testi1 {
+        background-color: blue;
+
+        image {
+            width: 80vw;
+            max-width: 960px;
+        }
+
+    }
+
+    .quantityIndicator {
+        background-color: green;
+        width: 20vw;
+        height: 10vw;
+    }
+
+    .quantitySelection {
+        font-family: $ff-roboto;
+        font-size: 5rem;
+        background-color: green;
+    }
+
+}

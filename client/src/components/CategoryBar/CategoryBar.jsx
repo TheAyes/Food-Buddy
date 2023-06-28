@@ -1,5 +1,4 @@
-const CategoryBar = () => {
+export const CategoryBar = () => {
 	return <></>;
 };
 
-export default CategoryBar;

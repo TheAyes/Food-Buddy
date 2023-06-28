@@ -1,5 +1,4 @@
-const CategoryBarImage = () => {
+export const CategoryBarImage = () => {
 	return <></>;
 };
 
-export default CategoryBarImage;
