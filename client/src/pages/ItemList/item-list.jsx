@@ -31,8 +31,6 @@ export const ItemList = () => {
 		}
 	}, [jsonData]);
 
-	console.log(products);
-
 	return (
 		<div className={styles.ItemList}>
 			{products.map((product) => {
