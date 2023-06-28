@@ -3,15 +3,58 @@
 @import "./variable.scss";
 
 // Global
-@media only screen and (max-width: 600px) {
-    * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-    }
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
 
-    html {
-        font-size: 62.50%;
-        scroll-behavior: smooth;
-    }
+html {
+	font-size: 62.50%;
+	scroll-behavior: smooth;
+}
+
+body {
+	max-width: 600px;
+	margin: 0 auto;
+
+	font-family: $ff-roboto;
+}
+
+h1 {
+	font-size: $fz-large-3;
+}
+
+h2 {
+	font-size: $fz-large-2;
+}
+
+h3 {
+	font-size: $fz-large-1;
+}
+
+h4 {
+	font-size: $fz-medium-2;
+}
+
+h5 {
+	font-size: $fz-medium-1;
+}
+
+h6 {
+	font-size: $fz-small-5;
+}
+
+p {
+	font-size: $fz-small-2;
+}
+
+a {
+	color: blue; // @TODO: Ändern auf ne variable
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+		cursor: pointer;
+	}
 }
