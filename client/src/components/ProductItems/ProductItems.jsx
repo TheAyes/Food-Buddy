@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import star from "../../images/star.png";
-import heart from "../../images/heart.png";
+import star from "../../pics/star.png";
+import heart from "../../pics/heart.png";
 import styles from "./ProductItems.module.scss";
 
 export const ProductItems = (props) => {
