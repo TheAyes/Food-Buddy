@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { GoBackButton } from "../../components/GoBackButton/GoBackButton";
 import styles from './item-details.module.scss';
 
 // Bilder Import
 import starImage from "../../pics/star.svg";
 import cartImage from "../../pics/shopping-cart.svg";
 import heartImage from "../../pics/likeButton.svg";
+
+// Components Import
+import { GoBackButton } from "../../components/GoBackButton/GoBackButton";
+import { AddToCartComponent } from '../../components/AddToCartComponent/AddToCartComponent';
 
 export const ItemDetails = (props) => {
 	const [quantity, setQuantity] = useState(0);
@@ -56,11 +59,9 @@ export const ItemDetails = (props) => {
 				<article className={styles.shoppingSection}>
 					<img src={cartImage} alt="cart image" />
 					<p>99</p>
-					<button className={styles.addCartButton} onClick={addToCart}>Add to Cart</button>
+					<AddToCartComponent quantity={quantity} addToCart={addToCart} />
 				</article>
 			</div>
 		</section>
 	);
 };
-
-
