@@ -56,6 +56,324 @@ try {
 	process.exit(1);
 }
 
+app.get("/api/docs", (req, res) => {
+	const endpoints = [
+		{
+			method: "POST",
+			path: "/api/user/register",
+			summary: "Register a new user",
+			parameters: [
+				{
+					name: "username",
+					type: "String",
+					description: "The username of the new user",
+					location: "body"
+				},
+				{
+					name: "password",
+					type: "String",
+					description: "The password of the new user",
+					location: "body"
+				},
+				{
+					name: "email",
+					type: "String",
+					description: "The email of the new user",
+					location: "body"
+				}
+			],
+			responses: [
+				{
+					status: 200,
+					description: "OK",
+					responseBody: {
+						message: "Confirmation message"
+					}
+				}
+			]
+		},
+		{
+			method: "POST",
+			path: "/api/user/login",
+			summary: "User login",
+			parameters: [
+				{
+					name: "username",
+					type: "String",
+					description: "The username of the user",
+					location: "body"
+				},
+				{
+					name: "password",
+					type: "String",
+					description: "The password of the user",
+					location: "body"
+				}
+			],
+			responses: [
+				{
+					status: 200,
+					description: "OK",
+					responseBody: {
+						message: "Confirmation message"
+					}
+				}
+			]
+		},
+		{
+			method: "GET",
+			path: "/api/user",
+			summary: "Get user data",
+			parameters: [],
+			responses: [
+				{
+					status: 200,
+					description: "OK",
+					responseBody: {
+						user: "The authenticated user's data"
+					}
+				}
+			]
+		},
+		{
+			method: "POST",
+			path: "/api/user/refresh",
+			summary: "Refresh token",
+			parameters: [],
+			responses: [
+				{
+					status: 200,
+					description: "OK",
+					responseBody: {
+						token: "New token for the user"
+					}
+				}
+			]
+		},
+		{
+			method: "POST",
+			path: "/api/products",
+			summary: "Add a new product",
+			parameters: [
+				{
+					name: "product",
+					type: "Object",
+					description: "The product details",
+					location: "body"
+				}
+			],
+			responses: [
+				{
+					status: 200,
+					description: "OK",
+					responseBody: {
+						product: "The newly added product data"
+					}
+				}
+			]
+		},
+		{
+			method: "GET",
+			path: "/api/products",
+			summary: "Get all products",
+			parameters: [],
+			responses: [
+				{
+					status: 200,
+					description: "OK",
+					responseBody: {
+						products: "The list of products"
+					}
+				}
+			]
+		},
+		{
+			method: "GET",
+			path: "/api/products/:id",
+			summary: "Get a product by ID",
+			parameters: [
+				{
+					name: "id",
+					type: "String",
+					description: "The ID of the product",
+					location: "path"
+				}
+			],
+			responses: [
+				{
+					status: 200,
+					description: "OK",
+					responseBody: {
+						product: "The product object"
+					}
+				}
+			]
+		},
+		{
+			method: "POST",
+			path: "/api/categories",
+			summary: "Add a new category",
+			parameters: [
+				{
+					name: "category",
+					type: "Object",
+					description: "The category details",
+					location: "body"
+				}
+			],
+			responses: [
+				{
+					status: 200,
+					description: "OK",
+					responseBody: {
+						category: "The newly added category data"
+					}
+				}
+			]
+		},
+		{
+			method: "GET",
+			path: "/api/categories",
+			summary: "Get all categories",
+			parameters: [],
+			responses: [
+				{
+					status: 200,
+					description: "OK",
+					responseBody: {
+						categories: "The list of categories"
+					}
+				}
+			]
+		},
+		{
+			method: "GET",
+			path: "/api/categories/:id",
+			summary: "Get a category by ID",
+			parameters: [
+				{
+					name: "id",
+					type: "String",
+					description: "The ID of the category",
+					location: "path"
+				}
+			],
+			responses: [
+				{
+					status: 200,
+					description: "OK",
+					responseBody: {
+						category: "The category object"
+					}
+				}
+			]
+		},
+		{
+			method: "POST",
+			path: "/api/products/:id/rate",
+			summary: "Rate a product",
+			parameters: [
+				{
+					name: "id",
+					type: "String",
+					description: "The ID of the product",
+					location: "path"
+				},
+				{
+					name: "rating",
+					type: "Number",
+					description: "The rating given by the user",
+					location: "body"
+				}
+			],
+			responses: [
+				{
+					status: 200,
+					description: "OK",
+					responseBody: {
+						message: "Confirmation message"
+					}
+				}
+			]
+		},
+		{
+			method: "POST",
+			path: "/api/products/:id/wishlist",
+			summary: "Update wishlist",
+			parameters: [
+				{
+					name: "id",
+					type: "String",
+					description: "The ID of the product",
+					location: "path"
+				},
+				{
+					name: "add",
+					type: "Boolean",
+					description:
+						"Whether to add (true) or remove (false) the product from the wishlist. Default is true",
+					location: "query"
+				}
+			],
+			responses: [
+				{
+					status: 200,
+					description: "OK",
+					responseBody: {
+						message: "Confirmation message"
+					}
+				}
+			]
+		},
+		{
+			method: "POST",
+			path: "/api/products/:id/cart",
+			summary: "Update shopping cart",
+			parameters: [
+				{
+					name: "id",
+					type: "String",
+					description: "The ID of the product",
+					location: "path"
+				},
+				{
+					name: "add",
+					type: "Boolean",
+					description:
+						"Whether to add (true) or remove (false) the product from the shopping cart. Default is true",
+					location: "query"
+				}
+			],
+			responses: [
+				{
+					status: 200,
+					description: "OK",
+					responseBody: {
+						message: "Confirmation message"
+					}
+				}
+			]
+		},
+		{
+			method: "GET",
+			path: "*",
+			summary: "Serve client",
+			parameters: [],
+			responses: [
+				{
+					status: 200,
+					description: "OK",
+					responseBody: {
+						path: "The path to the client application"
+					}
+				}
+			]
+		}
+	];
+
+	res.json(endpoints);
+});
+
 /**
  * POST /api/user/register
  * @apiName RegisterUser
