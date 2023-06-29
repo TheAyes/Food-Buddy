@@ -1,1 +1,13 @@
 @import "../../global.scss";
+
+.wishlistPage {
+
+    .headerWishlist {
+        display: flex;
+        flex-direction: row;
+
+        h4 {
+            margin-left: 3%;
+        }
+    }
+}
