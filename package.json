@@ -4,7 +4,9 @@
 	"type": "module",
 	"devDependencies": {
 		"concurrently": "^8.2.0",
-		"dotenv": "^16.3.1"
+		"dotenv": "^16.3.1",
+		"axios": "^1.4.0",
+		"markdown-table": "^3.0.3"
 	},
 	"scripts": {
 		"api:start": "cd api && npm run start",
