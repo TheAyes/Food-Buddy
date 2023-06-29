@@ -36,7 +36,7 @@ export const doesUserExist = async (username = "") => {
 // Modified handleUserRegistration function to generate refresh tokens
 export const handleUserRegistration = async (req, res) => {
 	const usernamePattern = /^[a-zA-Z0-9_-]{3,26}$/;
-	const { username, password } = req.body;
+	const { username, password, email } = req.body;
 
 	if (!usernamePattern.test(username))
 		return res.status(400).json({
@@ -59,6 +59,7 @@ export const handleUserRegistration = async (req, res) => {
 		const hashedPassword = await bcrypt.hash(password, userSalt);
 
 		const user = new User({
+			email: userEmail,
 			username: lowerCaseUsername,
 			password: hashedPassword
 		});

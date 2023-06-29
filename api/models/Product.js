@@ -9,7 +9,10 @@ const ProductSchema = new Schema({
 		priceReduction: Number
 	},
 	categories: [{ type: mongoose.ObjectId, ref: "Category" }],
-	overallRating: Number,
+	overallRating: {
+		required: false,
+		type: Number
+	},
 	ratings: [
 		{
 			user: { type: mongoose.ObjectId, ref: "User" },
