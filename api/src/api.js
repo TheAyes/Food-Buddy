@@ -57,100 +57,110 @@ try {
 }
 
 /**
- * POST /api/users/register
+ * POST /api/user/register
  * @apiName RegisterUser
  * @apiGroup Users
- *
  * @apiParam (Request body) {String} username The username of the new user.
  * @apiParam (Request body) {String} password The password of the new user.
  * @apiParam (Request body) {String} email The email of the new user.
- *
  * @apiSuccess (Response body) {String} message Confirmation message.
  */
 app.post("/api/user/register", (req, res) => handleUserRegistration(req, res));
 
 /**
- * POST /api/users/login
+ * POST /api/user/login
  * @apiName LoginUser
  * @apiGroup Users
- *
  * @apiParam (Request body) {String} username The username of the user.
  * @apiParam (Request body) {String} password The password of the user.
- *
  * @apiSuccess (Response body) {String} message Confirmation message.
  */
 app.post("/api/user/login", (req, res) => handleUserLogin(req, res));
 
+/**
+ * GET /api/user
+ * @apiName GetUser
+ * @apiGroup Users
+ * @apiSuccess (Response body) {Object} user The authenticated user's data.
+ */
 app.get("/api/user", authenticateUser, (req, res) => getUserData(req, res));
 
+/**
+ * POST /api/user/refresh
+ * @apiName RefreshToken
+ * @apiGroup Users
+ * @apiSuccess (Response body) {String} token New token for the user.
+ */
 app.post("/api/user/refresh", (req, res) => handleTokenRefresh(req, res));
 
+/**
+ * POST /api/products
+ * @apiName AddProduct
+ * @apiGroup Products
+ * @apiParam (Request body) {Object} product The product details.
+ * @apiSuccess (Response body) {Object} product The newly added product data.
+ */
 app.post("/api/products", (req, res) => addProduct(req, res));
 
 /**
  * GET /api/products
- * @apiName GetAllProducts
+ * @apiName GetProducts
  * @apiGroup Products
- *
- * @apiParam (Query Parameter) {string} category A category filter for your products.
- * @apiParam (Query Parameter) {string} nameFilter A name filter for your products.
- * @apiParam (Query Parameter) {string} minPrize The minimum prize products should have.
- * @apiParam (Query Parameter) {string} maxPrize The maximum prize products should have.
- * @apiParam (Query Parameter) {string} minRating The minimum rating products should have.
- * @apiParam (Query Parameter) {string} maxRating The maximum rating products should have.
- * @apiParam (Query Parameter) {string} minNumberOfRatings The minimum number of ratings products should have.
- * @apiParam (Query Parameter) {string} maxNumberOfRatings The maximum number of ratings products should have.
- *
- * @apiSuccess (Response body) {Array} products An array of products.
+ * @apiSuccess (Response body) {Array} products The list of products.
  */
 app.get("/api/products", (req, res) => getProducts(req, res));
 
-//("/api/products?category=meat&minPrize=40&maxPrize=80")
-
 /**
  * GET /api/products/:id
- * @apiName GetProduct
+ * @apiName GetProductById
  * @apiGroup Products
- *
  * @apiParam (URL Parameter) {String} id The id of the product.
- *
  * @apiSuccess (Response body) {Object} product The product object.
  */
 app.get("/api/products/:id", (req, res) => getProductById(req, res));
 
+/**
+ * POST /api/categories
+ * @apiName AddCategory
+ * @apiGroup Categories
+ * @apiParam (Request body) {Object} category The category details.
+ * @apiSuccess (Response body) {Object} category The newly added category data.
+ */
 app.post("/api/categories", (req, res) => addCategory(req, res));
 
 /**
  * GET /api/categories
  * @apiName GetCategories
  * @apiGroup Categories
- *
- * @apiSuccess (Response body) {Array} categories An array of categories.
+ * @apiSuccess (Response body) {Array} categories The list of categories.
  */
 app.get("/api/categories", (req, res) => getCategories(req, res));
 
+/**
+ * GET /api/categories/:id
+ * @apiName GetCategoryById
+ * @apiGroup Categories
+ * @apiParam (URL Parameter) {String} id The id of the category.
+ * @apiSuccess (Response body) {Object} category The category object.
+ */
 app.get("/api/categories/:id", (req, res) => getCategoryById(req, res));
 
 /**
  * POST /api/products/:id/rate
  * @apiName RateProduct
  * @apiGroup Products
- *
  * @apiParam (URL Parameter) {String} id The id of the product.
- * @apiParam (Query Parameter) {Number} value The rating value between 0.0 to 5.0.
- *
+ * @apiParam (Request body) {Number} rating The rating given by the user.
  * @apiSuccess (Response body) {String} message Confirmation message.
  */
-app.post("/api/products/:id/rate", authenticateUser, (req, res) => rateProduct(req, res));
+app.post("/api/products/:id/rate", (req, res) => rateProduct(req, res));
 
 /**
  * POST /api/products/:id/wishlist
  * @apiName UpdateWishlist
  * @apiGroup Products
- *
  * @apiParam (URL Parameter) {String} id The id of the product.
  * @apiParam (Query Parameter) {Boolean} add Whether to add (true) or remove (false) the product from the wishlist. Default is true.
- *
  * @apiSuccess (Response body) {String} message Confirmation message.
  */
 app.post("/api/products/:id/wishlist", authenticateUser, (req, res) => wishlistProduct(req, res));
@@ -159,10 +169,8 @@ app.post("/api/products/:id/wishlist", authenticateUser, (req, res) => wishlistP
  * POST /api/products/:id/cart
  * @apiName UpdateCart
  * @apiGroup Products
- *
  * @apiParam (URL Parameter) {String} id The id of the product.
  * @apiParam (Query Parameter) {Boolean} add Whether to add (true) or remove (false) the product from the shopping cart. Default is true.
- *
  * @apiSuccess (Response body) {String} message Confirmation message.
  */
 app.post("/api/products/:id/cart", authenticateUser, (req, res) => addProductToCart(req, res));
