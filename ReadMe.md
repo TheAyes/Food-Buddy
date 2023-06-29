@@ -40,21 +40,31 @@ Products:
 }
 ```
 
-# ID's
 
+<!-- ids:start -->
 ### Categories
 
-| Name         | Id                         |
-|--------------|----------------------------|
-| `Meat`       | `649d50bd924b2f32645d0f24` |
-| `Bread`      | `649d85909011477c830b89d1` |
-| `Sweets`     | `649d85a19011477c830b89d3` |
-| `Fruits`     | `649d85519011477c830b89cd` |
-| `Seafood`    | `649d853e9011477c830b89cb` |
-| `Vegetables` | `649d85139011477c830b89c9` |
+| Name       | Id                       |
+| ---------- | ------------------------ |
+| Meat       | 649d50bd924b2f32645d0f24 |
+| Vegetables | 649d85139011477c830b89c9 |
+| Seafood    | 649d853e9011477c830b89cb |
+| Fruits     | 649d85519011477c830b89cd |
+| Bread      | 649d85909011477c830b89d1 |
+| Sweets     | 649d85a19011477c830b89d3 |
 
 ### Products
 
-| Name      | Id                         |
-|-----------|----------------------------|
-| `Chicken` | `649d48e1926db279d409ea28` |
+| Name         | Id                       |
+| ------------ | ------------------------ |
+| Chicken      | 649d48e1926db279d409ea28 |
+| Eggplant     | 649d82629011477c830b89c7 |
+| Spinach      | 649d8cc8db935bfa65fc0133 |
+| Zucchini     | 649d8d77db935bfa65fc013a |
+| Carrots      | 649d8d9bdb935bfa65fc013e |
+| Artichoke    | 649d8defdb935bfa65fc0142 |
+| Asparagus    | 649d8e21db935bfa65fc0146 |
+| Beetroot     | 649d8e46db935bfa65fc014a |
+| Broccoli     | 649d8e79db935bfa65fc014e |
+| Broccoflower | 649d8ebddb935bfa65fc0152 |
+<!-- ids:end -->
