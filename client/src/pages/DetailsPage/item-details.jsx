@@ -62,3 +62,4 @@ export const ItemDetails = (props) => {
 		</section>
 	);
 };
+
