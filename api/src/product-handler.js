@@ -4,13 +4,23 @@ import { Category } from "../models/Category.js";
 export const addProduct = async (req, res) => {
 	try {
 		const newProduct = new Product(req.body);
-		newProduct.save();
+
+		for (const item of newProduct.categories) {
+			const foundCategory = await Category.findById(item).exec();
+			if (foundCategory) {
+				foundCategory.products.push(newProduct._id);
+				await foundCategory.save();
+			}
+		}
+
+		await newProduct.save();
 
 		res.json(newProduct);
 	} catch (error) {
-		res.status(500).json(error);
+		res.status(500).json({ message: "An error occurred", error });
 	}
 };
+
 export const getProducts = async (req, res) => {
 	try {
 		const category = req.query.category;
