@@ -3,6 +3,24 @@ import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import { config } from "dotenv";
 import mongoose from "mongoose";
+import {
+	authenticateUser,
+	getUserData,
+	handleTokenRefresh,
+	handleUserLogin,
+	handleUserRegistration
+} from "./auth-handler.js";
+import {
+	addCategory,
+	addProduct,
+	addProductToCart,
+	getCategories,
+	getCategoryById,
+	getProductById,
+	getProducts,
+	rateProduct,
+	wishlistProduct
+} from "./product-handler.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -45,10 +63,11 @@ try {
  *
  * @apiParam (Request body) {String} username The username of the new user.
  * @apiParam (Request body) {String} password The password of the new user.
+ * @apiParam (Request body) {String} email The email of the new user.
  *
  * @apiSuccess (Response body) {String} message Confirmation message.
  */
-app.post("/api/users/register", (req, res) => res.send("Yup!"));
+app.post("/api/user/register", (req, res) => handleUserRegistration(req, res));
 
 /**
  * POST /api/users/login
@@ -60,16 +79,33 @@ app.post("/api/users/register", (req, res) => res.send("Yup!"));
  *
  * @apiSuccess (Response body) {String} message Confirmation message.
  */
-app.post("/api/users/login", (req, res) => res.send("Yup!"));
+app.post("/api/user/login", (req, res) => handleUserLogin(req, res));
+
+app.get("/api/user", authenticateUser, (req, res) => getUserData(req, res));
+
+app.post("/api/user/refresh", (req, res) => handleTokenRefresh(req, res));
+
+app.post("/api/products", (req, res) => addProduct(req, res));
 
 /**
  * GET /api/products
  * @apiName GetAllProducts
  * @apiGroup Products
  *
+ * @apiParam (Query Parameter) {string} category A category filter for your products.
+ * @apiParam (Query Parameter) {string} nameFilter A name filter for your products.
+ * @apiParam (Query Parameter) {string} minPrize The minimum prize products should have.
+ * @apiParam (Query Parameter) {string} maxPrize The maximum prize products should have.
+ * @apiParam (Query Parameter) {string} minRating The minimum rating products should have.
+ * @apiParam (Query Parameter) {string} maxRating The maximum rating products should have.
+ * @apiParam (Query Parameter) {string} minNumberOfRatings The minimum number of ratings products should have.
+ * @apiParam (Query Parameter) {string} maxNumberOfRatings The maximum number of ratings products should have.
+ *
  * @apiSuccess (Response body) {Array} products An array of products.
  */
-app.get("/api/products", (req, res) => res.send("Yup!"));
+app.get("/api/products", (req, res) => getProducts(req, res));
+
+//("/api/products?category=meat&minPrize=40&maxPrize=80")
 
 /**
  * GET /api/products/:id
@@ -80,7 +116,9 @@ app.get("/api/products", (req, res) => res.send("Yup!"));
  *
  * @apiSuccess (Response body) {Object} product The product object.
  */
-app.get("/api/products/:id", (req, res) => res.send("Yup!"));
+app.get("/api/products/:id", (req, res) => getProductById(req, res));
+
+app.post("/api/categories", (req, res) => addCategory(req, res));
 
 /**
  * GET /api/categories
@@ -89,18 +127,9 @@ app.get("/api/products/:id", (req, res) => res.send("Yup!"));
  *
  * @apiSuccess (Response body) {Array} categories An array of categories.
  */
-app.get("/api/categories", (req, res) => res.send("Yup!"));
+app.get("/api/categories", (req, res) => getCategories(req, res));
 
-/**
- * GET /api/categories/:category/products
- * @apiName GetCategoryProducts
- * @apiGroup Categories
- *
- * @apiParam (URL Parameter) {String} category The category of the products.
- *
- * @apiSuccess (Response body) {Array} products An array of products within the category.
- */
-app.get("/api/categories/:category/products", (req, res) => res.send("Yup!"));
+app.get("/api/categories/:id", (req, res) => getCategoryById(req, res));
 
 /**
  * POST /api/products/:id/rate
@@ -112,7 +141,7 @@ app.get("/api/categories/:category/products", (req, res) => res.send("Yup!"));
  *
  * @apiSuccess (Response body) {String} message Confirmation message.
  */
-app.post("/api/products/:id/rate", (req, res) => res.send("Yup!"));
+app.post("/api/products/:id/rate", authenticateUser, (req, res) => rateProduct(req, res));
 
 /**
  * POST /api/products/:id/wishlist
@@ -124,7 +153,7 @@ app.post("/api/products/:id/rate", (req, res) => res.send("Yup!"));
  *
  * @apiSuccess (Response body) {String} message Confirmation message.
  */
-app.post("/api/products/:id/wishlist", (req, res) => res.send("Yup!"));
+app.post("/api/products/:id/wishlist", authenticateUser, (req, res) => wishlistProduct(req, res));
 
 /**
  * POST /api/products/:id/cart
@@ -136,7 +165,7 @@ app.post("/api/products/:id/wishlist", (req, res) => res.send("Yup!"));
  *
  * @apiSuccess (Response body) {String} message Confirmation message.
  */
-app.post("/api/products/:id/cart", (req, res) => res.send("Yup!"));
+app.post("/api/products/:id/cart", authenticateUser, (req, res) => addProductToCart(req, res));
 
 /**
  * GET /*
