@@ -1,0 +1,45 @@
+@import "../../global.scss";
+
+.NavBar {
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 4rem;
+    background: linear-gradient(180deg, rgba(245, 245, 255, 1) 29%, rgba(255, 255, 255, 1) 52%);
+    border-radius: 2rem 2rem 0 0;
+
+
+    a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: $ff-roboto;
+        font-size: $fz-small-4;
+        color: $fc-3;
+
+        &:nth-of-type(3) {
+            aspect-ratio: 1/1;
+            width: 9rem;
+            height: auto;
+
+            img {
+                flex: 1;
+                max-width: 100%;
+                padding-top: 0;
+            }
+        }
+    }
+
+    img {
+        height: 5.3rem;
+        margin-bottom: 0.5rem;
+        padding-top: 2.5rem;
+    }
+}
+
+.selected {
+    filter: invert(67%) sepia(40%) saturate(608%) hue-rotate(85deg) brightness(96%) contrast(90%);
+}
