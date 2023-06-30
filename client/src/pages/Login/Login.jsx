@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Login.module.scss";
-import { logo } from "../../pics/logoInGreen.png";
+import logo from "../../pics/logoInGreen.png";
 
 export const Login = () => {
 	const [username, setUsername] = useState("");
@@ -11,7 +11,7 @@ export const Login = () => {
 	return (
 		<>
 			<div>
-				<img src={logo} alt="" />
+				<img src={logo} alt="logo" />
 			</div>
 		</>
 	);
