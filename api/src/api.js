@@ -14,11 +14,13 @@ import {
 	addCategory,
 	addProduct,
 	addProductToCart,
+	deleteProductById,
 	getCategories,
 	getCategoryById,
 	getProductById,
 	getProducts,
 	rateProduct,
+	updateProductById,
 	wishlistProduct
 } from "./product-handler.js";
 
@@ -55,6 +57,8 @@ try {
 	console.error(`Failed to connect to database with string: ${connectionString}`, error);
 	process.exit(1);
 }
+
+// @TODO: Rewrite for procedural documentation generation
 
 app.get("/api/docs", (req, res) => {
 	const endpoints = [
@@ -427,6 +431,10 @@ app.post("/api/products", (req, res) => addProduct(req, res));
  * @apiSuccess (Response body) {Array} products The list of products.
  */
 app.get("/api/products", (req, res) => getProducts(req, res));
+
+app.delete("/api/products/:id", (req, res) => deleteProductById(req, res));
+
+app.patch("/api/products/:id", (req, res) => updateProductById(req, res));
 
 /**
  * GET /api/products/:id
