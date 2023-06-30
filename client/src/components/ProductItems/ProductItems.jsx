@@ -14,7 +14,7 @@ export const ProductItems = (props) => {
 			<Link to={`ItemDetails/${props.id}`}>
 				<div>
 					<img src={props.image} alt="image" className={styles.itemImages} />
-					<p>{props.name}</p>
+					<p className={styles.productName}>{props.name}</p>
 					<div className={styles.flex}>
 						<p>
 							{value} {unit}

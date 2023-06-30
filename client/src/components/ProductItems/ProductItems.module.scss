@@ -1,6 +1,7 @@
+@import "../../variable.scss";
+
 .ProductItems {
 	* {
-		color: black;
 		margin-left: 2%;
 		margin-right: 2%;
 	}
@@ -14,14 +15,24 @@
 	}
 
 	.itemImages {
-		height: 10rem;
+		height: 9rem;
 		max-width: 100%;
+		border-radius: 20px;
+	}
+	.productName {
+		font-size: $fz-medium-1;
+		color: $fc-5;
+		font-weight: 300;
+		padding-bottom: 2rem;
 	}
 	.star {
 		height: 1.5rem;
 		margin-left: 50px;
 	}
 	p {
+		color: $fc-5;
+		font-size: $fz-small-3;
+		font-weight: 400;
 	}
 	.flex {
 		display: flex;

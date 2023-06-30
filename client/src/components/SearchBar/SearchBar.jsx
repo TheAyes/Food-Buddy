@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import search from "../../pics/suche.png";
 import styles from "./SearchBar.module.scss";
@@ -9,8 +9,9 @@ export const SearchBar = ({ onSelectItem }) => {
 	const [filteredData, setFilteredData] = useState([]);
 	const [searchTerm, setSearchTerm] = useState("");
 	const [suggestions, setSuggestions] = useState([]);
+	const inputRef = useRef(null);
 
-	// IST-STAND: Funktion für Daten aus json.Datei --> hinterher fetch mit API - Code umschreiben und anpassen -> bisher nur Optik und die gesuchten Produkte werden in der Konsole ausgespielt
+	// Searchbar mit api verbunden, aktuell auf ItemList ausgerichtet - Autosuggestions und filter für die Ausgabe der Items
 	const handleChange = (value) => {
 		setInput(value);
 		const filteredItems = data.filter((item) => item.name.toLowerCase().includes(value.toLowerCase()));
@@ -19,17 +20,21 @@ export const SearchBar = ({ onSelectItem }) => {
 	};
 
 	const handleItemClick = (item) => {
-		// const updatedInput = item.name;
 		setInput(item.name);
 		setFilteredData([item]);
 		setSuggestions([]);
 		onSelectItem(item);
 	};
 
-	const handleSearch = () => {
-		const filteredItems = data.filter((item) => item.name.toLowerCase().includes(input.toLowerCase()));
-		setFilteredData(filteredItems);
-		setSuggestions([]);
+	const handleSearch = async () => {
+		try {
+			const response = await fetch(`/api/products?name=${input}`);
+			const data = await response.json();
+			setFilteredData(data);
+			setSuggestions([]);
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	const handleClick = () => {
@@ -38,11 +43,6 @@ export const SearchBar = ({ onSelectItem }) => {
 			onSelectItem(filteredData[0]);
 		}
 	};
-
-	useEffect(() => {
-		const filteredItems = data.filter((item) => item.name.toLowerCase().includes(input.toLowerCase()));
-		setFilteredData(filteredItems);
-	}, [input]);
 
 	useEffect(() => {
 		if (suggestions.length > 0) {
