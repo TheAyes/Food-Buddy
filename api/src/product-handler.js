@@ -4,13 +4,23 @@ import { Category } from "../models/Category.js";
 export const addProduct = async (req, res) => {
 	try {
 		const newProduct = new Product(req.body);
-		newProduct.save();
+
+		for (const item of newProduct.categories) {
+			const foundCategory = await Category.findById(item).exec();
+			if (foundCategory) {
+				foundCategory.products.push(newProduct._id);
+				await foundCategory.save();
+			}
+		}
+
+		await newProduct.save();
 
 		res.json(newProduct);
 	} catch (error) {
-		res.status(500).json(error);
+		res.status(500).json({ message: "An error occurred", error });
 	}
 };
+
 export const getProducts = async (req, res) => {
 	try {
 		const category = req.query.category;
@@ -48,7 +58,35 @@ export const getProducts = async (req, res) => {
 		if (minNumberOfRatings) filter["ratings.length"].$gte = minNumberOfRatings;
 		if (maxNumberOfRatings) filter["ratings.length"].$lte = maxNumberOfRatings;
 
-		res.json(await Product.find(filter).exec());
+		res.json(await Product.find(filter).populate("categories").populate("users").exec());
+	} catch (error) {
+		res.status(500).json(error);
+	}
+};
+
+export const deleteProductById = async (req, res) => {
+	try {
+		const result = Product.findById(req.params.id);
+		if (!result) res.status(404).json({ message: "Not found" });
+
+		await result.deleteOne();
+
+		res.json({ message: `Deleted Product with ID: ${req.params.id}` });
+	} catch (error) {
+		res.status(500).json(error);
+	}
+};
+
+export const updateProductById = async (req, res) => {
+	try {
+		const result = Product.findById(req.params.id);
+		if (!result) return res.status(404).json({ message: "Not found" });
+
+		const updatedProduct = {
+			...result,
+			...req.body
+		};
+		res.json(updatedProduct);
 	} catch (error) {
 		res.status(500).json(error);
 	}
@@ -65,7 +103,7 @@ export const getProductById = async (req, res) => {
 export const addCategory = async (req, res) => {
 	try {
 		const newCategory = new Category(req.body);
-		newCategory.save();
+		await newCategory.save();
 		res.json(newCategory);
 	} catch (error) {
 		res.status(500).json(error);
