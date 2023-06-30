@@ -1,38 +1,5 @@
 @import "../../global.scss";
 
-// .goBackButton {
-//     width: 8rem;
-//     height: 4rem;
-//     border-radius: 50%;
-//     border: none;
-//     outline: none;
-//     padding: 0;
-//     cursor: pointer;
-//     transition: transform 0.3s, filter 0.4s;
-//     filter: brightness(100%);
-//     background-image: url('../../pics/goBackButton.svg');
-//     background-size: contain;
-//     background-position: center;
-//     background-repeat: no-repeat;
-//     background-color: transparent;
-
-//     &:hover {
-//         filter: brightness(85%);
-//         transform: scale(1.1);
-//         font-weight: 400;
-//     }
-
-//     &:active {
-//         background-color: #DEFFE4;
-//         filter: brightness(100%) invert(1);
-//         transform: scale(0.98);
-//         box-shadow: 0 0 5px $bc-1, 0 0 10px $bc-1, 0 0 20px $bc-1, 0 0 30px $bc-1;
-//         color: $fc-2;
-//         font-weight: 600;
-//     }
-// }
-
-
 .goBackButton {
     width: 2.5vw;
     height: 4vh;
