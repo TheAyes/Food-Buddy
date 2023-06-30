@@ -28,6 +28,7 @@ export const App = () => {
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 			<WishlistPage></WishlistPage>
+			<AddToCartComponent></AddToCartComponent>
 		</>
 	);
 };
