@@ -30,21 +30,3 @@ export const App = () => {
 	);
 };
 
-export const App = () => {
-	return (
-		<>
-			<ItemList />
-			<Routes>
-				<Route path="/" element={<LandingPage />} />
-				<Route path="/home" element={<HomePage />} />
-				<Route path="/itemlist" element={<ItemList />} />
-				<Route path="/item/:id" element={<ItemDetails />} />
-				<Route path="/user" element={<ProfilePage />} />
-				<Route path="/user/cart" element={<CartPage />} />
-				<Route path="/user/wishlist" element={<WishlistPage />} />
-				<Route path="/user/order-history" element={<OrderHistoryPage />} />
-				<Route path="*" element={<NotFound />} />
-			</Routes>
-		</>
-	);
-};
