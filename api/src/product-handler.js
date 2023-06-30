@@ -58,7 +58,7 @@ export const getProducts = async (req, res) => {
 		if (minNumberOfRatings) filter["ratings.length"].$gte = minNumberOfRatings;
 		if (maxNumberOfRatings) filter["ratings.length"].$lte = maxNumberOfRatings;
 
-		res.json(await Product.find(filter).exec());
+		res.json(await Product.find(filter).populate("categories").populate("users").exec());
 	} catch (error) {
 		res.status(500).json(error);
 	}
@@ -71,7 +71,7 @@ export const deleteProductById = async (req, res) => {
 
 		await result.deleteOne();
 
-		res.json({ message: `Deleted Product with ID: ${result._id}` });
+		res.json({ message: `Deleted Product with ID: ${req.params.id}` });
 	} catch (error) {
 		res.status(500).json(error);
 	}
@@ -80,7 +80,7 @@ export const deleteProductById = async (req, res) => {
 export const updateProductById = async (req, res) => {
 	try {
 		const result = Product.findById(req.params.id);
-		if (!result) res.status(404).json({ message: "Not found" });
+		if (!result) return res.status(404).json({ message: "Not found" });
 
 		const updatedProduct = {
 			...result,
