@@ -64,6 +64,34 @@ export const getProducts = async (req, res) => {
 	}
 };
 
+export const deleteProductById = async (req, res) => {
+	try {
+		const result = Product.findById(req.params.id);
+		if (!result) res.status(404).json({ message: "Not found" });
+
+		await result.deleteOne();
+
+		res.json({ message: `Deleted Product with ID: ${result._id}` });
+	} catch (error) {
+		res.status(500).json(error);
+	}
+};
+
+export const updateProductById = async (req, res) => {
+	try {
+		const result = Product.findById(req.params.id);
+		if (!result) res.status(404).json({ message: "Not found" });
+
+		const updatedProduct = {
+			...result,
+			...req.body
+		};
+		res.json(updatedProduct);
+	} catch (error) {
+		res.status(500).json(error);
+	}
+};
+
 export const getProductById = async (req, res) => {
 	try {
 		res.json(await Product.findById(req.params.id).exec());
@@ -75,7 +103,7 @@ export const getProductById = async (req, res) => {
 export const addCategory = async (req, res) => {
 	try {
 		const newCategory = new Category(req.body);
-		newCategory.save();
+		await newCategory.save();
 		res.json(newCategory);
 	} catch (error) {
 		res.status(500).json(error);
