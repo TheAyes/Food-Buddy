@@ -68,6 +68,7 @@ Products:
 ## ID's
 
 
+
 <!-- ids:start -->
 ### Categories
 
@@ -79,6 +80,7 @@ Products:
 | Fruits     | 649d85519011477c830b89cd |
 | Bread      | 649d85909011477c830b89d1 |
 | Sweets     | 649d85a19011477c830b89d3 |
+| sweets     | 649dd7b9db935bfa65fc036e |
 
 ### Products
 
@@ -215,7 +217,19 @@ Products:
 | Strawberries        | 649dcf1ddb935bfa65fc0335 |
 | Blackberries        | 649dcf4bdb935bfa65fc0339 |
 | Golden Berry        | 649dcf88db935bfa65fc033d |
+| Raspberry           | 649dd3f6db935bfa65fc0341 |
+| Lime                | 649dd434db935bfa65fc0345 |
+| Lemon               | 649dd455db935bfa65fc0349 |
+| Apple               | 649dd4b6db935bfa65fc034d |
+| Orange              | 649dd4e3db935bfa65fc0351 |
+| Blood Orange        | 649dd50fdb935bfa65fc0355 |
+| Grapefruit          | 649dd548db935bfa65fc0359 |
+| Pear                | 649dd5dfdb935bfa65fc035d |
+| Asian Pear          | 649dd60cdb935bfa65fc0361 |
+| Cherries            | 649dd66bdb935bfa65fc0365 |
+| Peach               | 649dd6b4db935bfa65fc0369 |
 <!-- ids:end -->
+
 
 
 
