@@ -12,6 +12,7 @@ import { FilterPage } from "./pages/Filter/filter-page.jsx";
 import { NavBar } from "./components/NavBar/NavBar.jsx";
 import { LikeButton } from "./components/LikeButton/LikeButton.jsx";
 import { AddToCartComponent } from "./components/AddToCartComponent/AddToCartComponent.jsx";
+import { CategoryBarImage } from "./components/CategoryBarImage/CategoryBarImage.jsx";
 
 export const App = () => {
 	return (
