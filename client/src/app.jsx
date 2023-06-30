@@ -14,6 +14,7 @@ import { NavBar } from "./components/NavBar/NavBar.jsx";
 export const App = () => {
 	return (
 		<>
+			<Login />
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
 				<Route path="/home" element={<HomePage />} />
