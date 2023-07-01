@@ -39,6 +39,9 @@
             margin: 0 auto 2.5rem auto;
             border-radius: 7px;
             color: $fc-2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .priceIndicator {

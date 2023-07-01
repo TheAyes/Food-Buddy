@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import styles from './wishlist-page.module.scss';
+
+//Import Components
 import { GoBackButton } from "../../components/GoBackButton/GoBackButton";
 import { NavBar } from '../../components/NavBar/NavBar';
 import { WishItem } from '../../components/WishItem/WishItem';
+
+// Import Images
+import emptyWishlist from "../../pics/emptyWishlist.svg"
 
 export const WishlistPage = () => {
     const [wishlist, setWishlist] = useState([]);
@@ -26,7 +31,7 @@ export const WishlistPage = () => {
                 <h4>Wishlist</h4>
                 {/* Löschen Button */}
             </div>
-            <NavBar />
+            <img className={styles.emptyWishImage} src={emptyWishlist} alt="empty Wishlist" />
             <div className={styles.wishlistContainer}>
                 {wishlist.map(item => (
                     <WishItem
@@ -40,6 +45,7 @@ export const WishlistPage = () => {
                     />
                 ))}
             </div>
+            <NavBar />
         </section>
     );
 };

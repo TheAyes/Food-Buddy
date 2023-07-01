@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './item-details.module.scss';
+import { Link } from 'react-router-dom';
 
 // Bilder Import
 import starImage from "../../pics/star.svg";
