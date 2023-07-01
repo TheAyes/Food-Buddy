@@ -8,17 +8,17 @@
 
     .upperPart {
         display: flex;
+        justify-content: space-between;
         margin-top: 2.5rem;
 
 
         .pageTitle {
-            font-size: $fz-small-5;
+            font-size: $fz-medium-2;
             color: $fc-5;
         }
 
         img {
             width: 10%;
-
         }
     }
 
@@ -60,6 +60,7 @@
 
         img {
             width: $fz-small-4;
+            margin-right: 0.7rem;
         }
 
         .ratingIndicator {
