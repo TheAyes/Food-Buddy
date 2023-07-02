@@ -1,22 +1,30 @@
-@import "../../global.scss";
-
 .wishlistPage {
-
     .headerWishlist {
         display: flex;
-        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3%;
 
-        h4 {
-            margin-left: 2rem;
+        .leftContainer {
+            display: flex;
+
+            h4 {
+                margin-left: 2rem;
+                align-self: center;
+            }
+        }
+
+        .trashCan {
+            width: 4.5%;
+            margin-left: auto;
         }
     }
 
     .emptyWishImage {
-        width: 70%;
+        width: 53%;
         margin: 20% auto;
         display: flex;
         justify-content: center;
         align-items: center;
-
     }
 }

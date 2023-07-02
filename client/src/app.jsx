@@ -29,6 +29,7 @@ export const App = () => {
 				<Route path="/user/order-history" element={<OrderHistoryPage />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
+			<WishlistPage />
 		</>
 	);
 };
