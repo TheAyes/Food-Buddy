@@ -1,0 +1,31 @@
+.ProductItems * {
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+.ProductItems div {
+  text-align: center;
+}
+.ProductItems .itemImages {
+  height: 9rem;
+  max-width: 100%;
+  border-radius: 20px;
+}
+.ProductItems .productName {
+  font-size: 2.2rem;
+  color: #2c3066;
+  font-weight: 300;
+  padding-bottom: 2rem;
+}
+.ProductItems .star {
+  height: 1.5rem;
+  margin-left: 50px;
+}
+.ProductItems p {
+  color: #2c3066;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.ProductItems .flex {
+  display: flex;
+  justify-content: space-around;
+}/*# sourceMappingURL=ProductItems.module.css.map */

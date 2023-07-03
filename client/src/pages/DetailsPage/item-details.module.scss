@@ -2,26 +2,161 @@
 
 
 .itemDetails {
-    .testi1 {
-        background-color: blue;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
 
-        image {
-            width: 80vw;
-            max-width: 960px;
+    .upperPart {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2.5rem;
+
+
+        .pageTitle {
+            font-size: $fz-medium-2;
+            color: $fc-5;
         }
 
+        img {
+            width: 10%;
+        }
     }
 
-    .quantityIndicator {
-        background-color: green;
-        width: 20vw;
-        height: 10vw;
+    .imageSection {
+        margin-top: 3rem;
+
+        img {
+            width: 90%;
+            margin-bottom: 2.3rem;
+            border-radius: 10px;
+        }
+
+        .quantityIndicator {
+            font-size: $fz-small-2;
+            background-color: $bc-1;
+            width: 10%;
+            padding: 1.5rem 4.5rem;
+            margin: 0 auto 2.5rem auto;
+            border-radius: 7px;
+            color: $fc-2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .priceIndicator {
+            color: $fc-5;
+            margin-bottom: 1.5rem;
+        }
+
+        .nameIndicator {
+            font-size: $fz-small-4;
+            color: $fc-5;
+            margin-bottom: 1.5rem;
+        }
     }
 
-    .quantitySelection {
-        font-family: $ff-roboto;
-        font-size: 5rem;
-        background-color: green;
+    .ratingSection {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2.5rem;
+
+        img {
+            width: $fz-small-4;
+            margin-right: 0.7rem;
+        }
+
+        .ratingIndicator {
+            font-size: $fz-small-4;
+            color: $fc-4;
+            margin-right: 0.6rem;
+        }
+
+        .reviewIndicator {
+            font-size: $fz-small-4;
+            color: $fc-4;
+        }
     }
 
+    hr {
+        color: #c0c0c0;
+    }
+
+    .quantitySection {
+        margin-top: 2.1rem;
+
+        .quantityTitle {
+            font-size: $fz-small-4;
+            color: $fc-4;
+            margin-bottom: 1.5rem;
+        }
+
+        .selectQuantity {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 3.5rem;
+
+            .minusQuantity,
+            .plusQuantity {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: $fz-large-1;
+                padding: 3.2rem;
+                width: 2rem;
+                height: 2rem;
+                border-radius: 999vw;
+                border-color: transparent;
+
+                &:hover {
+                    background-color: #DEFFE4;
+                    color: $fc-3;
+                    transform: scale(1.1);
+                    transition: transform 0.4s;
+                    cursor: pointer;
+
+                }
+
+                &:active {
+                    background-color: $bc-1;
+                    box-shadow: 0 0 5px #DEFFE4, 0 0 10px #DEFFE4, 0 0 20px #DEFFE4, 0 0 30px #DEFFE4;
+                    color: $fc-2;
+                    font-weight: $fw-regular;
+                }
+            }
+
+            .numberQuantity {
+                font-size: $fz-large-1;
+                margin: 0 9rem;
+            }
+        }
+
+        .shoppingSection {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            img {
+                width: 7%;
+                margin-bottom: 2rem;
+                cursor: pointer;
+            }
+
+            p {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: $bc-1;
+                color: $fc-2;
+                transform: translate(96%, -230%);
+                font-size: $fz-small-3;
+                padding: 1.39rem;
+                width: 2rem;
+                height: 2rem;
+                border-radius: 999vw;
+                border-color: transparent;
+            }
+        }
+    }
 }

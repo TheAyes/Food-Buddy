@@ -1,24 +1,51 @@
 import React, { useState, useEffect } from "react";
 import { ProductItems } from "../../components/ProductItems/ProductItems.jsx";
-import data from "../../data/data.json";
+import { SearchBar } from "../../components/SearchBar/SearchBar.jsx";
+import groceryData from "../../data/grocery-data.json";
+import styles from "./ItemList.module.scss";
 
 export const ItemList = () => {
 	const [products, setProducts] = useState([]);
-	const [data, setData] = useState(null);
+	const [selectedItems, setSelectedItems] = useState([]);
+	const [filteredData, setFilteredData] = useState([]);
 
 	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const response = await fetch(data);
-				const jsonData = await response.json();
-				setData(jsonData);
-			} catch (error) {
-				console.error("Error:", error);
-			}
-		};
 		fetchData();
 	}, []);
 
-	return <></>;
+	const fetchData = async () => {
+		try {
+			const response = await fetch("/api/products"); // Endpunkt anpassen
+			const data = await response.json();
+			setProducts(data);
+			setFilteredData(data);
+		} catch (error) {
+			console.error("Error:", error);
+		}
+	};
+
+	const handleSelectItem = (item) => {
+		const filteredItems = filteredData.filter((dataItem) =>
+			dataItem.name.toLowerCase().includes(item.name.toLowerCase())
+		);
+		setFilteredData([...filteredItems, item]);
+	};
+	return (
+		//hier das DIV nur als Übung für SearchBar
+		<div>
+			<SearchBar onSelectItem={handleSelectItem} />
+			<div className={styles.ItemList}>
+				{filteredData.map((item) => (
+					<ProductItems
+						key={item._id}
+						image={item.image}
+						name={item.name}
+						price={item.price}
+						rating={item.ratings}
+					/>
+				))}
+			</div>
+		</div>
+	);
 };
 
