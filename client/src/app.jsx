@@ -11,6 +11,7 @@ import { ItemList } from "./pages/ItemList/item-list.jsx";
 import { FilterPage } from "./pages/Filter/filter-page.jsx";
 import { NavBar } from "./components/NavBar/NavBar.jsx";
 import { AddToCartComponent } from "./components/AddToCartComponent/AddToCartComponent.jsx";
+import { CategoryBarImage } from "./components/CategoryBarImage/CategoryBarImage.jsx";
 
 export const App = () => {
 	return (
@@ -26,6 +27,7 @@ export const App = () => {
 				<Route path="/user/order-history" element={<OrderHistoryPage />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
+			<CategoryBarImage />
 		</>
 	);
 };

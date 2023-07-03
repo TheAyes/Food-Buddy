@@ -3,6 +3,27 @@ import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import { config } from "dotenv";
 import mongoose from "mongoose";
+import {
+	authenticateUser,
+	getUserData,
+	handleTokenRefresh,
+	handleUserLogin,
+	handleUserLogout,
+	handleUserRegistration
+} from "./auth-handler.js";
+import {
+	addCategory,
+	addProduct,
+	addProductToCart,
+	deleteProductById,
+	getCategories,
+	getCategoryById,
+	getProductById,
+	getProducts,
+	rateProduct,
+	updateProductById,
+	wishlistProduct
+} from "./product-handler.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -38,113 +59,208 @@ try {
 	process.exit(1);
 }
 
-/**
- * POST /api/users/register
- * @apiName RegisterUser
- * @apiGroup Users
- *
- * @apiParam (Request body) {String} username The username of the new user.
- * @apiParam (Request body) {String} password The password of the new user.
- *
- * @apiSuccess (Response body) {String} message Confirmation message.
- */
-app.post("/api/users/register", (req, res) => res.send("Yup!"));
+const endpointsBuilder = [
+	{
+		method: "POST",
+		path: "/api/user/register",
+		urlParams: [],
+		queryParams: [],
+		headStructure: {},
+		bodyStructure: { username: "string", password: "string", email: "string" },
+		middlewares: [],
+		function: (req, res) => handleUserRegistration(req, res)
+	},
+	{
+		method: "POST",
+		path: "/api/user/login",
+		urlParams: [],
+		queryParams: [],
+		headStructure: {},
+		bodyStructure: { username: "string", password: "string" },
+		middlewares: [],
+		function: (req, res) => handleUserLogin(req, res)
+	},
+	{
+		method: "POST",
+		path: "/api/user/logout",
+		urlParams: [],
+		queryParams: [],
+		headStructure: {
+			Authorization: `Bearer JWT_TOKEN_HERE`
+		},
+		bodyStructure: {
+			accessToken: "string",
+			refreshToken: "string"
+		},
+		middlewares: [],
+		function: (req, res) => handleUserLogout(req, res)
+	},
+	{
+		method: "GET",
+		path: "/api/user",
+		urlParams: [],
+		queryParams: [],
+		headStructure: {
+			Authorization: `Bearer JWT_TOKEN_HERE`
+		},
+		bodyStructure: {},
+		middlewares: [authenticateUser],
+		function: (req, res) => getUserData(req, res)
+	},
+	{
+		method: "POST",
+		path: "/api/user/refresh",
+		urlParams: [],
+		queryParams: [],
+		headStructure: {
+			Authorization: `Bearer JWT_TOKEN_HERE`
+		},
+		bodyStructure: {},
+		middlewares: [],
+		function: (req, res) => handleTokenRefresh(req, res)
+	},
+	{
+		method: "POST",
+		path: "/api/products",
+		urlParams: [],
+		queryParams: [],
+		bodyStructure: {
+			product: {
+				name: "string",
+				image: "string",
+				price: {
+					value: "number",
+					unit: "string",
+					priceReduction: "number"
+				},
+				categories: ["id for category"],
+				ratings: [{ user: "userID:string", rating: "number" }]
+			}
+		},
+		middlewares: [],
+		function: async (req, res) => addProduct(req, res)
+	},
+	{
+		method: "GET",
+		path: "/api/products",
+		urlParams: [],
+		queryParams: [],
+		bodyStructure: {},
+		middlewares: [],
+		function: async (req, res) => getProducts(req, res)
+	},
+	{
+		method: "DELETE",
+		path: "/api/products/:id",
+		urlParams: [{ id: "string" }],
+		queryParams: [],
+		bodyStructure: {},
+		middlewares: [],
+		function: async (req, res) => deleteProductById(req, res)
+	},
+	{
+		method: "PATCH",
+		path: "/api/products/:id",
+		urlParams: ["id"],
+		queryParams: [],
+		bodyStructure: {},
+		middlewares: [],
+		function: async (req, res) => updateProductById(req, res)
+	},
+	{
+		method: "GET",
+		path: "/api/products/:id",
+		urlParams: ["id"],
+		queryParams: [],
+		bodyStructure: {},
+		middlewares: [],
+		function: async (req, res) => getProductById(req, res)
+	},
+	{
+		method: "POST",
+		path: "/api/categories",
+		urlParams: [],
+		queryParams: [],
+		bodyStructure: { category: {} },
+		middlewares: [],
+		function: async (req, res) => addCategory(req, res)
+	},
+	{
+		method: "GET",
+		path: "/api/categories",
+		urlParams: [],
+		queryParams: [],
+		bodyStructure: {},
+		middlewares: [],
+		function: async (req, res) => getCategories(req, res)
+	},
+	{
+		method: "GET",
+		path: "/api/categories/:id",
+		urlParams: ["id"],
+		queryParams: [],
+		bodyStructure: {},
+		middlewares: [],
+		function: async (req, res) => getCategoryById(req, res)
+	},
+	{
+		method: "POST",
+		path: "/api/products/:id/rate",
+		urlParams: ["id"],
+		queryParams: [],
+		headStructure: {
+			Authorization: `Bearer JWT_TOKEN_HERE`
+		},
+		bodyStructure: { rating: 0 },
+		middlewares: [authenticateUser],
+		function: async (req, res) => rateProduct(req, res)
+	},
+	{
+		method: "POST",
+		path: "/api/products/:id/wishlist",
+		urlParams: ["id"],
+		queryParams: ["add"],
+		headStructure: {
+			Authorization: `Bearer JWT_TOKEN_HERE`
+		},
+		bodyStructure: {},
+		middlewares: [authenticateUser],
+		function: async (req, res) => wishlistProduct(req, res)
+	},
+	{
+		method: "POST",
+		path: "/api/products/:id/cart",
+		urlParams: ["id"],
+		queryParams: ["add"],
+		headStructure: {
+			Authorization: `Bearer JWT_TOKEN_HERE`
+		},
+		bodyStructure: {},
+		middlewares: [authenticateUser],
+		function: async (req, res) => addProductToCart(req, res)
+	},
+	{
+		method: "GET",
+		path: "/api/docs",
+		urlParams: [],
+		queryParams: [],
+		bodyStructure: {},
+		middlewares: [],
+		function: async (req, res) => res.json(endpointsBuilder)
+	},
+	{
+		method: "GET",
+		path: "*",
+		urlParams: [],
+		queryParams: [],
+		bodyStructure: {},
+		middlewares: [],
+		function: async (req, res) => res.send(path.join(__dirname, "../../dist/client/index.html"))
+	}
+];
 
-/**
- * POST /api/users/login
- * @apiName LoginUser
- * @apiGroup Users
- *
- * @apiParam (Request body) {String} username The username of the user.
- * @apiParam (Request body) {String} password The password of the user.
- *
- * @apiSuccess (Response body) {String} message Confirmation message.
- */
-app.post("/api/users/login", (req, res) => res.send("Yup!"));
-
-/**
- * GET /api/products
- * @apiName GetAllProducts
- * @apiGroup Products
- *
- * @apiSuccess (Response body) {Array} products An array of products.
- */
-app.get("/api/products", (req, res) => res.send("Yup!"));
-
-/**
- * GET /api/products/:id
- * @apiName GetProduct
- * @apiGroup Products
- *
- * @apiParam (URL Parameter) {String} id The id of the product.
- *
- * @apiSuccess (Response body) {Object} product The product object.
- */
-app.get("/api/products/:id", (req, res) => res.send("Yup!"));
-
-/**
- * GET /api/categories
- * @apiName GetCategories
- * @apiGroup Categories
- *
- * @apiSuccess (Response body) {Array} categories An array of categories.
- */
-app.get("/api/categories", (req, res) => res.send("Yup!"));
-
-/**
- * GET /api/categories/:category/products
- * @apiName GetCategoryProducts
- * @apiGroup Categories
- *
- * @apiParam (URL Parameter) {String} category The category of the products.
- *
- * @apiSuccess (Response body) {Array} products An array of products within the category.
- */
-app.get("/api/categories/:category/products", (req, res) => res.send("Yup!"));
-
-/**
- * POST /api/products/:id/rate
- * @apiName RateProduct
- * @apiGroup Products
- *
- * @apiParam (URL Parameter) {String} id The id of the product.
- * @apiParam (Query Parameter) {Number} value The rating value between 0.0 to 5.0.
- *
- * @apiSuccess (Response body) {String} message Confirmation message.
- */
-app.post("/api/products/:id/rate", (req, res) => res.send("Yup!"));
-
-/**
- * POST /api/products/:id/wishlist
- * @apiName UpdateWishlist
- * @apiGroup Products
- *
- * @apiParam (URL Parameter) {String} id The id of the product.
- * @apiParam (Query Parameter) {Boolean} add Whether to add (true) or remove (false) the product from the wishlist. Default is true.
- *
- * @apiSuccess (Response body) {String} message Confirmation message.
- */
-app.post("/api/products/:id/wishlist", (req, res) => res.send("Yup!"));
-
-/**
- * POST /api/products/:id/cart
- * @apiName UpdateCart
- * @apiGroup Products
- *
- * @apiParam (URL Parameter) {String} id The id of the product.
- * @apiParam (Query Parameter) {Boolean} add Whether to add (true) or remove (false) the product from the shopping cart. Default is true.
- *
- * @apiSuccess (Response body) {String} message Confirmation message.
- */
-app.post("/api/products/:id/cart", (req, res) => res.send("Yup!"));
-
-/**
- * GET /*
- * @apiName ServeClient
- * @apiGroup Client
- *
- * @apiSuccess (Response body) {String} path The path to the client application.
- */
-app.get("*", (req, res) => res.send(path.join(__dirname, "../../dist/client/index.html")));
+endpointsBuilder.forEach((endpoint) => {
+	app[endpoint.method.toLowerCase()](endpoint.path, endpoint.middlewares, endpoint.function);
+});
 
 app.listen(port, () => console.info(`\x1b[32m%s\x1b[0m`, `API listening on ${port}`));
