@@ -15,6 +15,7 @@ import { NavBar } from "./components/NavBar/NavBar.jsx";
 import { LikeButton } from "./components/LikeButton/LikeButton.jsx";
 import { AddToCartComponent } from "./components/AddToCartComponent/AddToCartComponent.jsx";
 import { CategoryBarImage } from "./components/CategoryBarImage/CategoryBarImage.jsx";
+import { LandPageTwo } from "./pages/LandPageTwo/land-page-two.jsx";
 import { WishItem } from "./components/WishItem/WishItem.jsx";
 
 export const App = () => {
@@ -23,6 +24,7 @@ export const App = () => {
 			<ItemList />
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
+				<Route path="/landignpagetwo" element={<LandingPageTwo />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/home" element={<HomePage />} />
@@ -37,4 +39,3 @@ export const App = () => {
 		</>
 	);
 };
-
