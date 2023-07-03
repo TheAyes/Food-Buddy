@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./Login.module.scss";
 import logo from "../../pics/LogoGreen.svg";
@@ -8,19 +8,16 @@ export const Login = () => {
 	const [password, setPassword] = useState("");
 	const [showModal, setShowModal] = useState(false);
 
-	useEffect(() => {
-		handleLogin();
-	}, [username, password]);
-
-	const handleLogin = () => {
+	const handleLogin = (event) => {
+		event.preventDefault();
 		try {
 			axios
 				.post("/api/user/login", {
-					username: username,
+					username: username.toLowerCase(),
 					password: password
 				})
 				.then((response) => {
-					console.log(response.data);
+					console.log(response);
 					localStorage.setItem("auth-token", JSON.stringify(response.data));
 					setShowModal(true);
 					setTimeout(() => {
@@ -40,12 +37,15 @@ export const Login = () => {
 		<>
 			<div className={styles.login}>
 				<img src={logo} alt="logo" />
-				<form className={styles.form}>
+				<h1>
+					<span className={styles.headline}>Food</span>Buddy
+				</h1>
+				<form className={styles.form} onSubmit={handleLogin}>
 					<div>
-						<p>Email</p>
+						<p>Username</p>
 						<input
 							type="text"
-							placeholder="Email adress.."
+							placeholder="Username"
 							value={username}
 							onChange={(e) => setUsername(e.target.value)}
 						/>
@@ -59,8 +59,10 @@ export const Login = () => {
 							onChange={(e) => setPassword(e.target.value)}
 						/>
 					</div>
+					<input type="submit" value="Login" />
+					{/* // hier evtl bei Fehlermeldungen den button wieder
+					einen runter packen */}
 				</form>
-				<button onClick={handleLogin}>Login</button>
 				{showModal && (
 					<div className={styles.modal}>
 						<h3>Successful Login!</h3>
