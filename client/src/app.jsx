@@ -11,12 +11,14 @@ import { ItemList } from "./pages/ItemList/item-list.jsx";
 import { FilterPage } from "./pages/Filter/filter-page.jsx";
 import { NavBar } from "./components/NavBar/NavBar.jsx";
 import { CategoryBarImage } from "./components/CategoryBarImage/CategoryBarImage.jsx";
+import { LandPageTwo } from "./pages/LandPageTwo/land-page-two.jsx";
 
 export const App = () => {
 	return (
 		<>
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
+				<Route path="/landpagetwo" element={<LandPageTwo />} />
 				<Route path="/home" element={<HomePage />} />
 				<Route path="/itemlist" element={<ItemList />} />
 				<Route path="/item/:id" element={<ItemDetails />} />
@@ -26,7 +28,6 @@ export const App = () => {
 				<Route path="/user/order-history" element={<OrderHistoryPage />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
-			<CategoryBarImage />
 		</>
 	);
 };
