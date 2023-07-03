@@ -1,10 +1,6 @@
 @import "../../variable.scss";
 
 .ProductItems {
-	* {
-		margin-left: 5rem;
-		margin-right: 5rem;
-	}
 	// .likeButton {
 	// 	width: 3.5rem;
 	// 	padding: 7px;
@@ -19,21 +15,25 @@
 		max-width: 100%;
 		border-radius: 20px;
 	}
+
 	.productName {
 		font-size: $fz-medium-1;
 		color: $fc-5;
 		font-weight: 300; // Wird noch Variable für vergeben $fw-light
 		padding-bottom: 2rem;
 	}
+
 	.star {
 		height: 1.5rem;
 		margin-left: 50px;
 	}
+
 	p {
 		color: $fc-5;
 		font-size: $fz-small-3;
 		font-weight: 500; // wird noch Variable für vergeben $fw-regular
 	}
+
 	.flex {
 		display: flex;
 		justify-content: space-around;
