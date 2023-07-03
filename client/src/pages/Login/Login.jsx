@@ -6,30 +6,36 @@ import logo from "../../pics/LogoGreen.svg";
 export const Login = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+	const [showModal, setShowModal] = useState(false);
 
-	// useEffect(() => {
-	// 	handleLogin();
-	// }, [username, password]);
+	useEffect(() => {
+		handleLogin();
+	}, [username, password]);
 
-	// const handleLogin = () => {
-	// 	axios
-	// 		.post("/api/user/login", {
-	// 			username: username,
-	// 			password: password
-	// 		})
-	// 		.then((response) => {
-	// 			console.log(response.data);
-	// 		})
-	// 		.catch((error) => {
-	// 			console.error(error);
-	// 		});
-	// };
+	const handleLogin = () => {
+		axios
+			.post("/api/user/login", {
+				username: username,
+				password: password
+			})
+			.then((response) => {
+				console.log(response.data);
+				setShowModal(true);
+				setTimeout(() => {
+					setShowModal(false);
+					window.location.href = "/home";
+				}, 5000);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	};
 
 	return (
 		<>
 			<div className={styles.login}>
 				<img src={logo} alt="logo" />
-				<form action="login" className={styles.form}>
+				<form className={styles.form}>
 					<div>
 						<p>Email</p>
 						<input
@@ -50,6 +56,12 @@ export const Login = () => {
 					</div>
 				</form>
 				<button onClick={handleLogin}>Login</button>
+				{showModal && (
+					<div className={styles.modal}>
+						<h3>Successful Login!</h3>
+					</div>
+				)}
+				;
 			</div>
 		</>
 	);

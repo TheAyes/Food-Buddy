@@ -6,7 +6,6 @@ import styles from "./ProductItems.module.scss";
 export const ProductItems = (props) => {
 	const { image, name, price } = props;
 	const { value, unit } = price;
-	console.log(props.product);
 
 	return (
 		<Link to={`/item/:id/${props.id}`} className={styles.ProductItems}>
