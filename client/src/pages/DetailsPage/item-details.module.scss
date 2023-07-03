@@ -8,17 +8,17 @@
 
     .upperPart {
         display: flex;
+        justify-content: space-between;
         margin-top: 2.5rem;
 
 
         .pageTitle {
-            font-size: $fz-small-5;
+            font-size: $fz-medium-2;
             color: $fc-5;
         }
 
         img {
             width: 10%;
-
         }
     }
 
@@ -39,6 +39,9 @@
             margin: 0 auto 2.5rem auto;
             border-radius: 7px;
             color: $fc-2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .priceIndicator {
@@ -60,6 +63,7 @@
 
         img {
             width: $fz-small-4;
+            margin-right: 0.7rem;
         }
 
         .ratingIndicator {

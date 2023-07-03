@@ -5,10 +5,10 @@
 		margin-left: 5rem;
 		margin-right: 5rem;
 	}
-	.heartIcon {
-		width: 3.5rem;
-		padding: 7px;
-	}
+	// .likeButton {
+	// 	width: 3.5rem;
+	// 	padding: 7px;
+	// }
 
 	div {
 		text-align: center;
@@ -22,7 +22,7 @@
 	.productName {
 		font-size: $fz-medium-1;
 		color: $fc-5;
-		font-weight: $fw-light;
+		font-weight: 300; // Wird noch Variable für vergeben $fw-light
 		padding-bottom: 2rem;
 	}
 	.star {
@@ -32,7 +32,7 @@
 	p {
 		color: $fc-5;
 		font-size: $fz-small-3;
-		font-weight: $fw-regular;
+		font-weight: 500; // wird noch Variable für vergeben $fw-regular
 	}
 	.flex {
 		display: flex;
