@@ -13,22 +13,27 @@ export const Login = () => {
 	}, [username, password]);
 
 	const handleLogin = () => {
-		axios
-			.post("/api/user/login", {
-				username: username,
-				password: password
-			})
-			.then((response) => {
-				console.log(response.data);
-				setShowModal(true);
-				setTimeout(() => {
-					setShowModal(false);
-					window.location.href = "/home";
-				}, 5000);
-			})
-			.catch((error) => {
-				console.error(error);
-			});
+		try {
+			axios
+				.post("/api/user/login", {
+					username: username,
+					password: password
+				})
+				.then((response) => {
+					console.log(response.data);
+					localStorage.setItem("auth-token", JSON.stringify(response.data));
+					setShowModal(true);
+					setTimeout(() => {
+						setShowModal(false);
+						window.location.href = "/home";
+					}, 5000);
+				})
+				.catch((error) => {
+					console.error(error);
+				});
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	return (
