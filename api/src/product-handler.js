@@ -58,7 +58,7 @@ export const getProducts = async (req, res) => {
 		if (minNumberOfRatings) filter["ratings.length"].$gte = minNumberOfRatings;
 		if (maxNumberOfRatings) filter["ratings.length"].$lte = maxNumberOfRatings;
 
-		res.json(await Product.find(filter).populate("categories").populate("users").exec());
+		res.json(await Product.find(filter).populate("categories").populate("ratings.user").exec());
 	} catch (error) {
 		res.status(500).json(error);
 	}

@@ -12,7 +12,10 @@ import { Register } from "./pages/Register/Register.jsx";
 import { Login } from "./pages/Login/Login.jsx";
 import { FilterPage } from "./pages/Filter/filter-page.jsx";
 import { NavBar } from "./components/NavBar/NavBar.jsx";
+import { LikeButton } from "./components/LikeButton/LikeButton.jsx";
+import { AddToCartComponent } from "./components/AddToCartComponent/AddToCartComponent.jsx";
 import { CategoryBarImage } from "./components/CategoryBarImage/CategoryBarImage.jsx";
+import { WishItem } from "./components/WishItem/WishItem.jsx";
 
 export const App = () => {
 	return (
