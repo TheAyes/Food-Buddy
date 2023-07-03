@@ -19,8 +19,10 @@ import {
 	getCategories,
 	getCategoryById,
 	getProductById,
+	getProductDeals,
 	getProducts,
 	rateProduct,
+	updateDeals,
 	updateProductById,
 	wishlistProduct
 } from "./product-handler.js";
