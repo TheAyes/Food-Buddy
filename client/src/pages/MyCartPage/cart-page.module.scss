@@ -1,7 +1,7 @@
 @import "../../global.scss";
 
-.wishlistPage {
-    .headerWishlist {
+.cartPage {
+    .headerCart {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -22,7 +22,7 @@
         }
     }
 
-    .emptyWishImage {
+    .emptyCartImage {
         width: 53%;
         margin: 20% auto;
         display: flex;

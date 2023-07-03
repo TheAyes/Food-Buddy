@@ -9,8 +9,8 @@ export const GoBackButton = () => {
     const navigate = useNavigate();
 
     return (
-        <>
+        <button>
             <img className={styles.goBackButton} src={goBack} alt="back Button" onClick={() => navigate(-1)} />
-        </>
+        </button>
     );
 };

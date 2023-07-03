@@ -5,7 +5,7 @@ import { ProfilePage } from "./pages/Profil/profile-page.jsx";
 import { HomePage } from "./pages/Homepage/home-page.jsx";
 import { ItemDetails } from "./pages/DetailsPage/item-details.jsx";
 import { CartPage } from "./pages/MyCartPage/cart-page.jsx";
-import { WishlistPage } from "./pages/WishList/wishlist-page.jsx";
+import { WishlistPage } from "./pages/Wishlist/wishlist-page.jsx";
 import { OrderHistoryPage } from "./pages/OrderHistory/order-history-page.jsx";
 import { ItemList } from "./pages/ItemList/item-list.jsx";
 import { Register } from "./pages/Register/Register.jsx";
@@ -16,11 +16,11 @@ import { LikeButton } from "./components/LikeButton/LikeButton.jsx";
 import { AddToCartComponent } from "./components/AddToCartComponent/AddToCartComponent.jsx";
 import { CategoryBarImage } from "./components/CategoryBarImage/CategoryBarImage.jsx";
 import { WishItem } from "./components/WishItem/WishItem.jsx";
+import { CartItem } from "./components/CartItem/CartItem.jsx";
 
 export const App = () => {
 	return (
 		<>
-			<ItemList />
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
 				<Route path="/login" element={<Login />} />
@@ -34,6 +34,9 @@ export const App = () => {
 				<Route path="/user/order-history" element={<OrderHistoryPage />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
+			<CartPage />
+			<WishItem />
+			<CartItem />
 		</>
 	);
 };
