@@ -1,0 +1,44 @@
+@import "../../global.scss";
+
+.profilePage {
+
+	& > header {
+		background: green;
+		padding: 2rem;
+
+		min-height: 40rem;
+
+		border-radius: 0 0 4rem 4rem;
+
+		& > div {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+
+			& > button {
+				aspect-ratio: 1/1;
+				width: 3rem;
+				height: auto;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				background: none;
+				border: none;
+
+				& > img {
+					flex: 1;
+					max-width: 100%;
+				}
+			}
+
+			& > p {
+				font-weight: $fw-regular;
+				font-size: $fz-medium-1;
+			}
+		}
+
+	}
+
+
+}
