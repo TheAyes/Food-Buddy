@@ -1,9 +1,23 @@
 @import "../../global.scss";
 
 .login {
+	* {
+		font-family: $ff-roboto;
+	}
+	img {
+		width: 11rem;
+	}
+	text-align: center;
+	h1 {
+		font-weight: 100;
+	}
+	.headline {
+		font-weight: 800;
+	}
 	.form {
 		display: flex;
 		flex-direction: column;
+		align-items: start;
 	}
 }
 

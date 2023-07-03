@@ -59,7 +59,7 @@ export const handleUserRegistration = async (req, res) => {
 		const hashedPassword = await bcrypt.hash(password, userSalt);
 
 		const user = new User({
-			email: userEmail,
+			email: email, // hier von "userEmail" auf "email" geändert
 			username: lowerCaseUsername,
 			password: hashedPassword
 		});
@@ -189,3 +189,4 @@ export const handleUserLogout = async (req, res) => {
 
 	return res.status(200).json({ message: "Logged out successfully" });
 };
+
