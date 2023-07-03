@@ -1,0 +1,58 @@
+@import "../../global.scss";
+
+.cartPage {
+    .headerCart {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3%;
+
+        .leftContainer {
+            display: flex;
+
+            h4 {
+                margin-left: 2rem;
+                align-self: center;
+            }
+        }
+
+        .trashCan {
+            width: 4.5%;
+            margin-left: auto;
+        }
+    }
+
+    .emptyCartImage {
+        width: 53%;
+        margin: 20% auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .checkoutButton {
+        font-size: $fz-small-5;
+        width: 80%;
+        height: 7vh;
+        margin-bottom: 6.5rem;
+        background-color: $bc-2;
+        border-color: transparent;
+        border-radius: 10px;
+
+        &:hover {
+            background-color: #DEFFE4;
+            color: $fc-3;
+            transform: scale(1.01);
+            transition: transform 0.4s;
+            font-weight: $fw-medium;
+            cursor: pointer;
+        }
+
+        &:active {
+            background-color: $bc-1;
+            box-shadow: 0 0 5px #DEFFE4, 0 0 10px #DEFFE4, 0 0 20px #DEFFE4, 0 0 30px #DEFFE4;
+            color: $fc-2;
+            font-weight: $fw-bold;
+        }
+    }
+}

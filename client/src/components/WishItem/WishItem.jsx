@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+
+// Import Komponenten
 import { LikeButton } from '../LikeButton/LikeButton';
+
+// Import Images
 import starImage from "../../pics/star.svg";
 import styles from './WishItem.module.scss';
 
-export const WishItem = (props) => {
+export const WishItem = ({ id, name, rating, numOfRatings, price, onLikeButtonClick }) => {
 	const [quantity, setQuantity] = useState(0);
 	const [isLiked, setIsLiked] = useState(false);
 
@@ -17,21 +21,21 @@ export const WishItem = (props) => {
 
 	const handleLikeButtonClick = () => {
 		setIsLiked(!isLiked);
-		props.onLikeButtonClick(props.id, !isLiked);
+		onLikeButtonClick(id, !isLiked);
 	};
 
 	return (
 		<section className={styles.wishItem}>
-			<img src="https://source.unsplash.com/random/1600x900" alt={props.title} />
+			<img src="https://source.unsplash.com/random/1600x900" alt={name} />
 			<div className={styles.infoSection}>
-				<h3 className={styles.nameIndicator}>{props.name}</h3>
+				<h3 className={styles.nameIndicator}>{name}</h3>
 				<div className={styles.ratingSection}>
 					<img src={starImage} alt="rating star" />
-					<h3 className={styles.ratingIndicator}>{props.rating}</h3>
-					<h3 className={styles.reviewIndicator}>({props.numOfRatings})</h3>
+					<h3 className={styles.ratingIndicator}>{rating}</h3>
+					<h3 className={styles.reviewIndicator}>({numOfRatings})</h3>
 				</div>
 				<div className={styles.priceSection}>
-					<h2 className={styles.priceIndicator}>{props.price}</h2>
+					<h2 className={styles.priceIndicator}>{price}</h2>
 					<LikeButton
 						className={styles.likeButton}
 						isLiked={isLiked}
