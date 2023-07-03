@@ -1,14 +1,16 @@
-.ProductItems * {
-  margin-left: 5rem;
-  margin-right: 5rem;
+.ProductItems .likeButton {
+  width: 4rem;
+  padding: 10px;
 }
 .ProductItems div {
   text-align: center;
 }
 .ProductItems .itemImages {
   height: 9rem;
-  max-width: 100%;
+  width: 65%;
   border-radius: 20px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .ProductItems .productName {
   font-size: 2.2rem;
