@@ -20,7 +20,7 @@ import { WishItem } from "./components/WishItem/WishItem.jsx";
 export const App = () => {
 	return (
 		<>
-			<Register />
+			<ItemList />
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
 				<Route path="/login" element={<Login />} />

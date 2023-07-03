@@ -1,10 +1,6 @@
 .ProductItems * {
-  margin-left: 2%;
-  margin-right: 2%;
-}
-.ProductItems .heartIcon {
-  width: 3.5rem;
-  padding: 7px;
+  margin-left: 5rem;
+  margin-right: 5rem;
 }
 .ProductItems div {
   text-align: center;

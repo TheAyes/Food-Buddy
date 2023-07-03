@@ -15,7 +15,7 @@ export const ItemList = () => {
 
 	const fetchData = async () => {
 		try {
-			const response = await fetch("api/products"); // Endpunkt anpassen
+			const response = await fetch("/api/products"); // Endpunkt anpassen
 			const data = await response.json();
 			setProducts(data);
 			setFilteredData(data);

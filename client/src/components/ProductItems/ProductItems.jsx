@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
+import { LikeButton } from "../LikeButton/LikeButton.jsx";
 import star from "../../pics/star.png";
-import heart from "../../pics/heart.png";
 import styles from "./ProductItems.module.scss";
 
 export const ProductItems = (props) => {
@@ -10,7 +10,6 @@ export const ProductItems = (props) => {
 
 	return (
 		<div className={styles.ProductItems}>
-			<img src={heart} className={styles.heartIcon} />
 			<Link to={`ItemDetails/${props.id}`}>
 				<div>
 					<img src={props.image} alt="image" className={styles.itemImages} />
@@ -21,6 +20,7 @@ export const ProductItems = (props) => {
 						</p>
 						<img src={star} className={styles.star} />
 						<p> {props.rating}</p>
+						{/* <LikeButton /> */}
 					</div>
 				</div>
 			</Link>
