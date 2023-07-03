@@ -19,10 +19,8 @@ import {
 	getCategories,
 	getCategoryById,
 	getProductById,
-	getProductDeals,
 	getProducts,
 	rateProduct,
-	updateDeals,
 	updateProductById,
 	wishlistProduct
 } from "./product-handler.js";
@@ -177,24 +175,6 @@ const endpointsBuilder = [
 		bodyStructure: {},
 		middlewares: [],
 		function: async (req, res) => getProductById(req, res)
-	},
-	{
-		method: "GET",
-		path: "/api/products/deals",
-		urlParams: [],
-		queryParams: [],
-		bodyStructure: {},
-		middlewares: [],
-		function: async (req, res) => getProductDeals(req, res)
-	},
-	{
-		method: "PATCH",
-		path: "/api/products/deals/update",
-		urlParams: [],
-		queryParams: [],
-		bodyStructure: {},
-		middlewares: [],
-		function: async (req, res) => updateDeals(req, res)
 	},
 	{
 		method: "POST",
