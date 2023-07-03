@@ -47,6 +47,7 @@ export const CartPage = () => {
 					/>
 				))}
 			</div>
+			<button className={styles.checkoutButton}>Check Out ACHTUNG LOGIK FÜR GESAMTPREIS EINBAUEN</button>
 		</section>
 	);
 };

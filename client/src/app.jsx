@@ -35,8 +35,6 @@ export const App = () => {
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 			<CartPage />
-			<WishItem />
-			<CartItem />
 		</>
 	);
 };
