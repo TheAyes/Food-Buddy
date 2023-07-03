@@ -3,9 +3,9 @@
 	"version": "1.0.0",
 	"type": "module",
 	"devDependencies": {
+		"axios": "^1.4.0",
 		"concurrently": "^8.2.0",
 		"dotenv": "^16.3.1",
-		"axios": "^1.4.0",
 		"markdown-table": "^3.0.3"
 	},
 	"scripts": {
@@ -16,6 +16,8 @@
 		"inst": "npm install && cd api && npm install && cd ../ && cd client && npm install"
 	},
 	"dependencies": {
-		"@fontsource/roboto": "^5.0.3"
+		"@fontsource/roboto": "^5.0.3",
+		"react-icons": "^4.10.1",
+		"uuid": "^9.0.0"
 	}
 }
