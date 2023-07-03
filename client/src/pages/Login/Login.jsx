@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import styles from "./Login.module.scss";
 import logo from "../../pics/LogoGreen.svg";
 
@@ -11,19 +10,19 @@ export const Login = () => {
 	// 	handleLogin();
 	// }, [username, password]);
 
-	// const handleLogin = () => {
-	// 	axios
-	// 		.post("/api/user/login", {
-	// 			username: username,
-	// 			password: password
-	// 		})
-	// 		.then((response) => {
-	// 			console.log(response.data);
-	// 		})
-	// 		.catch((error) => {
-	// 			console.error(error);
-	// 		});
-	// };
+	const handleLogin = () => {
+		// 	axios
+		// 		.post("/api/user/login", {
+		// 			username: username,
+		// 			password: password
+		// 		})
+		// 		.then((response) => {
+		// 			console.log(response.data);
+		// 		})
+		// 		.catch((error) => {
+		// 			console.error(error);
+		// 		});
+	};
 
 	return (
 		<>
@@ -54,4 +53,3 @@ export const Login = () => {
 		</>
 	);
 };
-
