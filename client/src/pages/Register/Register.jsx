@@ -30,7 +30,7 @@ export const Register = () => {
 			setTimeout(() => {
 				setShowModal(false);
 				window.location.href = "/home";
-			}, 1000000000);
+			}, 5000);
 		} catch (error) {
 			console.error(error.response.data);
 			//Anzeige einer Fehlermeldung
