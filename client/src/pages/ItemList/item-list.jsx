@@ -35,9 +35,9 @@ export const ItemList = () => {
 		<div>
 			<SearchBar onSelectItem={handleSelectItem} />
 			<div className={styles.ItemList}>
-				{filteredData.map((item, index) => (
+				{filteredData.map((item) => (
 					<ProductItems
-						key={index}
+						key={item._id}
 						image={item.image}
 						name={item.name}
 						price={item.price}

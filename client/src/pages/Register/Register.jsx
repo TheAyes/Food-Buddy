@@ -1,16 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import styles from "./Register.module.scss";
-import success from "../../pics/success.png";
-import shadow from "../../pics/Shadow.svg";
 
 export const Register = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [email, setEmail] = useState("");
 	const [showModal, setShowModal] = useState(false);
-	const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
 	const handleRegister = async () => {
 		try {
@@ -25,7 +21,6 @@ export const Register = () => {
 			setPassword("");
 			setEmail(""); //Weiterleitung oder Anzeige einer Erfolgsmeldug
 			setShowModal(true);
-			setRegistrationSuccess(true);
 
 			setTimeout(() => {
 				setShowModal(false);
@@ -38,56 +33,47 @@ export const Register = () => {
 	};
 
 	return (
-		<div className={styles.register}>
+		<div>
+			<h1>Create New Account</h1>
+			<h2>Enter your details to create account</h2>
+			<form className={styles.form} onSubmit={handleRegister}>
+				<div>
+					<p>Username</p>
+					<input
+						type="text"
+						placeholder="Choose Username.."
+						value={username}
+						onChange={(e) => setUsername(e.target.value)}
+					/>
+				</div>
+				<div>
+					<p>Email</p>
+					<input
+						type="text"
+						placeholder="Your Email Adress.."
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+					/>
+				</div>
+				<div>
+					<p>Password</p>
+					<input
+						type="password"
+						placeholder="Your Password.."
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+					/>
+				</div>
+			</form>
+			<button onClick={handleRegister}>Sign up</button>
 			{showModal && (
-				<div className={styles.modal}>
-					<div className={styles.modalContent}>
-						<div className={styles.checkLogo}>
-							<img src={success} alt="check" />
-							<img src={shadow} alt="shadow" />
-						</div>
-						<h2>
-							<span className={styles.FoodBuddy}>Welcome</span> FoodBuddy
-						</h2>
+				<div className="modal">
+					<div className="modal-content">
+						<h2>Welcome FoodBuddy</h2>
 						<p>Successfully create your FoodBuddy account</p>
 					</div>
 				</div>
 			)}
-			<div
-				className={`${styles.formBox} 
-			${registrationSuccess ? styles.hidden : ""}`}
-				style={{ display: registrationSuccess ? "none" : "" }}
-			>
-				<div className={styles.formValue}>
-					<h2>Create New Account</h2>
-					<h6>Enter your details to create account</h6>
-					<form className={styles.form} onSubmit={handleRegister}>
-						<div className={styles.inputbox}>
-							<label>Username</label>
-							<input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-						</div>
-						<div className={styles.inputbox}>
-							<label>Email</label>
-							<input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-						</div>
-						<div className={styles.inputbox}>
-							<label>Password</label>
-							<input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-						</div>
-					</form>
-					<button className={styles.button} onClick={handleRegister}>
-						Sign up
-					</button>
-				</div>
-			</div>
-			<div className={styles.alreadyHaveAccount}>
-				<p className={styles.pTag}>
-					Already Have Account?{" "}
-					<Link to="/login" className={styles.linkLogin}>
-						Login
-					</Link>
-				</p>
-			</div>
 		</div>
 	);
 };
