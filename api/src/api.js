@@ -24,6 +24,7 @@ import {
 	updateProductById,
 	wishlistProduct
 } from "./product-handler.js";
+import { updateUserData } from "./userHandler.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -106,6 +107,18 @@ const endpointsBuilder = [
 		bodyStructure: {},
 		middlewares: [authenticateUser],
 		function: (req, res) => getUserData(req, res)
+	},
+	{
+		method: "PATCH",
+		path: "/api/user",
+		urlParams: [],
+		queryParams: [],
+		headStructure: {
+			Authorization: `Bearer JWT_TOKEN_HERE`
+		},
+		bodyStructure: {},
+		middlewares: [authenticateUser],
+		function: (req, res) => updateUserData(req, res)
 	},
 	{
 		method: "POST",

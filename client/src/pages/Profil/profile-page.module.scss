@@ -3,14 +3,12 @@
 .profilePage {
 
 	& > header {
-		background: green;
+		background: $bc-1;
 		padding: 2rem;
-
-		min-height: 40rem;
 
 		border-radius: 0 0 4rem 4rem;
 
-		& > div {
+		& > article {
 			display: flex;
 			align-items: center;
 			gap: 8px;
@@ -37,6 +35,145 @@
 				font-size: $fz-medium-1;
 			}
 		}
+
+		& > figure {
+			aspect-ratio: 1/1;
+			height: auto;
+			width: 15rem;
+			position: relative;
+			margin: 5rem auto;
+
+			& > img {
+				aspect-ratio: inherit;
+				max-width: 100%;
+				object-fit: cover;
+				display: block;
+				border-radius: 999vw;
+			}
+
+			& > button {
+				content: "";
+				position: absolute;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				padding: 0.5rem;
+				aspect-ratio: inherit;
+				border-radius: 999vw;
+				width: min-content;
+				height: min-content;
+				border: 4px solid $bc-1;
+				bottom: -7.5%;
+				right: -7.5%;
+
+				transition: background 200ms;
+
+				svg {
+					color: $bc-1;
+					aspect-ratio: inherit;
+					width: 3.5rem;
+					height: auto;
+				}
+
+				&:hover {
+
+				}
+			}
+		}
+
+	}
+
+	& > form {
+		display: flex;
+		flex-direction: column;
+
+		padding: 2rem 5rem;
+
+		gap: 2rem;
+
+
+		fieldset {
+			border: none;
+
+			legend {
+				font-size: $fz-medium-1;
+				font-weight: $fw-bold;
+			}
+
+			label {
+				p {
+					font-weight: $fw-medium;
+					font-size: $fz-small-3;
+					padding-block: 0.75rem 0.5rem;
+				}
+
+				input, textarea, select {
+					padding: 1rem;
+
+					border-radius: 0.75rem;
+
+					border: 2px solid #33553344;
+
+					display: block;
+					width: 100%;
+
+					transition: border 200ms;
+
+					&:hover[disabled=false] {
+						border: 2px solid #335533cc;
+					}
+				}
+			}
+
+			&.address {
+				display: grid;
+				grid-template-rows: 1fr 1fr;
+				grid-template-columns: 0.5fr 1fr 0.8fr 100px;
+				gap: 8px;
+			}
+		}
+
+		section > fieldset {
+			display: flex;
+			justify-content: center;
+			gap: 2rem;
+
+			& > input {
+				padding: 1.7rem;
+				background: $bc-1;
+
+				font-weight: $fw-bold;
+				font-size: $fz-small-4;
+
+				color: $fc-2;
+
+				border-radius: 999vw;
+				border: none;
+
+				transition-duration: 200ms;
+				transition-property: background-color, color;
+
+				&[type=submit] {
+					padding: 1.7rem 5rem;
+
+					&:hover {
+						background: $bc-2;
+						color: $fc-3;
+					}
+				}
+
+				&[type=button] {
+					background: #ff4242;
+
+					&:hover {
+						background: #ff0000;
+					}
+				}
+
+
+			}
+		}
+
 
 	}
 

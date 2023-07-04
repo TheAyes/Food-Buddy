@@ -2,8 +2,21 @@ import mongoose, { Schema } from "mongoose";
 
 const UserSchema = new Schema({
 	username: String,
-	password: String,
+	fullName: String,
+
+	profilePicture: String,
+
 	email: String,
+	phoneNumber: String,
+
+	address: {
+		street: String,
+		streetNumber: Number,
+		zipCode: Number,
+		country: String
+	},
+
+	password: String,
 	wishlist: [
 		{
 			type: mongoose.ObjectId,
