@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styles from './item-details.module.scss';
-import { Link } from 'react-router-dom';
 
 // Bilder Import
 import starImage from "../../pics/star.svg";
@@ -31,13 +30,12 @@ export const ItemDetails = (props) => {
 			<div className={styles.upperPart}>
 				<GoBackButton />
 				{/* Titel erstellen */}
-				<h4 className={styles.pageTitle}>testName</h4>
+				<h4 className={styles.pageTitle}>{props.name}</h4>
 				{/* Name als props von der ID, damit immer korrekter Produktname verwendet wird */}
 				<LikeButton />
 			</div>
 			<article className={styles.imageSection}>
-				<img src="https://source.unsplash.com/random/1600x900"
-					// {props.image} EINFÜGEN
+				<img src={props.image}
 					alt={props.title} />
 				<h3 className={styles.quantityIndicator}>{quantity}</h3>
 				{/* <h3>{props.quantity}</h3> */}
@@ -59,7 +57,7 @@ export const ItemDetails = (props) => {
 				</div>
 				<article className={styles.shoppingSection}>
 					<img src={cartImage} alt="cart image" />
-					<p className={styles.quantityCart}>99</p>
+					<p className={styles.quantityCart}></p>
 					<AddToCartComponent quantity={quantity} addToCart={addToCart} />
 				</article>
 			</div>

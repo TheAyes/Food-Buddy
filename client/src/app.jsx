@@ -17,7 +17,7 @@ export const App = () => {
 		<>
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
-				<Route path="/landignpagetwo" element={<LandPageTwo />} />
+				<Route path="/landingpage/2" element={<LandPageTwo />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/home" element={<HomePage />} />
@@ -29,7 +29,6 @@ export const App = () => {
 				<Route path="/user/order-history" element={<OrderHistoryPage />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
-			<CartPage />
 		</>
 	);
 };

@@ -63,27 +63,27 @@ export const SearchBar = ({ onSelectItem }) => {
 	};
 
 	return (
-	<div className={styles.SearchBarParent}>
-		<div className={styles.inputWrapper}>
-			<img src={search} alt="search" onClick={handleClick} />
-			<input
-				type="text"
-				placeholder="Search for Product..."
-				value={input}
-				onChange={(e) => handleChange(e.target.value)}
-			/>
+		<div className={styles.SearchBarParent}>
+			<div className={styles.inputWrapper}>
+				<img src={search} alt="search" onClick={handleClick} />
+				<input
+					type="text"
+					placeholder="Search for Product..."
+					value={input}
+					onChange={(e) => handleChange(e.target.value)}
+				/>
+			</div>
+			{suggestions.length > 0 && (
+				<ul className={styles.suggestions}>
+					{suggestions.map((item, index) => (
+						<li key={index} onClick={() => handleItemClick(item)} className={styles.suggestionItem}>
+							<span className={styles.bold}>{item.name.slice(0, input.length)}</span>
+							{item.name.slice(input.length)}
+						</li>
+					))}
+				</ul>
+			)}
 		</div>
-		{suggestions.length > 0 && (
-			<ul className={styles.suggestions}>
-				{suggestions.map((item) => (
-					<li key={item.id} onClick={() => handleItemClick(item)} className={styles.suggestionItem}>
-						<span className={styles.bold}>{item.name.slice(0, input.length)}</span>
-						{item.name.slice(input.length)}
-					</li>
-				))}
-			</ul>
-		)}
-	</div>
-);
+	);
 };
 

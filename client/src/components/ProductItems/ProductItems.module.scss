@@ -1,19 +1,19 @@
 @import "../../variable.scss";
 
 .ProductItems {
-	// .likeButton {
-	// 	width: 3.5rem;
-	// 	padding: 7px;
-	// }
+	.likeButton {
+		width: 4rem;
+		padding: 10px;
+	}
 
 	div {
 		text-align: center;
 	}
-
 	.itemImages {
 		height: 9rem;
-		max-width: 100%;
+		width: 65%;
 		border-radius: 20px;
+		object-fit: cover;
 	}
 
 	.productName {

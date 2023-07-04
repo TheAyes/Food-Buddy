@@ -94,7 +94,43 @@ export const updateProductById = async (req, res) => {
 
 export const getProductById = async (req, res) => {
 	try {
-		res.json(await Product.findById(req.params.id).exec());
+		const result = await Product.findById(req.params.id).exec();
+		res.json(result);
+	} catch (error) {
+		res.status(500).json(error);
+	}
+};
+
+export const getProductDeals = async (req, res) => {
+	try {
+		const filter = {
+			"price.priceReduction": {
+				$gt: 0
+			}
+		};
+
+		const results = await Product.find(filter).exec();
+
+		if (!results || results.length === 0) return res.status(404).send("Not found");
+
+		res.json(results);
+	} catch (error) {
+		res.status(500).json(error);
+	}
+};
+
+export const updateDeals = async (req, res) => {
+	try {
+		// Clear all existing price reductions
+		await Product.updateMany({}, { $set: { "price.priceReduction": 0 } });
+
+		// Apply 20% price reduction to a random 10% of products
+		await Product.updateMany({ $expr: { $lt: [{ $rand: {} }, 0.1] } }, { $set: { "price.priceReduction": 20 } });
+
+		// Apply 40% price reduction to a random 10% of products
+		await Product.updateMany({ $expr: { $lt: [{ $rand: {} }, 0.1] } }, { $set: { "price.priceReduction": 40 } });
+
+		res.json({ message: "Successfully updated products." });
 	} catch (error) {
 		res.status(500).json(error);
 	}
