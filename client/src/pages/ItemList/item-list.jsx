@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ProductItems } from "../../components/ProductItems/ProductItems.jsx";
 import { SearchBar } from "../../components/SearchBar/SearchBar.jsx";
 import styles from "./ItemList.module.scss";
 import axios from "axios";
+import PropTypes from "prop-types";
 
 export const ItemList = ({
 	category = "",
@@ -12,8 +13,22 @@ export const ItemList = ({
 	minRating = undefined,
 	maxRating = undefined,
 	minNumberOfRatings = "undefined",
-	maxNumberOfRatings = "undefined"
+	maxNumberOfRatings = "undefined",
+	amount = -1,
+	offset = 0
 }) => {
+	ItemList.propTypes = {
+		category: PropTypes.string,
+		nameFilter: PropTypes.string,
+		minPrize: PropTypes.number,
+		maxPrize: PropTypes.number,
+		minRating: PropTypes.number,
+		maxRating: PropTypes.number,
+		minNumberOfRatings: PropTypes.string,
+		maxNumberOfRatings: PropTypes.string,
+		amount: PropTypes.number,
+		offset: PropTypes.number
+	};
 	const [filteredData, setFilteredData] = useState([]);
 
 	useEffect(() => {
@@ -33,12 +48,24 @@ export const ItemList = ({
 		(async () => {
 			try {
 				const { data } = await axios.get(`/api/products?${params}`);
-				setFilteredData(data);
+
+				setFilteredData(amount > -1 ? data.slice(offset, offset + amount) : data);
 			} catch (error) {
 				console.error("Error:", error);
 			}
 		})(); // <-- Siehe funktionsklammern
-	}, [category, nameFilter, minPrize, maxPrize, minRating, maxRating, minNumberOfRatings, maxNumberOfRatings]);
+	}, [
+		category,
+		nameFilter,
+		minPrize,
+		maxPrize,
+		minRating,
+		maxRating,
+		minNumberOfRatings,
+		maxNumberOfRatings,
+		offset,
+		amount
+	]);
 
 	const handleSelectItem = (item) => {
 		const filteredItems = filteredData.filter((dataItem) =>
