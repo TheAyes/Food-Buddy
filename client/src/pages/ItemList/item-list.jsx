@@ -1,28 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ProductItems } from "../../components/ProductItems/ProductItems.jsx";
 import { SearchBar } from "../../components/SearchBar/SearchBar.jsx";
-import groceryData from "../../data/grocery-data.json";
 import styles from "./ItemList.module.scss";
 
 export const ItemList = () => {
-	const [products, setProducts] = useState([]);
-	const [selectedItems, setSelectedItems] = useState([]);
 	const [filteredData, setFilteredData] = useState([]);
 
 	useEffect(() => {
-		fetchData();
+		// Selbst ausführende Funktion
+		(async () => {
+			try {
+				const response = await fetch("/api/products"); // Endpunkt anpassen
+				const data = await response.json();
+				setFilteredData(data);
+			} catch (error) {
+				console.error("Error:", error);
+			}
+		})(); // <-- Siehe funktionsklammern
 	}, []);
-
-	const fetchData = async () => {
-		try {
-			const response = await fetch("/api/products"); // Endpunkt anpassen
-			const data = await response.json();
-			setProducts(data);
-			setFilteredData(data);
-		} catch (error) {
-			console.error("Error:", error);
-		}
-	};
 
 	const handleSelectItem = (item) => {
 		const filteredItems = filteredData.filter((dataItem) =>
@@ -30,6 +25,7 @@ export const ItemList = () => {
 		);
 		setFilteredData([...filteredItems, item]);
 	};
+	
 	return (
 		//hier das DIV nur als Übung für SearchBar
 		<div>
@@ -48,4 +44,3 @@ export const ItemList = () => {
 		</div>
 	);
 };
-
