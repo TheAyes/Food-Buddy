@@ -19,6 +19,7 @@ import {
 	getCategories,
 	getCategoryById,
 	getProductById,
+	getProductDeals,
 	getProducts,
 	rateProduct,
 	updateProductById,
