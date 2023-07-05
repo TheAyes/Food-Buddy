@@ -13,7 +13,7 @@ export const Login = () => {
 	const [showModal, setShowModal] = useState(false);
 	const [loginSuccess, setLoginSuccess] = useState(false);
 
-	const [userState, setUserState] = useContext(UserContext);
+	const userState = useContext(UserContext);
 
 	const handleLogin = (event) => {
 		event.preventDefault();
@@ -26,7 +26,7 @@ export const Login = () => {
 				localStorage.setItem("access-token", JSON.stringify(response.data.accessToken));
 				localStorage.setItem("refresh-token", JSON.stringify(response.data.refreshToken));
 
-				setUserState({
+				userState.set({
 					accessToken: response.data.accessToken,
 					refreshToken: response.data.refreshToken
 				});
@@ -48,7 +48,7 @@ export const Login = () => {
 		<div className={styles.login}>
 			{showModal && (
 				<div className={styles.modal}>
-					<div className={styles.modalContent}>
+					<div>
 						<div className={styles.checkLogo}>
 							<img src={success} alt="check" />
 							<img src={shadow} alt="shadow" />
@@ -57,35 +57,32 @@ export const Login = () => {
 					</div>
 				</div>
 			)}
-			<div
-				className={`${styles.formBox} 
-                ${loginSuccess ? styles.hidden : ""}`}
-				style={{ display: loginSuccess ? "none" : "" }}
-			>
-				<div className={styles.formValue}>
+			<div className={styles.formBox} style={{ display: loginSuccess ? "none" : "" }}>
+				<div>
 					<img src={logo} alt="logo" />
 					<h1>
 						<span className={styles.headline}>Food</span>Buddy
 					</h1>
 					<form className={styles.form} onSubmit={handleLogin}>
-						<div className={styles.inputbox}>
-							<label>Username</label>
+						<label className={styles.inputbox}>
+							<p>Username</p>
 							<input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-						</div>
-						<div className={styles.inputbox}>
-							<label>Password</label>
+						</label>
+
+						<label className={styles.inputbox}>
+							<p>Password</p>
 							<input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-						</div>
-						<div className={styles.forget}>
-							<label>
-								<input type="checkbox" />
-								Remember Me <Link>Forget Password</Link>
-							</label>
-						</div>
+						</label>
+
+						<label className={styles.forget}>
+							<input type="checkbox" />
+							Remember Me <Link to="#">Forget Password</Link>
+						</label>
+
+						<button type="submit" className={styles.button} onClick={handleLogin}>
+							Login
+						</button>
 					</form>
-					<button className={styles.button} onClick={handleLogin}>
-						Login
-					</button>
 				</div>
 			</div>
 			<div className={styles.dontHaveAccount}>
