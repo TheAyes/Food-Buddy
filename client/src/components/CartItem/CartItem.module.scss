@@ -1,8 +1,11 @@
 @import "../../global.scss";
 
-.wishItem {
+.cartItem {
     background: rgb(154, 231, 157);
-    background: linear-gradient(47deg, rgba(154, 231, 157, 1) 0%, rgba(255, 255, 255, 1) 35%, rgba(172, 244, 189, 1) 83%);
+    background: linear-gradient(47deg,
+            rgba(154, 231, 157, 1) 0%,
+            rgba(255, 255, 255, 1) 35%,
+            rgba(172, 244, 189, 1) 83%);
     border-radius: 2vw;
     margin: 0 auto;
     display: grid;
@@ -80,17 +83,17 @@
             border-color: transparent;
 
             &:hover {
-                background-color: #DEFFE4;
+                background-color: #deffe4;
                 color: $fc-3;
                 transform: scale(1.1);
                 transition: transform 0.4s;
                 cursor: pointer;
-
             }
 
             &:active {
                 background-color: $bc-1;
-                box-shadow: 0 0 5px #DEFFE4, 0 0 10px #DEFFE4, 0 0 20px #DEFFE4, 0 0 30px #DEFFE4;
+                box-shadow: 0 0 5px #deffe4, 0 0 10px #deffe4, 0 0 20px #deffe4,
+                    0 0 30px #deffe4;
                 color: $fc-2;
                 font-weight: $fw-regular;
             }

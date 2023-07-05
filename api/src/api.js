@@ -152,6 +152,15 @@ const endpointsBuilder = [
 		function: async (req, res) => getProducts(req, res)
 	},
 	{
+		method: "GET",
+		path: "/api/products/deals",
+		urlParams: [],
+		queryParams: [],
+		bodyStructure: {},
+		middlewares: [],
+		function: async (req, res) => getProductDeals(req, res)
+	},
+	{
 		method: "DELETE",
 		path: "/api/products/:id",
 		urlParams: [{ id: "string" }],
@@ -177,15 +186,6 @@ const endpointsBuilder = [
 		bodyStructure: {},
 		middlewares: [],
 		function: async (req, res) => getProductById(req, res)
-	},
-	{
-		method: "GET",
-		path: "/api/products/deals",
-		urlParams: [],
-		queryParams: [],
-		bodyStructure: {},
-		middlewares: [],
-		function: async (req, res) => getProductDeals(req, res)
 	},
 	{
 		method: "PATCH",
