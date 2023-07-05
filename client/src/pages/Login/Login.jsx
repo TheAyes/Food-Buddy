@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import styles from "./Login.module.scss";
 import logo from "../../pics/LogoGreen.svg";
 import success from "../../pics/success.png";
 import shadow from "../../pics/Shadow.svg";
+import { UserContext } from "../../app.jsx";
 
 export const Login = () => {
 	const [username, setUsername] = useState("");
@@ -12,27 +13,32 @@ export const Login = () => {
 	const [showModal, setShowModal] = useState(false);
 	const [loginSuccess, setLoginSuccess] = useState(false);
 
+	const [userState, setUserState] = useContext(UserContext);
+
 	const handleLogin = (event) => {
 		event.preventDefault();
 		try {
-			axios
-				.post("/api/user/login", {
+			(async () => {
+				const response = await axios.post("/api/user/login", {
 					username: username.toLowerCase(),
 					password: password
-				})
-				.then((response) => {
-					console.log(response);
-					localStorage.setItem("auth-token", JSON.stringify(response.data));
-					setShowModal(true);
-					setLoginSuccess(true);
-					setTimeout(() => {
-						setShowModal(false);
-						window.location.href = "/home";
-					}, 5000);
-				})
-				.catch((error) => {
-					console.error(error);
 				});
+				localStorage.setItem("access-token", JSON.stringify(response.data.accessToken));
+				localStorage.setItem("refresh-token", JSON.stringify(response.data.refreshToken));
+
+				setUserState({
+					accessToken: response.data.accessToken,
+					refreshToken: response.data.refreshToken
+				});
+
+				setShowModal(true);
+				setLoginSuccess(true);
+
+				setTimeout(() => {
+					setShowModal(false);
+					window.location.href = "/home";
+				}, 5000);
+			})();
 		} catch (error) {
 			console.error(error);
 		}
