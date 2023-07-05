@@ -18,22 +18,26 @@
 	background-color: $gc-2;
 	position: relative;
 	border-radius: 0 0 40px 40px;
+
 	h2 {
 		text-align: center;
 		font-weight: $fw-regular;
 	}
+
 	h6 {
 		text-align: center;
 		font-weight: $fw-light;
 		color: $fc-4;
 		margin-bottom: 7rem;
 	}
+
 	.inputbox {
 		position: relative;
 		margin: 40px 0;
 		width: 400px;
 		border-bottom: 1px solid #7777777d;
 	}
+
 	.inputbox label {
 		color: $fc-4;
 		position: absolute;
@@ -44,6 +48,7 @@
 		transform: translateY(-50%);
 		pointer-events: none;
 	}
+
 	.inputbox input {
 		width: 100%;
 		height: 40px;
@@ -52,10 +57,12 @@
 		outline: none;
 		padding: 0 35px 0 5px;
 	}
+
 	input:focus ~ label,
 	input:valid ~ label {
 		top: -5px;
 	}
+
 	.forget {
 		margin: -15px 0 15px;
 		font-size: $fz-small-3;
@@ -63,15 +70,19 @@
 		display: flex;
 		justify-content: center;
 	}
+
 	.forget label input {
 		margin-right: 3px;
 	}
+
 	.forget a {
 		color: black;
 	}
+
 	.forget label a:hover {
 		text-decoration: underline;
 	}
+
 	.button {
 		width: 100%;
 		height: 50px;
@@ -84,17 +95,20 @@
 		font-weight: $fw-regular;
 		color: white;
 		margin-top: 30px;
-		transition: color 0.5s;
+		transition: color 200ms, background 200ms;
 	}
+
 	.button:hover {
 		background-color: $bc-2;
 		color: $fc-4;
 	}
+
 	.alreadyHaveAccount {
 		text-align: center;
 		margin: 25px 0px 10px;
 	}
 }
+
 // animations funktionieren noch nicht - muss noch gefixt werden
 .modal {
 	height: 50rem;
@@ -112,13 +126,16 @@
 	transition: ease-in 0.4s, transform 0.9s;
 	transform: translate(-50%, -50%);
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
 	.FoodBuddy {
 		font-weight: $fw-light;
 	}
+
 	h2 {
 		font-weight: $fw-medium;
 		margin-bottom: 20px;
 	}
+
 	p {
 		color: $gc-4;
 	}
@@ -128,6 +145,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+
 	img {
 		width: 10rem;
 		padding-bottom: 10px;
