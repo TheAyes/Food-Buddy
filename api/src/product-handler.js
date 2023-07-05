@@ -66,7 +66,7 @@ export const getProducts = async (req, res) => {
 
 export const deleteProductById = async (req, res) => {
 	try {
-		const result = await Product.findById(req.params.id);
+		const result = Product.findById(req.params.id);
 		if (!result) res.status(404).json({ message: "Not found" });
 
 		await result.deleteOne();
@@ -79,16 +79,14 @@ export const deleteProductById = async (req, res) => {
 
 export const updateProductById = async (req, res) => {
 	try {
-		const result = await Product.findById(req.params.id);
+		const result = Product.findById(req.params.id);
 		if (!result) return res.status(404).json({ message: "Not found" });
 
-		// explicitly set each property to be updated
-		result.name = req.body.name || result.name;
-		result.price = req.body.price || result.price;
-		// add other properties as needed
-
-		await result.save();
-		res.json(result);
+		const updatedProduct = {
+			...result,
+			...req.body
+		};
+		res.json(updatedProduct);
 	} catch (error) {
 		res.status(500).json(error);
 	}
@@ -105,9 +103,17 @@ export const getProductById = async (req, res) => {
 
 export const getProductDeals = async (req, res) => {
 	try {
-		const filter = {};
-		filter["price.priceReduction"].$gt = 0;
-		res.json(await Product.find(filter).exec());
+		const filter = {
+			"price.priceReduction": {
+				$gt: 0
+			}
+		};
+
+		const results = await Product.find(filter).exec();
+
+		if (!results || results.length === 0) return res.status(404).send("Not found");
+
+		res.json(results);
 	} catch (error) {
 		res.status(500).json(error);
 	}
@@ -115,22 +121,15 @@ export const getProductDeals = async (req, res) => {
 
 export const updateDeals = async (req, res) => {
 	try {
-		const results = await Product.find().exec();
+		// Clear all existing price reductions
+		await Product.updateMany({}, { $set: { "price.priceReduction": 0 } });
 
-		const updates = results.map((item) => {
-			item.price.priceReduction = 0;
+		// Apply 20% price reduction to a random 10% of products
+		await Product.updateMany({ $expr: { $lt: [{ $rand: {} }, 0.1] } }, { $set: { "price.priceReduction": 20 } });
 
-			if (Math.random() < 0.2) {
-				if (Math.random() < 0.5) {
-					item.price.priceReduction = 20;
-				} else {
-					item.price.priceReduction = 40;
-				}
-			}
-			return Product.updateOne({ _id: item._id }, { $set: { price: item.price } });
-		});
+		// Apply 40% price reduction to a random 10% of products
+		await Product.updateMany({ $expr: { $lt: [{ $rand: {} }, 0.1] } }, { $set: { "price.priceReduction": 40 } });
 
-		await Promise.all(updates);
 		res.json({ message: "Successfully updated products." });
 	} catch (error) {
 		res.status(500).json(error);
@@ -201,8 +200,6 @@ export const wishlistProduct = async (req, res) => {
 		}
 
 		user.wishlist.push(product.id);
-		await user.save(); // save user after updating wishlist
-		res.json(user);
 	} catch (error) {
 		res.status(500).json(error);
 	}
@@ -218,8 +215,6 @@ export const addProductToCart = async (req, res) => {
 		}
 
 		user.cart.push(product.id);
-		await user.save(); // save user after updating cart
-		res.json(user);
 	} catch (error) {
 		res.status(500).json(error);
 	}

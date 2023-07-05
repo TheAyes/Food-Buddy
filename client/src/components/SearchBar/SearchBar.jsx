@@ -11,7 +11,6 @@ export const SearchBar = ({ onSelectItem }) => {
 	const [suggestions, setSuggestions] = useState([]);
 	const inputRef = useRef(null);
 
-	// Searchbar mit api verbunden, aktuell auf ItemList ausgerichtet - Autosuggestions und filter für die Ausgabe der Items
 	const handleChange = (value) => {
 		setInput(value);
 		const filteredItems = data.filter((item) => item.name.toLowerCase().includes(value.toLowerCase()));
@@ -63,27 +62,27 @@ export const SearchBar = ({ onSelectItem }) => {
 	};
 
 	return (
-	<div className={styles.SearchBarParent}>
-		<div className={styles.inputWrapper}>
-			<img src={search} alt="search" onClick={handleClick} />
-			<input
-				type="text"
-				placeholder="Search for Product..."
-				value={input}
-				onChange={(e) => handleChange(e.target.value)}
-			/>
+		<div className={styles.SearchBarParent}>
+			<div className={styles.inputWrapper}>
+				<img src={search} alt="search" onClick={handleClick} />
+				<input
+					type="text"
+					placeholder="Search for Product..."
+					value={input}
+					onChange={(e) => handleChange(e.target.value)}
+				/>
+			</div>
+			{suggestions.length > 0 && (
+				<ul className={styles.suggestions}>
+					{suggestions.map((item, index) => (
+						<li key={index} onClick={() => handleItemClick(item)} className={styles.suggestionItem}>
+							<span className={styles.bold}>{item.name.slice(0, input.length)}</span>
+							{item.name.slice(input.length)}
+						</li>
+					))}
+				</ul>
+			)}
 		</div>
-		{suggestions.length > 0 && (
-			<ul className={styles.suggestions}>
-				{suggestions.map((item) => (
-					<li key={item.id} onClick={() => handleItemClick(item)} className={styles.suggestionItem}>
-						<span className={styles.bold}>{item.name.slice(0, input.length)}</span>
-						{item.name.slice(input.length)}
-					</li>
-				))}
-			</ul>
-		)}
-	</div>
-);
+	);
 };
 

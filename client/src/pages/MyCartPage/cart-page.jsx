@@ -29,7 +29,7 @@ export const CartPage = () => {
 			<div className={styles.headerCart}>
 				<article className={styles.leftContainer}>
 					<GoBackButton />
-					<h4>Warenkorb</h4>
+					<h4>My Cart</h4>
 				</article>
 				<img className={styles.trashCan} src={trashCan} alt="Mülleimer" />
 			</div>
@@ -47,7 +47,7 @@ export const CartPage = () => {
 					/>
 				))}
 			</div>
-			<button className={styles.checkoutButton}>Check Out ACHTUNG LOGIK FÜR GESAMTPREIS EINBAUEN</button>
+			<button className={styles.checkoutButton}>CHECK OUT</button>
 		</section>
 	);
 };

@@ -27,11 +27,11 @@ export const CartItem = ({ id, name, rating, numOfRatings, price, onLikeButtonCl
 				<h3 className={styles.nameIndicator}>{name}</h3>
 				<div className={styles.ratingSection}>
 					<img src={starImage} alt="rating star" />
-					<h3 className={styles.ratingIndicator}>{rating}</h3>
-					<h3 className={styles.reviewIndicator}>({numOfRatings})</h3>
+					<p className={styles.ratingIndicator}>{rating}</p>
+					<p className={styles.reviewIndicator}>({numOfRatings})</p>
 				</div>
 				<div className={styles.priceSection}>
-					<h2 className={styles.priceIndicator}>{price}</h2>
+					<p className={styles.priceIndicator}>{price}</p>
 					<LikeButton
 						className={styles.likeButton}
 						isLiked={isLiked}

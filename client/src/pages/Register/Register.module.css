@@ -1,27 +1,13 @@
-.login {
+.register {
   text-align: center;
   height: 100vh;
   background-color: #9e9e9e;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  text-align: center;
 }
-.login img {
-  width: 11rem;
-}
-.login h1 {
-  font-weight: 100;
-}
-.login .headline {
-  font-weight: 800;
-}
-.login .form {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-}
-.login .formBox {
+
+.formBox {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,23 +17,23 @@
   position: relative;
   border-radius: 0 0 40px 40px;
 }
-.login .formBox h2 {
+.formBox h2 {
   text-align: center;
   font-weight: 400;
 }
-.login .formBox h6 {
+.formBox h6 {
   text-align: center;
   font-weight: 300;
   color: #777777;
   margin-bottom: 7rem;
 }
-.login .formBox .inputbox {
+.formBox .inputbox {
   position: relative;
   margin: 40px 0;
   width: 400px;
   border-bottom: 1px solid rgba(119, 119, 119, 0.4901960784);
 }
-.login .formBox .inputbox label {
+.formBox .inputbox label {
   color: #777777;
   position: absolute;
   font-size: 1.4rem;
@@ -57,7 +43,7 @@
   transform: translateY(-50%);
   pointer-events: none;
 }
-.login .formBox .inputbox input {
+.formBox .inputbox input {
   width: 100%;
   height: 40px;
   background: transparent;
@@ -65,27 +51,27 @@
   outline: none;
   padding: 0 35px 0 5px;
 }
-.login .formBox input:focus ~ label,
-.login .formBox input:valid ~ label {
+.formBox input:focus ~ label,
+.formBox input:valid ~ label {
   top: -5px;
 }
-.login .formBox .forget {
+.formBox .forget {
   margin: -15px 0 15px;
   font-size: 1.4rem;
   color: #777777;
   display: flex;
   justify-content: center;
 }
-.login .formBox .forget label input {
+.formBox .forget label input {
   margin-right: 3px;
 }
-.login .formBox .forget a {
+.formBox .forget a {
   color: black;
 }
-.login .formBox .forget label a:hover {
+.formBox .forget label a:hover {
   text-decoration: underline;
 }
-.login .formBox .button {
+.formBox .button {
   width: 100%;
   height: 50px;
   border-radius: 40px;
@@ -99,11 +85,11 @@
   margin-top: 30px;
   transition: color 0.5s;
 }
-.login .formBox .button:hover {
+.formBox .button:hover {
   background-color: #d8eedc;
   color: #777777;
 }
-.login .formBox .dontHaveAccount {
+.formBox .alreadyHaveAccount {
   text-align: center;
   margin: 25px 0px 10px;
 }
@@ -125,9 +111,15 @@
   transform: translate(-50%, -50%);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
-.modal h3 {
+.modal .FoodBuddy {
   font-weight: 300;
+}
+.modal h2 {
+  font-weight: 500;
   margin-bottom: 20px;
+}
+.modal p {
+  color: #777777;
 }
 
 .checkLogo {
@@ -153,4 +145,4 @@
 
 .linkLogin:hover {
   text-decoration: underline;
-}/*# sourceMappingURL=Login.module.css.map */
+}/*# sourceMappingURL=Register.module.css.map */
