@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import styles from './wishlist-page.module.scss';
 
 //Import Components
-import { GoBackButton } from "../../components/GoBackButton/GoBackButton";
-import { NavBar } from '../../components/NavBar/NavBar';
-import { WishItem } from '../../components/WishItem/WishItem';
+import { GoBackButton } from "../../components/GoBackButton/GoBackButton.jsx";
+import { WishItem } from '../../components/WishItem/WishItem.jsx';
 
 // Import Images
 import emptyWishlist from "../../pics/emptyWishlist.svg";
@@ -20,8 +19,8 @@ export const WishlistPage = () => {
             setWishlist(updatedWishlist);
         } else {
             // Element zur Wishlist hinzufügen
-            const itemToAdd = /* Logik, um das Element anhand der itemId zu finden */
-                setWishlist([...wishlist, itemToAdd]);
+            const itemToAdd = wishlist.find(item => item.id === itemId);
+            setWishlist(prevWishlist => [...prevWishlist, itemToAdd]);
         }
     };
 
@@ -48,7 +47,6 @@ export const WishlistPage = () => {
                     />
                 ))}
             </div>
-            <NavBar />
         </section>
     );
 };
