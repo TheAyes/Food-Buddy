@@ -19,8 +19,10 @@ import {
 	getCategories,
 	getCategoryById,
 	getProductById,
+	getProductDeals,
 	getProducts,
 	rateProduct,
+	updateDeals,
 	updateProductById,
 	wishlistProduct
 } from "./product-handler.js";
@@ -48,7 +50,7 @@ if (!preFlightConditions.some((item) => item)) process.exit(1);
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, "../../client")));
+app.use(express.static(path.join(__dirname, "../../dist/client")));
 app.use(express.json());
 
 const connectionString = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PW}@${process.env.DB_CLUSTER}.${process.env.DB_SHARD}.mongodb.net/?retryWrites=true&w=majority`;
@@ -286,7 +288,9 @@ const endpointsBuilder = [
 		queryParams: [],
 		bodyStructure: {},
 		middlewares: [],
-		function: async (req, res) => res.send(path.join(__dirname, "../../dist/client/index.html"))
+		function: async (req, res) => {
+			res.sendFile(path.join(__dirname, "../../dist/client/index.html"));
+		}
 	}
 ];
 

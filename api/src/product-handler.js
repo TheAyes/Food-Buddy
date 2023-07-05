@@ -66,7 +66,7 @@ export const getProducts = async (req, res) => {
 
 export const deleteProductById = async (req, res) => {
 	try {
-		const result = Product.findById(req.params.id);
+		const result = await Product.findById(req.params.id);
 		if (!result) res.status(404).json({ message: "Not found" });
 
 		await result.deleteOne();
@@ -79,14 +79,16 @@ export const deleteProductById = async (req, res) => {
 
 export const updateProductById = async (req, res) => {
 	try {
-		const result = Product.findById(req.params.id);
+		const result = await Product.findById(req.params.id);
 		if (!result) return res.status(404).json({ message: "Not found" });
 
-		const updatedProduct = {
-			...result,
-			...req.body
-		};
-		res.json(updatedProduct);
+		// explicitly set each property to be updated
+		result.name = req.body.name || result.name;
+		result.price = req.body.price || result.price;
+		// add other properties as needed
+
+		await result.save();
+		res.json(result);
 	} catch (error) {
 		res.status(500).json(error);
 	}
@@ -94,7 +96,7 @@ export const updateProductById = async (req, res) => {
 
 export const getProductById = async (req, res) => {
 	try {
-		const result = await Product.findById(req.params.id).exec();
+		const result = await Product.findById(req.params.id).populate("categories").populate("ratings.user").exec();
 		res.json(result);
 	} catch (error) {
 		res.status(500).json(error);
@@ -200,6 +202,8 @@ export const wishlistProduct = async (req, res) => {
 		}
 
 		user.wishlist.push(product.id);
+		await user.save(); // save user after updating wishlist
+		res.json(user);
 	} catch (error) {
 		res.status(500).json(error);
 	}
@@ -215,6 +219,8 @@ export const addProductToCart = async (req, res) => {
 		}
 
 		user.cart.push(product.id);
+		await user.save(); // save user after updating cart
+		res.json(user);
 	} catch (error) {
 		res.status(500).json(error);
 	}

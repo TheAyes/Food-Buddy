@@ -4,15 +4,14 @@ const UserSchema = new Schema({
 	username: String,
 	fullName: String,
 
-	profilePicture: String,
-
 	email: String,
 	phoneNumber: String,
 
 	address: {
 		street: String,
-		streetNumber: Number,
-		zipCode: Number,
+		streetNumber: String,
+		zipCode: String,
+		city: String,
 		country: String
 	},
 
