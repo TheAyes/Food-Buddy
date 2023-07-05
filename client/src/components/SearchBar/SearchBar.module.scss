@@ -8,7 +8,6 @@
 	}
 	.inputWrapper {
 		background-color: $gc-2;
-		width: 60vw;
 		border-radius: 10px;
 		height: 4.5rem;
 		padding: 0 15px;
@@ -33,10 +32,10 @@
 	}
 	.suggestions {
 		background-color: $gc-2;
-		position: fixed;
-		top: 6.5rem;
-		left: 22rem;
-		width: calc(60vw - 40px);
+		position: absolute;
+		top: 7.4;
+		left: 5;
+		width: calc(500px - 40px);
 		display: inline-block;
 		border: 1px solid #ccc;
 		padding: 0.2rem 0.4rem;

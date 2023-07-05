@@ -8,8 +8,10 @@ export const ProductItems = (props) => {
 	const { value, unit } = price;
 
 	return (
-		<Link to={`/item/:id/${props.id}`} className={styles.ProductItems}>
-			<LikeButton className={styles.likeButton} />
+		<div className={styles.ProductItems}>
+			<Link to={`/item/${props._id}`} className={styles.link}>
+				<LikeButton className={styles.likeButton} />
+			</Link>
 			<div>
 				<img src={props.image} alt="image" className={styles.itemImages} />
 				<p className={styles.productName}>{props.name}</p>
@@ -17,11 +19,11 @@ export const ProductItems = (props) => {
 					<p>
 						{value} {unit}
 					</p>
-					<img src={star} className={styles.star} />
+					<img src={star} className={styles.star} alt="star" />
 					<p> {props.rating}</p>
 				</div>
 			</div>
-		</Link>
+		</div>
 	);
 };
 
