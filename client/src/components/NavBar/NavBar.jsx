@@ -25,7 +25,7 @@ export const NavBar = () => {
 				Orders
 			</Link>
 			<Link to="/user/cart">
-				<img src={shoppingcart} alt="shoppingcart button" />
+				<img src={shoppingcart} alt="shoppingcart button" className="shoppingCart" />
 			</Link>
 			<Link to="/user/wishlist" onClick={() => handleButtonClick('wishlist')}>
 				<img src={wishlist} alt="wishlist button" className={selectedButton === 'wishlist' ? styles.selected : ''} />
