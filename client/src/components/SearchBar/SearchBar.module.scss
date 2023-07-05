@@ -3,25 +3,20 @@
 .SearchBarParent {
 	margin: 20px;
 	justify-content: center;
-
 	img {
 		height: 2rem;
 	}
-
 	.inputWrapper {
 		background-color: $gc-2;
-
 		border-radius: 10px;
 		height: 4.5rem;
 		padding: 0 15px;
 		box-shadow: 0px 0px 8px #ddd;
 		display: flex;
 		align-items: center;
-
 		img {
 			width: 2rem;
 		}
-
 		input {
 			background-color: transparent;
 			border: none;
@@ -31,18 +26,16 @@
 			margin-left: 5px;
 			font-size: $fz-small-4;
 		}
-
 		input:focus {
 			outline: none;
 		}
 	}
-
 	.suggestions {
 		background-color: $gc-2;
-		position: fixed;
-		top: 6.5rem;
-		left: 22rem;
-		width: calc(60vw - 40px);
+		position: absolute;
+		top: 7.4;
+		left: 5;
+		width: calc(500px - 40px);
 		display: inline-block;
 		border: 1px solid #ccc;
 		padding: 0.2rem 0.4rem;

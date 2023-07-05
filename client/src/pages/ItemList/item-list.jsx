@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ProductItems } from "../../components/ProductItems/ProductItems.jsx";
 import { SearchBar } from "../../components/SearchBar/SearchBar.jsx";
+import { Link } from "react-router-dom";
 import styles from "./ItemList.module.scss";
 import axios from "axios";
 import PropTypes from "prop-types";
@@ -44,7 +45,6 @@ export const ItemList = ({
 		if (minNumberOfRatings) params.append("minNumberOfRatings", minNumberOfRatings);
 		if (maxNumberOfRatings) params.append("maxNumberOfRatings", maxNumberOfRatings);
 
-		// Selbst ausführende Funktion
 		(async () => {
 			try {
 				const { data } = await axios.get(`/api/products?${params}`);
@@ -75,20 +75,45 @@ export const ItemList = ({
 	};
 
 	return (
-		//hier das DIV nur als Übung für SearchBar
 		<div>
 			<SearchBar onSelectItem={handleSelectItem} />
 			<div className={styles.ItemList}>
-				{filteredData.map((item, index) => (
-					<ProductItems
-						key={index}
-						image={item.image}
-						name={item.name}
-						price={item.price}
-						rating={item.ratings}
-					/>
+				{filteredData.map((item) => (
+					<Link to={`/item/${item._id}`} key={item._id}>
+						<ProductItems
+							_id={item._id}
+							image={item.image}
+							name={item.name}
+							price={item.price}
+							rating={item.rating}
+						/>
+					</Link>
 				))}
 			</div>
 		</div>
 	);
 };
+
+ItemList.propTypes = {
+	products: PropTypes.arrayOf(
+		PropTypes.shape({
+			_id: PropTypes.string,
+			image: PropTypes.string,
+			name: PropTypes.string,
+			price: PropTypes.number,
+			rating: PropTypes.number
+		})
+	).isRequired
+};
+
+ItemList.defaultProps = {
+	category: "",
+	nameFilter: "",
+	minPrize: undefined,
+	maxPrize: undefined,
+	minRating: undefined,
+	maxRating: undefined,
+	minNumberOfRatings: "undefined",
+	maxNumberOfRatings: "undefined"
+};
+
