@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./item-details.module.scss";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -15,9 +15,9 @@ import { LikeButton } from "../../components/LikeButton/LikeButton";
 export const ItemDetails = (props) => {
 	const [quantity, setQuantity] = useState(0);
 	const { id } = useParams();
-	const [item, setItem] = React.useState(null);
+	const [item, setItem] = useState(null);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		axios.get(`/api/products/${id}`).then((response) => {
 			setItem(response.data);
 		});

@@ -11,18 +11,8 @@ import { ItemList } from "./pages/ItemList/item-list.jsx";
 import { Register } from "./pages/Register/Register.jsx";
 import { Login } from "./pages/Login/Login.jsx";
 import { LandPageTwo } from "./pages/LandPageTwo/land-page-two.jsx";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
 
 export const App = () => {
-	const [products, setProducts] = React.useState([]);
-
-	React.useEffect(() => {
-		axios.get("/api/products").then((response) => {
-			setProducts(response.data);
-		});
-	}, []);
-
 	return (
 		<>
 			<Routes>
@@ -31,7 +21,7 @@ export const App = () => {
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/home" element={<HomePage />} />
-				<Route path="/itemlist" element={<ItemList products={products} />} />
+				<Route path="/itemlist" element={<ItemList />} />
 				<Route path="/item/:id" element={<ItemDetails />} />
 				<Route path="/user" element={<ProfilePage />} />
 				<Route path="/user/cart" element={<CartPage />} />
