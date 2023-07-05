@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import styles from "./Register.module.scss";
 
 export const Register = () => {
 	const [username, setUsername] = useState("");
@@ -36,4 +37,3 @@ export const Register = () => {
 		</div>
 	);
 };
-

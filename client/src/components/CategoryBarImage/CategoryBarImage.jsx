@@ -5,7 +5,6 @@ import bread from "../../pics/breadLOGO.jpg"
 import vegetables from "../../pics/vegetablesLOGO.jpg"
 import seafood from "../../pics/seafoodLOGO.jpg"
 import fruits from "../../pics/fruitLOGO.jpg"
-import shadow from "../../pics/shadow.png"
 
 export const CategoryBarImage = () => {
 	return (

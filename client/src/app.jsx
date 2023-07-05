@@ -10,20 +10,14 @@ import { OrderHistoryPage } from "./pages/OrderHistory/order-history-page.jsx";
 import { ItemList } from "./pages/ItemList/item-list.jsx";
 import { Register } from "./pages/Register/Register.jsx";
 import { Login } from "./pages/Login/Login.jsx";
-import { FilterPage } from "./pages/Filter/filter-page.jsx";
-import { NavBar } from "./components/NavBar/NavBar.jsx";
-import { LikeButton } from "./components/LikeButton/LikeButton.jsx";
-import { AddToCartComponent } from "./components/AddToCartComponent/AddToCartComponent.jsx";
-import { CategoryBarImage } from "./components/CategoryBarImage/CategoryBarImage.jsx";
 import { LandPageTwo } from "./pages/LandPageTwo/land-page-two.jsx";
-import { WishItem } from "./components/WishItem/WishItem.jsx";
 
 export const App = () => {
 	return (
 		<>
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
-				<Route path="/landpagetwo" element={<LandPageTwo />} />
+				<Route path="/landingpage/2" element={<LandPageTwo />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/home" element={<HomePage />} />

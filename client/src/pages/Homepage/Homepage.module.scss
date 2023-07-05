@@ -1,0 +1,150 @@
+@import "../../global.scss";
+
+.Homepage {
+    section {
+        display: flex;
+        justify-content: space-around;
+        margin: 3rem 0;
+
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 28rem;
+            height: 17rem;
+            background-image: url("../../pics/deal20.jpeg");
+            background-size: cover;
+            border-radius: 1rem;
+            filter: opacity(75%);
+
+            &:nth-of-type(2) {
+                background-image: url("../../pics/deal40.jpeg");
+            }
+
+            p {
+                font-family: $ff-roboto;
+                color: $fc-2;
+                font-size: $fz-large-2;
+                font-weight: $fw-bold;
+                text-shadow: rgb(0, 0, 0) 1px 0 10px;
+                ;
+            }
+        }
+    }
+
+
+    .fruitsBanner {
+        width: 100%;
+        height: 130px;
+        background-image: url("../../pics/fruitsBANNER.jpeg");
+        background-position: center;
+        background-size: cover;
+        margin: 3rem 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 1rem;
+
+        p {
+            text-align: center;
+            color: $fc-2;
+            font-family: $ff-roboto;
+            font-size: $fz-medium-2;
+            font-weight: $fw-bold;
+            text-shadow: rgb(0, 0, 0) 1px 0 10px;
+            margin: 0 3rem;
+        }
+    }
+
+    .vegetablesBanner {
+        width: 100%;
+        height: 130px;
+        background-image: url("../../pics/vegetablesBANNER.webp");
+        background-position: center;
+        background-size: cover;
+        margin: 3rem 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 1rem;
+
+        p {
+            text-align: center;
+            color: $fc-2;
+            font-family: $ff-roboto;
+            font-size: $fz-medium-2;
+            font-weight: $fw-bold;
+            text-shadow: rgb(0, 0, 0) 1px 0 10px;
+            margin: 0 3rem;
+        }
+    }
+
+    .breadBanner {
+        width: 100%;
+        height: 130px;
+        background-image: url("../../pics/breadBANNER.jpeg");
+        background-position: center;
+        background-size: cover;
+        margin: 3rem 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 1rem;
+
+        p {
+            text-align: center;
+            color: $fc-2;
+            font-family: $ff-roboto;
+            font-size: $fz-medium-2;
+            font-weight: $fw-bold;
+            text-shadow: rgb(0, 0, 0) 1px 0 10px;
+            margin: 0 3rem;
+        }
+    }
+
+    .seafoodBanner {
+        width: 100%;
+        height: 130px;
+        background-image: url("../../pics/seafoodBANNER.webp");
+        background-position: center;
+        background-size: cover;
+        margin: 3rem 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 1rem;
+
+        p {
+            text-align: center;
+            color: $fc-2;
+            font-family: $ff-roboto;
+            font-size: $fz-medium-2;
+            font-weight: $fw-bold;
+            text-shadow: rgb(0, 0, 0) 1px 0 10px;
+            margin: 0 3rem;
+        }
+    }
+
+    .meatBanner {
+        width: 100%;
+        height: 130px;
+        background-image: url("../../pics/meatBANNER.avif");
+        background-position: center;
+        background-size: cover;
+        margin: 3rem 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 1rem;
+
+        p {
+            text-align: center;
+            color: $fc-2;
+            font-family: $ff-roboto;
+            font-size: $fz-medium-2;
+            font-weight: $fw-bold;
+            text-shadow: rgb(0, 0, 0) 1px 0 10px;
+            margin: 0 3rem;
+        }
+    }
+}
