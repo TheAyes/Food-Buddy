@@ -18,11 +18,12 @@
             border-radius: 50%;
         }
 
-        .shadow {
+        div {
             width: 7rem;
             height: 1rem;
             margin: 0.5rem 0;
-            filter: contrast(1%);
+            background-color: #D9DADE;
+            border-radius: 50%;
         }
     }
 }
