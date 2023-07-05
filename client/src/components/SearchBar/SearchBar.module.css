@@ -1,0 +1,115 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+h1 {
+  font-size: 4.4rem;
+}
+
+h2 {
+  font-size: 4.1rem;
+}
+
+h3 {
+  font-size: 3.6rem;
+}
+
+h4 {
+  font-size: 2.4rem;
+}
+
+h5 {
+  font-size: 2.2rem;
+}
+
+h6 {
+  font-size: 1.8rem;
+}
+
+p {
+  font-size: 1.2rem;
+}
+
+a {
+  color: #777777;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.SearchBarParent {
+  margin: 20px;
+  justify-content: center;
+}
+.SearchBarParent img {
+  height: 2rem;
+}
+.SearchBarParent .inputWrapper {
+  background-color: #ffffff;
+  border-radius: 10px;
+  height: 4.5rem;
+  padding: 0 15px;
+  box-shadow: 0px 0px 8px #ddd;
+  display: flex;
+  align-items: center;
+}
+.SearchBarParent .inputWrapper img {
+  width: 2rem;
+}
+.SearchBarParent .inputWrapper input {
+  background-color: transparent;
+  border: none;
+  height: 100%;
+  font-size: 1.25rem;
+  width: 100%;
+  margin-left: 5px;
+  font-size: 1.6rem;
+}
+.SearchBarParent .inputWrapper input:focus {
+  outline: none;
+}
+.SearchBarParent .suggestions {
+  background-color: #ffffff;
+  position: absolute;
+  top: 7.4;
+  left: 5;
+  width: 460px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  padding: 0.2rem 0.4rem;
+  border-radius: 5px;
+  border-top: none;
+  margin: 0;
+  z-index: 1;
+}
+.SearchBarParent .suggestions li {
+  font-size: 1.6rem;
+  line-height: 25px;
+  list-style: none;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.suggestions li:hover {
+  background-color: rgba(204, 204, 204, 0.4392156863);
+  color: #777777;
+}/*# sourceMappingURL=SearchBar.module.css.map */
