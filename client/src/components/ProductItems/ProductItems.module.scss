@@ -1,14 +1,15 @@
 @import "../../variable.scss";
 
 .ProductItems {
-	.likeButton {
-		width: 4rem;
-		padding: 10px;
-	}
+	// .likeButton {
+	// 	width: 3.5rem;
+	// 	padding: 7px;
+	// }
 
 	div {
 		text-align: center;
 	}
+
 	.itemImages {
 		height: 9rem;
 		width: 65%;
@@ -39,4 +40,3 @@
 		justify-content: space-around;
 	}
 }
-
