@@ -96,7 +96,7 @@ export const updateProductById = async (req, res) => {
 
 export const getProductById = async (req, res) => {
 	try {
-		const result = await Product.findById(req.params.id).exec();
+		const result = await Product.findById(req.params.id).populate("categories").populate("ratings.user").exec();
 		res.json(result);
 	} catch (error) {
 		res.status(500).json(error);
