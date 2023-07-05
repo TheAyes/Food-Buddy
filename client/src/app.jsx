@@ -30,7 +30,7 @@ export const App = () => {
 		<>
 			<UserContext.Provider value={[userState, setUserState]}>
 				<Routes>
-					<Route path="/" element={<LandingPage />} />
+					<Route path="/" index element={<LandingPage />} />
 					<Route path="/landingpage/2" element={<LandPageTwo />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
