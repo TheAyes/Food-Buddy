@@ -74,36 +74,32 @@ export const ItemList = ({
 		setFilteredData([...filteredItems, item]);
 	};
 
+	// const [products, setProducts] = useState([]);
+
+	// useEffect(() => {
+	// 	(async () => {
+	// 		const response = await axios.get("/api/products");
+	// 		setProducts(response.data);
+	// 	})();
+	// }, []);
+
 	return (
 		<div>
 			<SearchBar onSelectItem={handleSelectItem} />
 			<div className={styles.ItemList}>
 				{filteredData.map((item) => (
-					<Link to={`/item/${item._id}`} key={item._id}>
-						<ProductItems
-							_id={item._id}
-							image={item.image}
-							name={item.name}
-							price={item.price}
-							rating={item.rating}
-						/>
-					</Link>
+					<ProductItems
+						key={item._id}
+						_id={item._id}
+						image={item.image}
+						name={item.name}
+						price={item.price}
+						rating={item.rating}
+					/>
 				))}
 			</div>
 		</div>
 	);
-};
-
-ItemList.propTypes = {
-	products: PropTypes.arrayOf(
-		PropTypes.shape({
-			_id: PropTypes.string,
-			image: PropTypes.string,
-			name: PropTypes.string,
-			price: PropTypes.number,
-			rating: PropTypes.number
-		})
-	).isRequired
 };
 
 ItemList.defaultProps = {
