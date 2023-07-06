@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { ProductItems } from "../../components/ProductItems/ProductItems.jsx";
 import { SearchBar } from "../../components/SearchBar/SearchBar.jsx";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styles from "./ItemList.module.scss";
-import axios from "axios";
 import PropTypes from "prop-types";
+import axios from "axios";
 
 export const ItemList = ({
 	category = "",
@@ -13,47 +13,60 @@ export const ItemList = ({
 	maxPrize = undefined,
 	minRating = undefined,
 	maxRating = undefined,
-	minNumberOfRatings = "undefined",
-	maxNumberOfRatings = "undefined",
+	minNumberOfRatings = undefined,
+	maxNumberOfRatings = undefined,
 	amount = -1,
 	offset = 0
 }) => {
-	ItemList.propTypes = {
-		category: PropTypes.string,
-		nameFilter: PropTypes.string,
-		minPrize: PropTypes.number,
-		maxPrize: PropTypes.number,
-		minRating: PropTypes.number,
-		maxRating: PropTypes.number,
-		minNumberOfRatings: PropTypes.string,
-		maxNumberOfRatings: PropTypes.string,
-		amount: PropTypes.number,
-		offset: PropTypes.number
-	};
 	const [filteredData, setFilteredData] = useState([]);
+	const location = useLocation();
+
+	const handleSelectItem = (item, paramData) => {
+		const params = new URLSearchParams(location.search);
+		let searchTerm = item || {};
+		let data = filteredData.length <= 0 ? paramData : filteredData;
+		if (params.get("searchTerm") !== null) {
+			console.log(params);
+			searchTerm.name = params.get("searchTerm");
+		}
+		const filteredItems = data.filter((dataItem) =>
+			dataItem.name.toLowerCase().includes(searchTerm.name.toLowerCase())
+		);
+		setFilteredData([...filteredItems]);
+	};
 
 	useEffect(() => {
-		const params = new URLSearchParams();
+		const params = new URLSearchParams(location.search);
+
+		console.log(params.get("searchTerm"));
+		const categoryParam = params.get("category");
+		const nameFilterParam = params.get("nameFilter");
+		const minPrizeParam = params.get("minPrize");
+		const maxPrizeParam = params.get("maxPrize");
+
+		const newCategory = categoryParam || category;
+		const newNameFilter = nameFilterParam || nameFilter;
+		const newMinPrize = minPrizeParam ? parseInt(minPrizeParam) : minPrize;
+		const newMaxPrize = maxPrizeParam ? parseInt(maxPrizeParam) : maxPrize;
 
 		// Append parameters if they exist
-		if (category) params.append("category", category);
-		if (nameFilter) params.append("nameFilter", nameFilter);
-		if (minPrize) params.append("minPrize", minPrize);
-		if (maxPrize) params.append("maxPrize", maxPrize);
-		if (minRating) params.append("minRating", minRating);
-		if (maxRating) params.append("maxRating", maxRating);
-		if (minNumberOfRatings) params.append("minNumberOfRatings", minNumberOfRatings);
-		if (maxNumberOfRatings) params.append("maxNumberOfRatings", maxNumberOfRatings);
+		if (newCategory) params.set("category", newCategory);
+		if (newNameFilter) params.set("nameFilter", newNameFilter);
+		if (newMinPrize) params.set("minPrize", newMinPrize);
+		if (newMaxPrize) params.set("maxPrize", newMaxPrize);
 
 		(async () => {
 			try {
 				const { data } = await axios.get(`/api/products?${params}`);
 
 				setFilteredData(amount > -1 ? data.slice(offset, offset + amount) : data);
+				if (params.get("searchTerm") !== null) {
+					handleSelectItem(undefined, amount > -1 ? data.slice(offset, offset + amount) : data);
+				}
 			} catch (error) {
 				console.error("Error:", error);
 			}
-		})(); // <-- Siehe funktionsklammern
+		})();
 	}, [
 		category,
 		nameFilter,
@@ -64,23 +77,17 @@ export const ItemList = ({
 		minNumberOfRatings,
 		maxNumberOfRatings,
 		offset,
-		amount
+		amount,
+		location.search
 	]);
-
-	const handleSelectItem = (item) => {
-		const filteredItems = filteredData.filter((dataItem) =>
-			dataItem.name.toLowerCase().includes(item.name.toLowerCase())
-		);
-		setFilteredData([...filteredItems, item]);
-	};
 
 	return (
 		<div className={styles.parentContainer}>
 			<SearchBar onSelectItem={handleSelectItem} />
 			<div className={styles.ItemList}>
-				{filteredData.map((item) => (
+				{filteredData.map((item, index) => (
 					<ProductItems
-						key={item._id}
+						key={index}
 						_id={item._id}
 						image={item.image}
 						name={item.name}

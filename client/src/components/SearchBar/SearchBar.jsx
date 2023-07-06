@@ -29,13 +29,17 @@ export const SearchBar = ({ onSelectItem }) => {
 
 	const handleSearch = async () => {
 		if (location.pathname !== "/itemList") {
-			navigate("/itemList");
+			navigate(`/itemList?searchTerm=${input}`);
 		}
 		try {
 			const response = await fetch(`/api/products?name=${input}`);
 			const data = await response.json();
 			setFilteredData(data);
 			setSuggestions([]);
+			if (data.length > 0) {
+				//evtl entfernen
+				onSelectItem(data[0]);
+			}
 		} catch (error) {
 			console.error(error);
 		}

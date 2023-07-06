@@ -1,13 +1,24 @@
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { CategoryBarImage } from "../../components/CategoryBarImage/CategoryBarImage";
 import { DealList } from "../../components/DealList/DealList";
 import { NavBar } from "../../components/NavBar/NavBar";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
 import styles from "./Homepage.module.scss";
+import data from "../../data/grocery-data.json";
 
 export const HomePage = () => {
+	const [filteredData, setFilteredData] = useState([]);
+
+	const handleSelectItem = (item) => {
+		const filteredItems = filteredData.filter((dataItem) =>
+			dataItem.name.toLowerCase().includes(item.name.toLowerCase())
+		);
+		setFilteredData([...filteredItems, item]);
+	};
 	return (
 		<div className={styles.Homepage}>
-			<SearchBar />
+			<SearchBar onSelectItem={handleSelectItem} />
 			<section>
 				<div>
 					<p>Get 20% OFF</p>
@@ -41,3 +52,4 @@ export const HomePage = () => {
 		</div>
 	);
 };
+
