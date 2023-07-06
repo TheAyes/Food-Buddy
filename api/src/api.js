@@ -5,7 +5,6 @@ import { config } from "dotenv";
 import mongoose from "mongoose";
 import {
 	authenticateUser,
-	getUserData,
 	handleTokenRefresh,
 	handleUserLogin,
 	handleUserLogout,
@@ -26,6 +25,7 @@ import {
 	updateProductById,
 	wishlistProduct
 } from "./product-handler.js";
+import { getUserData, updateUserData } from "./user-handler.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -108,6 +108,20 @@ const endpointsBuilder = [
 		bodyStructure: {},
 		middlewares: [authenticateUser],
 		function: (req, res) => getUserData(req, res)
+	},
+	{
+		method: "PATCH",
+		path: "/api/user",
+		urlParams: [],
+		queryParams: [],
+		headStructure: {
+			Authorization: `Bearer JWT_TOKEN_HERE`
+		},
+		bodyStructure: {
+			newData: "Object"
+		},
+		middlewares: [authenticateUser],
+		function: (req, res) => updateUserData(req, res)
 	},
 	{
 		method: "POST",

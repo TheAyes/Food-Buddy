@@ -24,8 +24,8 @@ export const Register = () => {
 					password: password,
 					email: email
 				});
-				localStorage.setItem("access-token", JSON.stringify(response.data.accessToken));
-				localStorage.setItem("refresh-token", JSON.stringify(response.data.refreshToken));
+				localStorage.setItem("access-token", response.data.accessToken);
+				localStorage.setItem("refresh-token", response.data.refreshToken);
 
 				userState.set({
 					accessToken: response.data.accessToken,

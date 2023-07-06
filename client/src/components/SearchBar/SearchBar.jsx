@@ -13,6 +13,7 @@ export const SearchBar = ({ onSelectItem }) => {
 	const location = useLocation();
 	const navigate = useNavigate();
 
+	// Searchbar mit api verbunden, aktuell auf ItemList ausgerichtet - Autosuggestions und filter für die Ausgabe der Items
 	const handleChange = (value) => {
 		setInput(value);
 		const filteredItems = data.filter((item) => item.name.toLowerCase().includes(value.toLowerCase()));

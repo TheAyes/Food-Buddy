@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { LandingPage } from "./pages/Landingpage/landing-page.jsx";
 import { NotFound } from "./pages/NotFound/not-found.jsx";
 import { ProfilePage } from "./pages/Profil/profile-page.jsx";
@@ -11,11 +11,46 @@ import { ItemList } from "./pages/ItemList/item-list.jsx";
 import { Register } from "./pages/Register/Register.jsx";
 import { Login } from "./pages/Login/Login.jsx";
 import { LandPageTwo } from "./pages/LandPageTwo/land-page-two.jsx";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import axios from "axios";
 
 export const UserContext = createContext(null);
 export const App = () => {
-	const [userState, setUserState] = useState(null);
+	const [userState, setUserState] = useState({
+		accessToken: localStorage.getItem("access-token"),
+		refreshToken: localStorage.getItem("refresh-token")
+	});
+	const location = useLocation();
+
+	useEffect(() => {
+		(async () => {
+			if (!userState.accessToken || !userState.refreshToken) {
+				setUserState(() => {
+					return {
+						accessToken: localStorage.getItem("access-token"),
+						refreshToken: localStorage.getItem("refresh-token")
+					};
+				});
+			}
+			const response = await axios.post(
+				"/api/user/refresh",
+				{},
+				{
+					headers: {
+						Authorization: `Bearer ${userState.refreshToken}`
+					}
+				}
+			);
+
+			localStorage.setItem("access-token", response.data.accessToken);
+			localStorage.setItem("refresh-token", response.data.refreshToken);
+
+			setUserState({
+				accessToken: response.data.accessToken,
+				refreshToken: response.data.refreshToken
+			});
+		})();
+	}, [location.pathname, userState.refreshToken]);
 	return (
 		<>
 			<UserContext.Provider value={{ get: userState, set: setUserState }}>

@@ -5,7 +5,6 @@ import styles from './CartItem.module.scss';
 
 export const CartItem = ({ id, name, rating, numOfRatings, price, onLikeButtonClick }) => {
 	const [quantity, setQuantity] = useState(0);
-	const [isLiked, setIsLiked] = useState(false);
 
 	const incrementQuantity = () => {
 		setQuantity(previousQuantity => previousQuantity + 1);
@@ -15,9 +14,8 @@ export const CartItem = ({ id, name, rating, numOfRatings, price, onLikeButtonCl
 		setQuantity(previousQuantity => Math.max(previousQuantity - 1, 0));
 	};
 
-	const handleLikeButtonClick = () => {
-		setIsLiked(!isLiked);
-		onLikeButtonClick(id, !isLiked);
+	const handleLikeButtonClick = (isLiked) => {
+		onLikeButtonClick(id, isLiked);
 	};
 
 	return (
@@ -33,9 +31,8 @@ export const CartItem = ({ id, name, rating, numOfRatings, price, onLikeButtonCl
 				<div className={styles.priceSection}>
 					<p className={styles.priceIndicator}>{price}</p>
 					<LikeButton
-						className={styles.likeButton}
-						isLiked={isLiked}
-						onClick={handleLikeButtonClick}
+						initialLiked={false} // Setze den initialLiked-Wert entsprechend
+						onLikeButtonClick={handleLikeButtonClick}
 					/>
 				</div>
 			</div>
