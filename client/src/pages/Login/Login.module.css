@@ -20,6 +20,7 @@
   display: flex;
   flex-direction: column;
   align-items: start;
+  text-align: start;
 }
 .login .formBox {
   display: flex;
@@ -97,7 +98,7 @@
   font-weight: 400;
   color: white;
   margin-top: 30px;
-  transition: color 0.5s;
+  transition: color 200ms, background 200ms;
 }
 .login .formBox .button:hover {
   background-color: #d8eedc;
@@ -109,12 +110,13 @@
 }
 
 .modal {
-  height: 50rem;
-  padding: 0 50px 0 50px;
+  height: 40rem;
+  padding: 0 50px;
   text-align: center;
-  width: 40%;
+  width: 400px;
   border-radius: 25px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -146,11 +148,11 @@
   font-size: 1.4rem;
 }
 
-.linkLogin {
+.linkRegister {
   color: #ffffff;
   font-weight: 500;
 }
 
-.linkLogin:hover {
+.linkRegister:hover {
   text-decoration: underline;
 }/*# sourceMappingURL=Login.module.css.map */

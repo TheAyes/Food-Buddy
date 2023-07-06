@@ -74,17 +74,8 @@ export const ItemList = ({
 		setFilteredData([...filteredItems, item]);
 	};
 
-	// const [products, setProducts] = useState([]);
-
-	// useEffect(() => {
-	// 	(async () => {
-	// 		const response = await axios.get("/api/products");
-	// 		setProducts(response.data);
-	// 	})();
-	// }, []);
-
 	return (
-		<div>
+		<div className={styles.parentContainer}>
 			<SearchBar onSelectItem={handleSelectItem} />
 			<div className={styles.ItemList}>
 				{filteredData.map((item) => (
