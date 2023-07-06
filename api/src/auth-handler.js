@@ -59,7 +59,7 @@ export const handleUserRegistration = async (req, res) => {
 		const hashedPassword = await bcrypt.hash(password, userSalt);
 
 		const user = new User({
-			email: email, // hier von "userEmail" auf "email" geändert
+			email: email,
 			username: lowerCaseUsername,
 			password: hashedPassword
 		});
@@ -116,12 +116,12 @@ export const handleUserLogin = async (req, res) => {
 
 		const result = generateToken(
 			{
-				payload: { userid: foundUser._id, hashedPassword: foundUser.password, sessionId: sessionId },
+				payload: { userid: foundUser._id.toString(), sessionId: sessionId },
 				secret: process.env.JWT_SECRET,
 				options: { expiresIn: "15m" }
 			},
 			{
-				payload: { userid: foundUser._id, hashedPassword: foundUser.password, sessionId: sessionId },
+				payload: { userid: foundUser._id.toString(), sessionId: sessionId },
 				secret: process.env.JWT_REFRESH_SECRET,
 				options: { expiresIn: "7d" }
 			}
@@ -164,20 +164,6 @@ export const handleTokenRefresh = async (req, res) => {
 	}
 };
 
-export const getUserData = async (req, res) => {
-	const user = req.user;
-
-	if (!user) return res.status(401).json({ error: "Unauthorized" });
-
-	const resultingUser = {
-		username: user.username,
-		_id: user._id,
-		todos: user.todos
-	};
-
-	return res.json({ user: resultingUser });
-};
-
 export const handleUserLogout = async (req, res) => {
 	const { accessToken, refreshToken } = req.body;
 
@@ -189,4 +175,3 @@ export const handleUserLogout = async (req, res) => {
 
 	return res.status(200).json({ message: "Logged out successfully" });
 };
-
