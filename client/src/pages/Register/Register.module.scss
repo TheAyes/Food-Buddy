@@ -111,12 +111,13 @@
 
 // animations funktionieren noch nicht - muss noch gefixt werden
 .modal {
-	height: 50rem;
+	height: 40rem;
 	padding: 0 50px 0 50px;
 	text-align: center;
-	width: 40%;
+	width: 400px;
 	border-radius: 25px;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	position: fixed;
@@ -129,6 +130,9 @@
 
 	.FoodBuddy {
 		font-weight: $fw-light;
+	}
+	p {
+		font-size: $fz-small-4;
 	}
 
 	h2 {

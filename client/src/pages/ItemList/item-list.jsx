@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ProductItems } from "../../components/ProductItems/ProductItems.jsx";
 import { SearchBar } from "../../components/SearchBar/SearchBar.jsx";
+import { Link } from "react-router-dom";
 import styles from "./ItemList.module.scss";
 import axios from "axios";
 import PropTypes from "prop-types";
@@ -44,7 +45,6 @@ export const ItemList = ({
 		if (minNumberOfRatings) params.append("minNumberOfRatings", minNumberOfRatings);
 		if (maxNumberOfRatings) params.append("maxNumberOfRatings", maxNumberOfRatings);
 
-		// Selbst ausführende Funktion
 		(async () => {
 			try {
 				const { data } = await axios.get(`/api/products?${params}`);
@@ -75,20 +75,32 @@ export const ItemList = ({
 	};
 
 	return (
-		//hier das DIV nur als Übung für SearchBar
-		<div>
+		<div className={styles.parentContainer}>
 			<SearchBar onSelectItem={handleSelectItem} />
 			<div className={styles.ItemList}>
-				{filteredData.map((item, index) => (
+				{filteredData.map((item) => (
 					<ProductItems
-						key={index}
+						key={item._id}
+						_id={item._id}
 						image={item.image}
 						name={item.name}
 						price={item.price}
-						rating={item.ratings}
+						rating={item.rating}
 					/>
 				))}
 			</div>
 		</div>
 	);
 };
+
+ItemList.defaultProps = {
+	category: "",
+	nameFilter: "",
+	minPrize: undefined,
+	maxPrize: undefined,
+	minRating: undefined,
+	maxRating: undefined,
+	minNumberOfRatings: "undefined",
+	maxNumberOfRatings: "undefined"
+};
+

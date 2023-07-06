@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import search from "../../pics/suche.png";
 import styles from "./SearchBar.module.scss";
 import data from "../../data/grocery-data.json";
@@ -10,6 +10,8 @@ export const SearchBar = ({ onSelectItem }) => {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [suggestions, setSuggestions] = useState([]);
 	const inputRef = useRef(null);
+	const location = useLocation();
+	const navigate = useNavigate();
 
 	const handleChange = (value) => {
 		setInput(value);
@@ -26,6 +28,9 @@ export const SearchBar = ({ onSelectItem }) => {
 	};
 
 	const handleSearch = async () => {
+		if (location.pathname !== "/itemList") {
+			navigate("/itemList");
+		}
 		try {
 			const response = await fetch(`/api/products?name=${input}`);
 			const data = await response.json();

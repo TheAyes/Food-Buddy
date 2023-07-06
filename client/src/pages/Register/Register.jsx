@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import styles from "./Register.module.scss";
 import success from "../../pics/success.png";
 import shadow from "../../pics/Shadow.svg";
+import { UserContext } from "../../app.jsx";
 
 export const Register = () => {
 	const [username, setUsername] = useState("");
@@ -12,56 +13,61 @@ export const Register = () => {
 	const [showModal, setShowModal] = useState(false);
 	const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
-	const handleRegister = async () => {
-		try {
-			const response = await axios.post("/api/user/register", {
-				username: username,
-				password: password,
-				email: email
-			});
-			console.log(response.data);
-			localStorage.setItem("auth-token", JSON.stringify(response.data));
-			setUsername("");
-			setPassword("");
-			setEmail(""); //Weiterleitung oder Anzeige einer Erfolgsmeldug
-			setShowModal(true);
-			setRegistrationSuccess(true);
+	const userState = useContext(UserContext);
 
-			setTimeout(() => {
-				setShowModal(false);
-				window.location.href = "/home";
-			}, 5000);
-		} catch (error) {
-			console.error(error.response.data);
-			//Anzeige einer Fehlermeldung
-		}
+	const handleRegister = (event) => {
+		event.preventDefault();
+		(async () => {
+			try {
+				const response = await axios.post("/api/user/register", {
+					username: username,
+					password: password,
+					email: email
+				});
+				localStorage.setItem("access-token", JSON.stringify(response.data.accessToken));
+				localStorage.setItem("refresh-token", JSON.stringify(response.data.refreshToken));
+
+				userState.set({
+					accessToken: response.data.accessToken,
+					refreshToken: response.data.refreshToken
+				});
+
+				setUsername("");
+				setPassword("");
+				setEmail("");
+				setShowModal(true);
+				setRegistrationSuccess(true);
+
+				setTimeout(() => {
+					setShowModal(false);
+					window.location.href = "/home";
+				}, 5000);
+			} catch (error) {
+				console.error(error.response.data);
+				//display error message
+			}
+		})();
 	};
 
 	return (
 		<div className={styles.register}>
 			{showModal && (
 				<div className={styles.modal}>
-					<div className={styles.modalContent}>
-						<div className={styles.checkLogo}>
-							<img src={success} alt="check" />
-							<img src={shadow} alt="shadow" />
-						</div>
-						<h2>
-							<span className={styles.FoodBuddy}>Welcome</span> FoodBuddy
-						</h2>
-						<p>Successfully create your FoodBuddy account</p>
+					<div className={styles.checkLogo}>
+						<img src={success} alt="check" />
+						<img src={shadow} alt="shadow" />
 					</div>
+					<h2>
+						<span className={styles.FoodBuddy}>Welcome</span> FoodBuddy
+					</h2>
+					<p>Successfully create your FoodBuddy account</p>
 				</div>
 			)}
-			<div
-				className={`${styles.formBox} 
-			${registrationSuccess ? styles.hidden : ""}`}
-				style={{ display: registrationSuccess ? "none" : "" }}
-			>
-				<div className={styles.formValue}>
+			<div className={styles.formBox} style={{ display: registrationSuccess ? "none" : "" }}>
+				<div>
 					<h2>Create New Account</h2>
 					<h6>Enter your details to create account</h6>
-					<form className={styles.form} onSubmit={handleRegister}>
+					<form onSubmit={handleRegister}>
 						<div className={styles.inputbox}>
 							<label>Username</label>
 							<input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />

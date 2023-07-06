@@ -26,6 +26,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: start;
+		text-align: start;
 	}
 
 	.formBox {
@@ -131,12 +132,13 @@
 
 // animations funktionieren nicht - muss noch gefixt werden
 .modal {
-	height: 50rem;
-	padding: 0 50px 0 50px;
+	height: 40rem;
+	padding: 0 50px;
 	text-align: center;
-	width: 40%;
+	width: 400px;
 	border-radius: 25px;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	position: fixed;
@@ -170,12 +172,12 @@
 	font-size: $fz-small-3;
 }
 
-.linkLogin {
+.linkRegister {
 	color: $fc-2;
 	font-weight: $fw-medium;
 }
 
-.linkLogin:hover {
+.linkRegister:hover {
 	text-decoration: underline;
 }
 
