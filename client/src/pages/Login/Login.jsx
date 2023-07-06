@@ -35,12 +35,10 @@ export const Login = () => {
 				setShowModal(true);
 				setLoginSuccess(true);
 
-				/*
 				setTimeout(() => {
 					setShowModal(false);
 					window.location.href = "/home";
 				}, 5000);
-				*/
 			})();
 		} catch (error) {
 			console.error(error);
@@ -97,4 +95,3 @@ export const Login = () => {
 		</div>
 	);
 };
-
