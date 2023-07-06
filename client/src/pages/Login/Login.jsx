@@ -23,8 +23,9 @@ export const Login = () => {
 					username: username.toLowerCase(),
 					password: password
 				});
-				localStorage.setItem("access-token", JSON.stringify(response.data.accessToken));
-				localStorage.setItem("refresh-token", JSON.stringify(response.data.refreshToken));
+
+				localStorage.setItem("access-token", response.data.accessToken);
+				localStorage.setItem("refresh-token", response.data.refreshToken);
 
 				userState.set({
 					accessToken: response.data.accessToken,
@@ -34,10 +35,12 @@ export const Login = () => {
 				setShowModal(true);
 				setLoginSuccess(true);
 
+				/*
 				setTimeout(() => {
 					setShowModal(false);
 					window.location.href = "/home";
 				}, 5000);
+				*/
 			})();
 		} catch (error) {
 			console.error(error);

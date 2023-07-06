@@ -1,51 +1,49 @@
 import styles from "./profile-page.module.scss";
 import { NavBar } from "../../components/NavBar/NavBar.jsx";
 import { GoBackButton } from "../../components/GoBackButton/GoBackButton.jsx";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { UserContext } from "../../app.jsx";
 
 export const ProfilePage = () => {
-	const formRef = useRef(null);
+	const userState = useContext(UserContext);
 
 	const [isEditing, setIsEditing] = useState(false);
-	const [userInfo, setUserInfo] = useState({
+
+	const [initialState, setInitialState] = useState({
 		username: "",
 		fullName: "",
 		email: "",
 		phoneNumber: "",
 		address: {
 			street: "",
-			streetNumber: 0,
-			zipCode: 0,
+			streetNumber: "",
+			zipCode: "",
 			city: "",
 			country: ""
 		}
 	});
 
+	const [userInfo, setUserInfo] = useState(initialState);
+
 	useEffect(() => {
+		console.log(userState);
 		(async () => {
-			if (!isEditing) {
-				setIsEditing(true);
-			} else {
-				const { data } = {
-					data: {
-						username: "Justin",
-						fullName: "Justin Schildt",
-						email: "justinsupercode@gmail.com",
-						phoneNumber: "0123 456 789",
-						address: {
-							street: "Beispielstraße",
-							streetNumber: 29,
-							zipCode: 49919,
-							city: "Bad Laer",
-							country: "Germany"
-						}
-					}
-				}; //await axios.patch("/api/user"}); AUTHORIZATION NIT VERJESSEN
-				setUserInfo(data);
-			}
+			const { data } = await axios.get("/api/user", {
+				headers: {
+					Authorization: `Bearer ${userState.get.accessToken}`
+				}
+			});
+			console.log("axios data:", data);
+			setInitialState((prevState) => {
+				return { ...prevState, ...data.user };
+			});
 		})();
 	}, []);
+
+	useEffect(() => {
+		setUserInfo(initialState);
+	}, [initialState]);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -53,38 +51,39 @@ export const ProfilePage = () => {
 			if (!isEditing) {
 				setIsEditing(true);
 			} else {
-				const formData = new FormData(formRef.current);
-				const data = Object.fromEntries(formData.entries());
-
-				const { data: updatedData } = await axios.patch("/api/user", data, {
+				console.log("Info to update:", userInfo);
+				const { data: updatedData } = await axios.patch("/api/user", userInfo, {
 					headers: {
-						Authorization: `Bearer ${null}`
+						Authorization: `Bearer ${userState.get.accessToken}`
 					}
 				});
 
-				setUserInfo((e) => {
-					return { ...e, username: "" };
+				console.log("updatedData:", updatedData);
+
+				setUserInfo((prevState) => {
+					return {
+						...prevState,
+						...updatedData
+					};
 				});
 
-				/* How to authorize
-				await axios.patch(
-					"/api/user",
-					{},
-					{
-						headers: {
-							Authorization: `Bearer ${token}`
-						}
-					}
-				);*/
-
-				setUserInfo(data);
+				setIsEditing(false);
 			}
+		})();
+	};
+
+	const handleCancel = (event) => {
+		event.preventDefault();
+		(async () => {
+			setUserInfo(initialState);
+			setIsEditing(false);
 		})();
 	};
 
 	const handleEditProfilePicture = () => {
 		console.log("Hey");
 	};
+
 	return (
 		<div className={styles.profilePage}>
 			<header>
@@ -107,16 +106,28 @@ export const ProfilePage = () => {
 					</button>
 				</figure>
 			</header>
-			<form onSubmit={handleSubmit} ref={formRef}>
+			<form onSubmit={handleSubmit}>
 				<fieldset>
 					<legend>About you</legend>
 					<label>
 						<p>Username</p>
-						<input type="text" placeholder="Username" disabled={!isEditing} />
+						<input
+							type="text"
+							placeholder="Username"
+							disabled={!isEditing}
+							value={userInfo.username}
+							onChange={(event) => setUserInfo({ ...userInfo, username: event.target.value })}
+						/>
 					</label>
 					<label>
 						<p>Full name</p>
-						<input type="text" placeholder="Full name" disabled={!isEditing} />
+						<input
+							type="text"
+							placeholder="Full name"
+							disabled={!isEditing}
+							value={userInfo.fullName}
+							onChange={(event) => setUserInfo({ ...userInfo, fullName: event.target.value })}
+						/>
 					</label>
 				</fieldset>
 
@@ -124,11 +135,23 @@ export const ProfilePage = () => {
 					<legend>Contact</legend>
 					<label>
 						<p>Email</p>
-						<input type="text" placeholder="Your@email.com" disabled={!isEditing} />
+						<input
+							type="text"
+							placeholder="Your@email.com"
+							disabled={!isEditing}
+							value={userInfo.email}
+							onChange={(event) => setUserInfo({ ...userInfo, email: event.target.value })}
+						/>
 					</label>
 					<label>
 						<p>Phone Number</p>
-						<input type="text" placeholder="0123 456 789" disabled={!isEditing} />
+						<input
+							type="tel"
+							placeholder="0123 456 789"
+							disabled={!isEditing}
+							value={userInfo.phoneNumber}
+							onChange={(event) => setUserInfo({ ...userInfo, phoneNumber: event.target.value })}
+						/>
 					</label>
 				</fieldset>
 
@@ -136,23 +159,103 @@ export const ProfilePage = () => {
 					<legend>Address</legend>
 					<label style={{ gridColumn: "1 / 4" }}>
 						<p>Street</p>
-						<input type="text" placeholder="Street" disabled={!isEditing} />
+						<input
+							type="text"
+							placeholder="Street"
+							disabled={!isEditing}
+							value={userInfo.address.street}
+							onChange={(event) =>
+								setUserInfo((prevState) => {
+									return {
+										...prevState,
+										address: {
+											...prevState.address,
+											street: String(event.target.value)
+										}
+									};
+								})
+							}
+						/>
 					</label>
 					<label style={{ gridColumn: "4 / 5" }}>
 						<p>Street Number</p>
-						<input type="number" placeholder="10" disabled={!isEditing} />
+						<input
+							type="number"
+							placeholder="10"
+							disabled={!isEditing}
+							value={userInfo.address.streetNumber}
+							onChange={(event) =>
+								setUserInfo((prevState) => {
+									return {
+										...prevState,
+										address: {
+											...prevState.address,
+											streetNumber: String(event.target.value)
+										}
+									};
+								})
+							}
+						/>
 					</label>
 					<label style={{ gridColumn: "1 / 2" }}>
 						<p>Zip Code</p>
-						<input type="number" placeholder="12345" maxLength={5} disabled={!isEditing} />
+						<input
+							type="number"
+							placeholder="12345"
+							maxLength={5}
+							disabled={!isEditing}
+							value={userInfo.address.zipCode}
+							onChange={(event) =>
+								setUserInfo((prevState) => {
+									return {
+										...prevState,
+										address: {
+											...prevState.address,
+											zipCode: String(event.target.value)
+										}
+									};
+								})
+							}
+						/>
 					</label>
 					<label style={{ gridColumn: "2 / 3" }}>
 						<p>City</p>
-						<input type="text" placeholder="City" disabled={!isEditing} />
+						<input
+							type="text"
+							placeholder="City"
+							disabled={!isEditing}
+							value={userInfo.address.city}
+							onChange={(event) =>
+								setUserInfo((prevState) => {
+									return {
+										...prevState,
+										address: {
+											...prevState.address,
+											city: String(event.target.value)
+										}
+									};
+								})
+							}
+						/>
 					</label>
 					<label style={{ gridColumn: "3 / 5" }}>
 						<p>Country</p>
-						<select defaultValue="Germany" placeholder="Country" disabled={!isEditing}>
+						<select
+							placeholder="Country"
+							disabled={!isEditing}
+							value={userInfo.address.country}
+							onChange={(event) =>
+								setUserInfo((prevState) => {
+									return {
+										...prevState,
+										address: {
+											...prevState.address,
+											country: String(event.target.value)
+										}
+									};
+								})
+							}
+						>
 							<option>Germany</option>
 							<option>United States</option>
 							<option>China</option>
@@ -178,10 +281,12 @@ export const ProfilePage = () => {
 					{isEditing ? (
 						<fieldset>
 							<input type="submit" value="Confirm Information" />
-							<input type="button" value="Cancel" />
+							<input type="button" value="Cancel" onClick={handleCancel} />
 						</fieldset>
 					) : (
-						<input type="submit" value="Edit Information" />
+						<fieldset>
+							<input type="submit" value="Edit Information" />
+						</fieldset>
 					)}
 				</section>
 			</form>
