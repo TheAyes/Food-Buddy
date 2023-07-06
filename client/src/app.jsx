@@ -11,25 +11,29 @@ import { ItemList } from "./pages/ItemList/item-list.jsx";
 import { Register } from "./pages/Register/Register.jsx";
 import { Login } from "./pages/Login/Login.jsx";
 import { LandPageTwo } from "./pages/LandPageTwo/land-page-two.jsx";
+import { createContext, useState } from "react";
 
+export const UserContext = createContext(null);
 export const App = () => {
+	const [userState, setUserState] = useState(null);
 	return (
 		<>
-			<Routes>
-				<Route path="/" element={<LandingPage />} />
-				<Route path="/landingpage/2" element={<LandPageTwo />} />
-				<Route path="/login" element={<Login />} />
-				<Route path="/register" element={<Register />} />
-				<Route path="/home" element={<HomePage />} />
-				<Route path="/itemlist" element={<ItemList />} />
-				<Route path="/item/:id" element={<ItemDetails />} />
-				<Route path="/user" element={<ProfilePage />} />
-				<Route path="/user/cart" element={<CartPage />} />
-				<Route path="/user/wishlist" element={<WishlistPage />} />
-				<Route path="/user/order-history" element={<OrderHistoryPage />} />
-				<Route path="*" element={<NotFound />} />
-			</Routes>
+			<UserContext.Provider value={{ get: userState, set: setUserState }}>
+				<Routes>
+					<Route path="/" index element={<LandingPage />} />
+					<Route path="/landingpage/2" element={<LandPageTwo />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="/register" element={<Register />} />
+					<Route path="/home" element={<HomePage />} />
+					<Route path="/itemlist" element={<ItemList />} />
+					<Route path="/item/:id" element={<ItemDetails />} />
+					<Route path="/user" element={<ProfilePage />} />
+					<Route path="/user/cart" element={<CartPage />} />
+					<Route path="/user/wishlist" element={<WishlistPage />} />
+					<Route path="/user/order-history" element={<OrderHistoryPage />} />
+					<Route path="*" element={<NotFound />} />
+				</Routes>
+			</UserContext.Provider>
 		</>
 	);
 };
-

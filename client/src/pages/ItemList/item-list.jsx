@@ -1,28 +1,71 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ProductItems } from "../../components/ProductItems/ProductItems.jsx";
 import { SearchBar } from "../../components/SearchBar/SearchBar.jsx";
-import groceryData from "../../data/grocery-data.json";
+import { Link } from "react-router-dom";
 import styles from "./ItemList.module.scss";
+import axios from "axios";
+import PropTypes from "prop-types";
 
-export const ItemList = () => {
-	const [products, setProducts] = useState([]);
-	const [selectedItems, setSelectedItems] = useState([]);
+export const ItemList = ({
+	category = "",
+	nameFilter = "",
+	minPrize = undefined,
+	maxPrize = undefined,
+	minRating = undefined,
+	maxRating = undefined,
+	minNumberOfRatings = "undefined",
+	maxNumberOfRatings = "undefined",
+	amount = -1,
+	offset = 0
+}) => {
+	ItemList.propTypes = {
+		category: PropTypes.string,
+		nameFilter: PropTypes.string,
+		minPrize: PropTypes.number,
+		maxPrize: PropTypes.number,
+		minRating: PropTypes.number,
+		maxRating: PropTypes.number,
+		minNumberOfRatings: PropTypes.string,
+		maxNumberOfRatings: PropTypes.string,
+		amount: PropTypes.number,
+		offset: PropTypes.number
+	};
 	const [filteredData, setFilteredData] = useState([]);
 
 	useEffect(() => {
-		fetchData();
-	}, []);
+		const params = new URLSearchParams();
 
-	const fetchData = async () => {
-		try {
-			const response = await fetch("/api/products"); // Endpunkt anpassen
-			const data = await response.json();
-			setProducts(data);
-			setFilteredData(data);
-		} catch (error) {
-			console.error("Error:", error);
-		}
-	};
+		// Append parameters if they exist
+		if (category) params.append("category", category);
+		if (nameFilter) params.append("nameFilter", nameFilter);
+		if (minPrize) params.append("minPrize", minPrize);
+		if (maxPrize) params.append("maxPrize", maxPrize);
+		if (minRating) params.append("minRating", minRating);
+		if (maxRating) params.append("maxRating", maxRating);
+		if (minNumberOfRatings) params.append("minNumberOfRatings", minNumberOfRatings);
+		if (maxNumberOfRatings) params.append("maxNumberOfRatings", maxNumberOfRatings);
+
+		(async () => {
+			try {
+				const { data } = await axios.get(`/api/products?${params}`);
+
+				setFilteredData(amount > -1 ? data.slice(offset, offset + amount) : data);
+			} catch (error) {
+				console.error("Error:", error);
+			}
+		})(); // <-- Siehe funktionsklammern
+	}, [
+		category,
+		nameFilter,
+		minPrize,
+		maxPrize,
+		minRating,
+		maxRating,
+		minNumberOfRatings,
+		maxNumberOfRatings,
+		offset,
+		amount
+	]);
 
 	const handleSelectItem = (item) => {
 		const filteredItems = filteredData.filter((dataItem) =>
@@ -30,22 +73,43 @@ export const ItemList = () => {
 		);
 		setFilteredData([...filteredItems, item]);
 	};
+
+	// const [products, setProducts] = useState([]);
+
+	// useEffect(() => {
+	// 	(async () => {
+	// 		const response = await axios.get("/api/products");
+	// 		setProducts(response.data);
+	// 	})();
+	// }, []);
+
 	return (
-		//hier das DIV nur als Übung für SearchBar
 		<div>
 			<SearchBar onSelectItem={handleSelectItem} />
 			<div className={styles.ItemList}>
 				{filteredData.map((item) => (
 					<ProductItems
 						key={item._id}
+						_id={item._id}
 						image={item.image}
 						name={item.name}
 						price={item.price}
-						rating={item.ratings}
+						rating={item.rating}
 					/>
 				))}
 			</div>
 		</div>
 	);
+};
+
+ItemList.defaultProps = {
+	category: "",
+	nameFilter: "",
+	minPrize: undefined,
+	maxPrize: undefined,
+	minRating: undefined,
+	maxRating: undefined,
+	minNumberOfRatings: "undefined",
+	maxNumberOfRatings: "undefined"
 };
 
