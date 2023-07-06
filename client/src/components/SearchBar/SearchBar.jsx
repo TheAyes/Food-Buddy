@@ -28,6 +28,9 @@ export const SearchBar = ({ onSelectItem }) => {
 	};
 
 	const handleSearch = async () => {
+		if (location.pathname !== "/itemList") {
+			navigate("/itemList");
+		}
 		try {
 			const response = await fetch(`/api/products?name=${input}`);
 			const data = await response.json();
@@ -44,12 +47,6 @@ export const SearchBar = ({ onSelectItem }) => {
 			onSelectItem(filteredData[0]);
 		}
 	};
-
-	useEffect(() => {
-		if (location.pathname !== "/itemList") {
-			navigate("/itemList");
-		}
-	}, [input]);
 
 	useEffect(() => {
 		if (suggestions.length > 0) {

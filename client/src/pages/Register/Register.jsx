@@ -53,16 +53,14 @@ export const Register = () => {
 		<div className={styles.register}>
 			{showModal && (
 				<div className={styles.modal}>
-					<div>
-						<div className={styles.checkLogo}>
-							<img src={success} alt="check" />
-							<img src={shadow} alt="shadow" />
-						</div>
-						<h2>
-							<span className={styles.FoodBuddy}>Welcome</span> FoodBuddy
-						</h2>
-						<p>Successfully create your FoodBuddy account</p>
+					<div className={styles.checkLogo}>
+						<img src={success} alt="check" />
+						<img src={shadow} alt="shadow" />
 					</div>
+					<h2>
+						<span className={styles.FoodBuddy}>Welcome</span> FoodBuddy
+					</h2>
+					<p>Successfully create your FoodBuddy account</p>
 				</div>
 			)}
 			<div className={styles.formBox} style={{ display: registrationSuccess ? "none" : "" }}>
@@ -99,3 +97,4 @@ export const Register = () => {
 		</div>
 	);
 };
+

@@ -48,13 +48,11 @@ export const Login = () => {
 		<div className={styles.login}>
 			{showModal && (
 				<div className={styles.modal}>
-					<div>
-						<div className={styles.checkLogo}>
-							<img src={success} alt="check" />
-							<img src={shadow} alt="shadow" />
-						</div>
-						<h3>Successful Login!</h3>
+					<div className={styles.checkLogo}>
+						<img src={success} alt="check" />
+						<img src={shadow} alt="shadow" />
 					</div>
+					<h3>Successful Login!</h3>
 				</div>
 			)}
 			<div className={styles.formBox} style={{ display: loginSuccess ? "none" : "" }}>
@@ -87,12 +85,13 @@ export const Login = () => {
 			</div>
 			<div className={styles.dontHaveAccount}>
 				<p className={styles.pTag}>
-					Already Have Account?{" "}
-					<Link to="/register" className={styles.linkLogin}>
-						Login
+					Don't Have Account?{" "}
+					<Link to="/register" className={styles.linkRegister}>
+						Register
 					</Link>
 				</p>
 			</div>
 		</div>
 	);
 };
+
