@@ -5,7 +5,7 @@ import { ProfilePage } from "./pages/Profil/profile-page.jsx";
 import { HomePage } from "./pages/Homepage/home-page.jsx";
 import { ItemDetails } from "./pages/DetailsPage/item-details.jsx";
 import { CartPage } from "./pages/MyCartPage/cart-page.jsx";
-import { WishlistPage } from "./pages/Wishlist/wishlist-page.jsx";
+
 import { OrderHistoryPage } from "./pages/OrderHistory/order-history-page.jsx";
 import { ItemList } from "./pages/ItemList/item-list.jsx";
 import { Register } from "./pages/Register/Register.jsx";
@@ -13,6 +13,7 @@ import { Login } from "./pages/Login/Login.jsx";
 import { LandPageTwo } from "./pages/LandPageTwo/land-page-two.jsx";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import { WishlistPage } from "./pages/WishList/wishlist-page.jsx";
 
 export const UserContext = createContext(null);
 export const App = () => {
