@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "./item-details.module.scss";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -13,7 +13,7 @@ import { AddToCartComponent } from "../../components/AddToCartComponent/AddToCar
 import { LikeButton } from "../../components/LikeButton/LikeButton";
 
 export const ItemDetails = () => {
-	const [quantity, setQuantity] = useState(0);
+	const [quantity, setQuantity] = useState(1);
 	const { id } = useParams();
 	const [item, setItem] = useState(null);
 
@@ -32,7 +32,7 @@ export const ItemDetails = () => {
 	};
 
 	const decrementQuantity = () => {
-		setQuantity((previousQuantity) => Math.max(previousQuantity - 1, 0));
+		setQuantity((previousQuantity) => Math.max(previousQuantity - 1, 1));
 	};
 
 	const addToCart = () => {
@@ -58,8 +58,8 @@ export const ItemDetails = () => {
 				<h3 className={styles.nameIndicator}>{item.name}</h3>
 				<div className={styles.ratingSection}>
 					<img src={starImage} alt="rating star" />
-					<h3 className={styles.ratingIndicator}>{item.rating}</h3>
-					<h3 className={styles.reviewIndicator}>({item.numOfRatings})</h3>
+					<h3 className={styles.ratingIndicator}>{item.overallRating.toFixed(2)}</h3>
+					<h3 className={styles.reviewIndicator}>({item.ratings.length})</h3>
 				</div>
 			</article>
 			<hr></hr>
