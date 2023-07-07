@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import styles from './cart-page.module.scss';
+import React, { useState } from "react";
+import styles from "./cart-page.module.scss";
 
 // Import Components
 import { GoBackButton } from "../../components/GoBackButton/GoBackButton.jsx";
-import { WishItem } from '../../components/WishItem/WishItem.jsx';
+import { WishItem } from "../../components/WishItem/WishItem.jsx";
 
 // Import Images
 import trashCan from "../../pics/trashCan.svg";
-import emptyCart from "../../pics/emptyCart.svg"
-import { NavBar } from '../../components/NavBar/NavBar';
+import emptyCart from "../../pics/emptyCart.svg";
+import { NavBar } from "../../components/NavBar/NavBar";
 
 export const CartPage = () => {
 	const [cartItems, setCartItems] = useState([]);
@@ -16,11 +16,12 @@ export const CartPage = () => {
 	const handleLikeButtonClick = (itemId, isLiked) => {
 		if (isLiked) {
 			// Element aus dem Warenkorb entfernen
-			const updatedCartItems = cartItems.filter(item => item.id !== itemId);
+			const updatedCartItems = cartItems.filter((item) => item.id !== itemId);
 			setCartItems(updatedCartItems);
 		} else {
 			// Element zum Warenkorb hinzufügen
-			const itemToAdd = /* Logik, um das Element anhand der itemId zu finden */
+			const itemToAdd =
+				/* Logik, um das Element anhand der itemId zu finden */
 				setCartItems([...cartItems, itemToAdd]);
 		}
 	};
@@ -36,7 +37,7 @@ export const CartPage = () => {
 			</div>
 			<img className={styles.emptyCartImage} src={emptyCart} alt="empty Wishlist" />
 			<div className={styles.cartContainer}>
-				{cartItems.map(item => (
+				{cartItems.map((item) => (
 					<WishItem
 						key={item.id}
 						id={item.id}

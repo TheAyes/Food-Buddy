@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { ProductItems } from "../../components/ProductItems/ProductItems.jsx";
 import { SearchBar } from "../../components/SearchBar/SearchBar.jsx";
-import { Link } from "react-router-dom";
 import styles from "./ItemList.module.scss";
 import axios from "axios";
 import PropTypes from "prop-types";
@@ -103,4 +102,3 @@ ItemList.defaultProps = {
 	minNumberOfRatings: "undefined",
 	maxNumberOfRatings: "undefined"
 };
-

@@ -1,40 +1,40 @@
 @import "../../global.scss";
 
 .goBackButton {
-    width: 3.2rem;
-    height: 3.2rem;
-    border-radius: 999vw;
-    border: none;
-    margin: 0.5rem 0.5rem;
-    cursor: pointer;
-    background-color: transparent;
-    background-image: url("../../pics/goBackButton.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
+	width: 3.2rem;
+	height: 3.2rem;
+	border-radius: 999vw;
+	border: none;
+	margin: 0.5rem 0.5rem;
+	cursor: pointer;
+	background-color: transparent;
+	background-image: url("../../pics/goBackButton.svg");
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
 
 
-    &:hover {
-        filter: brightness(85%);
-        transform: scale(1.1);
-        font-weight: $fw-regular;
-        transform: scale(1.1);
-        transition: transform 0.3s, filter 0.4s;
-        opacity: 50%;
+	&:hover {
+		filter: brightness(85%);
+		transform: scale(1.1);
+		font-weight: $fw-regular;
+		transform: scale(1.1);
+		transition: transform 0.3s, filter 0.4s;
+		opacity: 50%;
 
-    }
+	}
 
-    &:active {
-        background-color: $bc-1;
-        box-shadow: 0 0 5px $bc-1, 0 0 5px $bc-1, 0 0 5px $bc-1, 0 0 5px $bc-1;
-        border-radius: 999vw;
-        opacity: 85%;
-    }
+	&:active {
+		background-color: $bc-1;
+		box-shadow: 0 0 5px $bc-1, 0 0 5px $bc-1, 0 0 5px $bc-1, 0 0 5px $bc-1;
+		border-radius: 999vw;
+		opacity: 85%;
+	}
 
-    .goBackImg {
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        cursor: pointer;
-    }
+	.goBackImg {
+		width: 100%;
+		height: 100%;
+		background-size: cover;
+		cursor: pointer;
+	}
 }

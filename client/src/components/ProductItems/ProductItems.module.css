@@ -1,29 +1,36 @@
 .ProductItems div {
-  text-align: center;
+	text-align: center;
 }
+
 .ProductItems .itemImages {
-  height: 9rem;
-  width: 65%;
-  border-radius: 20px;
-  -o-object-fit: cover;
-     object-fit: cover;
+	height: 9rem;
+	width: 65%;
+	border-radius: 20px;
+	-o-object-fit: cover;
+	object-fit: cover;
 }
+
 .ProductItems .productName {
-  font-size: 2.2rem;
-  color: #2c3066;
-  font-weight: 300;
-  padding-bottom: 2rem;
+	font-size: 2.2rem;
+	color: #2c3066;
+	font-weight: 300;
+	padding-bottom: 2rem;
 }
+
 .ProductItems .star {
-  height: 1.5rem;
-  margin-left: 50px;
+	height: 1.5rem;
+	margin-left: 50px;
 }
+
 .ProductItems p {
-  color: #2c3066;
-  font-size: 1.4rem;
-  font-weight: 500;
+	color: #2c3066;
+	font-size: 1.4rem;
+	font-weight: 500;
 }
+
 .ProductItems .flex {
-  display: flex;
-  justify-content: space-around;
-}/*# sourceMappingURL=ProductItems.module.css.map */
+	display: flex;
+	justify-content: space-around;
+}
+
+/*# sourceMappingURL=ProductItems.module.css.map */
