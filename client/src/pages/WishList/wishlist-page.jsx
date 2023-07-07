@@ -1,57 +1,55 @@
-import React, { useState } from 'react';
-import styles from './wishlist-page.module.scss';
+import React, { useState } from "react";
+import styles from "./wishlist-page.module.scss";
 
 //Import Components
 import { GoBackButton } from "../../components/GoBackButton/GoBackButton.jsx";
-import { WishItem } from '../../components/WishItem/WishItem.jsx';
+import { WishItem } from "../../components/WishItem/WishItem.jsx";
 
 // Import Images
 import emptyWishlist from "../../pics/emptyWishlist.svg";
-import trashCan from "../../pics/trashCan.svg";
+import trashCan from "../../pics/trashcan.svg";
 
 export const WishlistPage = () => {
-    const [wishlist, setWishlist] = useState([]);
+	const [wishlist, setWishlist] = useState([]);
 
-    const handleLikeButtonClick = (itemId, isLiked) => {
-        if (isLiked) {
-            // Element aus Wishlist entfernen
-            const updatedWishlist = wishlist.filter(item => item.id !== itemId);
-            setWishlist(updatedWishlist);
-        } else {
-            // Element zur Wishlist hinzufügen
-            const itemToAdd = wishlist.find(item => item.id === itemId);
-            setWishlist(prevWishlist => [...prevWishlist, itemToAdd]);
-        }
-    };
+	const handleLikeButtonClick = (itemId, isLiked) => {
+		if (isLiked) {
+			// Element aus Wishlist entfernen
+			const updatedWishlist = wishlist.filter((item) => item.id !== itemId);
+			setWishlist(updatedWishlist);
+		} else {
+			// Element zur Wishlist hinzufügen
+			const itemToAdd = wishlist.find((item) => item.id === itemId);
+			setWishlist((prevWishlist) => [...prevWishlist, itemToAdd]);
+		}
+	};
 
-    return (
-        <section className={styles.wishlistPage}>
-            <div className={styles.headerWishlist}>
-                <article className={styles.leftContainer}>
-                    <GoBackButton />
-                    <h4>Wishlist</h4>
-                </article>
-                <img className={styles.trashCan} src={trashCan} alt="trash can" />
-            </div>
-            <img className={styles.emptyWishImage} src={emptyWishlist} alt="empty Wishlist" />
-            <div className={styles.wishlistContainer}>
-                {wishlist.map(item => (
-                    <WishItem
-                        key={item.id}
-                        id={item.id}
-                        name={item.name}
-                        rating={item.rating}
-                        numOfRatings={item.numOfRatings}
-                        price={item.price}
-                        onLikeButtonClick={handleLikeButtonClick}
-                    />
-                ))}
-            </div>
-        </section>
-    );
+	return (
+		<section className={styles.wishlistPage}>
+			<div className={styles.headerWishlist}>
+				<article className={styles.leftContainer}>
+					<GoBackButton />
+					<h4>Wishlist</h4>
+				</article>
+				<img className={styles.trashCan} src={trashCan} alt="trash can" />
+			</div>
+			<img className={styles.emptyWishImage} src={emptyWishlist} alt="empty Wishlist" />
+			<div className={styles.wishlistContainer}>
+				{wishlist.map((item) => (
+					<WishItem
+						key={item.id}
+						id={item.id}
+						name={item.name}
+						rating={item.rating}
+						numOfRatings={item.numOfRatings}
+						price={item.price}
+						onLikeButtonClick={handleLikeButtonClick}
+					/>
+				))}
+			</div>
+		</section>
+	);
 };
-
-
 
 // CODE WELCHES DIE MÖGLICHKEIT ENTHÄLT, MIT DER TRASHCAN ELEMENTE AUSZUWÄHLEN UND ZU LÖSCHEN.
 // import React, { useState } from "react";
