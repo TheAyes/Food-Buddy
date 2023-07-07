@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./DealList.module.scss";
-import { DealItems } from "../DealItems/Dealitems";
+import { DealItems } from "../DealItems/DealItems.jsx";
 import axios from "axios";
 
 export const DealList = ({ amount, offset = 0 }) => {
