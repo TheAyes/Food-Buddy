@@ -1,9 +1,9 @@
 @import "../../global.scss";
 
 .DealList {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 20px;
-	position: relative;
-	z-index: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  position: relative;
+  z-index: 0;
 }

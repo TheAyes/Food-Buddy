@@ -1,27 +1,27 @@
 @import "../../global.scss";
 
 .addCartButton {
-    font-size: $fz-small-5;
-    width: 80%;
-    height: 7vh;
-    margin-bottom: 6.5rem;
-    background-color: $bc-2;
-    border-color: transparent;
-    border-radius: 10px;
+	font-size: $fz-small-5;
+	width: 80%;
+	height: 7vh;
+	margin-bottom: 6.5rem;
+	background-color: $bc-2;
+	border-color: transparent;
+	border-radius: 10px;
 
-    &:hover {
-        background-color: #DEFFE4;
-        color: $fc-3;
-        transform: scale(1.01);
-        transition: transform 0.4s;
-        font-weight: $fw-medium;
-        cursor: pointer;
-    }
+	&:hover {
+		background-color: #DEFFE4;
+		color: $fc-3;
+		transform: scale(1.01);
+		transition: transform 0.4s;
+		font-weight: $fw-medium;
+		cursor: pointer;
+	}
 
-    &:active {
-        background-color: $bc-1;
-        box-shadow: 0 0 5px #DEFFE4, 0 0 10px #DEFFE4, 0 0 20px #DEFFE4, 0 0 30px #DEFFE4;
-        color: $fc-2;
-        font-weight: $fw-bold;
-    }
+	&:active {
+		background-color: $bc-1;
+		box-shadow: 0 0 5px #DEFFE4, 0 0 10px #DEFFE4, 0 0 20px #DEFFE4, 0 0 30px #DEFFE4;
+		color: $fc-2;
+		font-weight: $fw-bold;
+	}
 }

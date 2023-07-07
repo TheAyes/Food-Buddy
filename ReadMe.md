@@ -45,35 +45,36 @@ Products:
 ---
 
 <!-- endpoints:start -->
-| Method | Path | Request Body | Query Params | Path Params | Response | Summary |
-| ------ | ---- | ------------ | ------------ | ----------- | -------- | ------- |
-| POST | /api/user/register | username, password, email |  |  | 200 | Register a new user |
-| POST | /api/user/login | username, password |  |  | 200 | User login |
-| GET | /api/user |  |  |  | 200 | Get user data |
-| POST | /api/user/refresh |  |  |  | 200 | Refresh token |
-| POST | /api/products | product |  |  | 200 | Add a new product |
-| GET | /api/products |  |  |  | 200 | Get all products |
-| GET | /api/products/:id |  |  | id | 200 | Get a product by ID |
-| POST | /api/categories | category |  |  | 200 | Add a new category |
-| GET | /api/categories |  |  |  | 200 | Get all categories |
-| GET | /api/categories/:id |  |  | id | 200 | Get a category by ID |
-| POST | /api/products/:id/rate | rating |  | id | 200 | Rate a product |
-| POST | /api/products/:id/wishlist |  | add | id | 200 | Update wishlist |
-| POST | /api/products/:id/cart |  | add | id | 200 | Update shopping cart |
-| GET | * |  |  |  | 200 | Serve client |
+
+| Method | Path                       | Request Body              | Query Params | Path Params | Response | Summary              |
+|--------|----------------------------|---------------------------|--------------|-------------|----------|----------------------|
+| POST   | /api/user/register         | username, password, email |              |             | 200      | Register a new user  |
+| POST   | /api/user/login            | username, password        |              |             | 200      | User login           |
+| GET    | /api/user                  |                           |              |             | 200      | Get user data        |
+| POST   | /api/user/refresh          |                           |              |             | 200      | Refresh token        |
+| POST   | /api/products              | product                   |              |             | 200      | Add a new product    |
+| GET    | /api/products              |                           |              |             | 200      | Get all products     |
+| GET    | /api/products/:id          |                           |              | id          | 200      | Get a product by ID  |
+| POST   | /api/categories            | category                  |              |             | 200      | Add a new category   |
+| GET    | /api/categories            |                           |              |             | 200      | Get all categories   |
+| GET    | /api/categories/:id        |                           |              | id          | 200      | Get a category by ID |
+| POST   | /api/products/:id/rate     | rating                    |              | id          | 200      | Rate a product       |
+| POST   | /api/products/:id/wishlist |                           | add          | id          | 200      | Update wishlist      |
+| POST   | /api/products/:id/cart     |                           | add          | id          | 200      | Update shopping cart |
+| GET    | *                          |                           |              |             | 200      | Serve client         |
+
 <!-- endpoints:end -->
 
 ---
 
 ## ID's
 
-
-
 <!-- ids:start -->
+
 ### Categories
 
 | Name       | Id                       |
-| ---------- | ------------------------ |
+|------------|--------------------------|
 | Meat       | 649d50bd924b2f32645d0f24 |
 | Vegetables | 649d85139011477c830b89c9 |
 | Seafood    | 649d853e9011477c830b89cb |
@@ -85,7 +86,7 @@ Products:
 ### Products
 
 | Name                | Id                       |
-| ------------------- | ------------------------ |
+|---------------------|--------------------------|
 | Chicken             | 649d48e1926db279d409ea28 |
 | Eggplant            | 649d82629011477c830b89c7 |
 | Spinach             | 649d8cc8db935bfa65fc0133 |
@@ -228,6 +229,7 @@ Products:
 | Asian Pear          | 649dd60cdb935bfa65fc0361 |
 | Cherries            | 649dd66bdb935bfa65fc0365 |
 | Peach               | 649dd6b4db935bfa65fc0369 |
+
 <!-- ids:end -->
 
 
