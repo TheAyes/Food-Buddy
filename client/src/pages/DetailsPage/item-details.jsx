@@ -31,8 +31,6 @@ export const ItemDetails = () => {
 					Authorization: `Bearer ${userState.get.accessToken}`
 				}
 			});
-			console.log(userInfo);
-
 			if (userInfo.data.user.wishlist.includes(id)) {
 				setIsLiked(true);
 			}

@@ -199,14 +199,26 @@ export const wishlistProduct = async (req, res) => {
 		const product = await Product.findById(req.params.id).exec();
 
 		if (!user || !product) {
-			res.status(404).json({ message: "user or product not found." });
+			return res.status(404).json({ message: "user or product not found." });
 		}
 
-		user.wishlist.push(product.id);
+		// Convert product id to string
+		const productId = product._id.toString();
+
+		// Check if product is already wishlisted
+		const productIndex = user.wishlist.map((item) => item.toString()).indexOf(productId);
+		if (productIndex === -1) {
+			// Product not wishlisted yet, add to wishlist
+			user.wishlist.push(productId);
+		} else {
+			// Product already wishlisted, remove from wishlist
+			user.wishlist.splice(productIndex, 1);
+		}
+
 		await user.save(); // save user after updating wishlist
 		res.json(user);
 	} catch (error) {
-		res.status(500).json(error);
+		res.status(500).json({ message: error.message });
 	}
 };
 

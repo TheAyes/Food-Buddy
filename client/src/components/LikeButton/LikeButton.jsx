@@ -22,7 +22,7 @@ export const LikeButton = ({ initialLiked = false, id }) => {
 				}
 			);
 			if (result.status === 200) {
-				setIsLiked(true);
+				setIsLiked(result.data.wishlist.includes(id));
 			}
 		})();
 	};
