@@ -2,7 +2,6 @@ import express from "express";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import { config } from "dotenv";
-import mongoose from "mongoose";
 import {
 	authenticateUser,
 	handleTokenRefresh,
@@ -26,6 +25,7 @@ import {
 	wishlistProduct
 } from "./product-handler.js";
 import { getUserData, updateUserData } from "./user-handler.js";
+import mongoose from "mongoose";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -54,8 +54,9 @@ app.use(express.json());
 
 const connectionString = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PW}@${process.env.DB_CLUSTER}.${process.env.DB_SHARD}.mongodb.net/?retryWrites=true&w=majority`;
 
+await mongoose.connect(connectionString);
+
 try {
-	await mongoose.connect(connectionString);
 } catch (error) {
 	console.error(`Failed to connect to database with string: ${connectionString}`, error);
 	process.exit(1);

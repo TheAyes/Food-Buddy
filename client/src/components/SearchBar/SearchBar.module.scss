@@ -3,9 +3,11 @@
 .SearchBarParent {
 	margin: 20px;
 	justify-content: center;
+
 	img {
 		height: 2rem;
 	}
+
 	.inputWrapper {
 		background-color: $gc-2;
 		border-radius: 10px;
@@ -14,9 +16,11 @@
 		box-shadow: 0px 0px 8px #ddd;
 		display: flex;
 		align-items: center;
+
 		img {
 			width: 2rem;
 		}
+
 		input {
 			background-color: transparent;
 			border: none;
@@ -26,10 +30,12 @@
 			margin-left: 5px;
 			font-size: $fz-small-4;
 		}
+
 		input:focus {
 			outline: none;
 		}
 	}
+
 	.suggestions {
 		background-color: $gc-2;
 		position: absolute;

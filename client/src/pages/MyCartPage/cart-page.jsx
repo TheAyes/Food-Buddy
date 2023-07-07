@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+import styles from "./cart-page.module.scss";
 import { useState } from "react";
 import styles from "./cart-page.module.scss";
 
@@ -8,6 +10,7 @@ import { WishItem } from "../../components/WishItem/WishItem.jsx";
 // Import Images
 import trashCan from "../../pics/trashcan.svg";
 import emptyCart from "../../pics/emptyCart.svg";
+import { NavBar } from "../../components/NavBar/NavBar";
 
 export const CartPage = () => {
 	const [cartItems, setCartItems] = useState([]);
@@ -49,6 +52,7 @@ export const CartPage = () => {
 				))}
 			</div>
 			<button className={styles.checkoutButton}>CHECK OUT</button>
+			<NavBar />
 		</section>
 	);
 };

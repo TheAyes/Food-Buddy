@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./item-details.module.scss";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -11,16 +11,30 @@ import cartImage from "../../pics/shopping-cart.svg";
 import { GoBackButton } from "../../components/GoBackButton/GoBackButton";
 import { AddToCartComponent } from "../../components/AddToCartComponent/AddToCartComponent";
 import { LikeButton } from "../../components/LikeButton/LikeButton";
+import { UserContext } from "../../app.jsx";
 
 export const ItemDetails = () => {
-	const [quantity, setQuantity] = useState(0);
+	const [quantity, setQuantity] = useState(1);
 	const { id } = useParams();
 	const [item, setItem] = useState(null);
+	const userState = useContext(UserContext);
+	const [isLiked, setIsLiked] = useState(false);
 
 	useEffect(() => {
 		axios.get(`/api/products/${id}`).then((response) => {
 			setItem(response.data);
 		});
+
+		(async () => {
+			const userInfo = await axios.get("/api/user", {
+				headers: {
+					Authorization: `Bearer ${userState.get.accessToken}`
+				}
+			});
+			if (userInfo.data.user.wishlist.includes(id)) {
+				setIsLiked(true);
+			}
+		})();
 	}, [id]);
 
 	if (!item) {
@@ -32,7 +46,7 @@ export const ItemDetails = () => {
 	};
 
 	const decrementQuantity = () => {
-		setQuantity((previousQuantity) => Math.max(previousQuantity - 1, 0));
+		setQuantity((previousQuantity) => Math.max(previousQuantity - 1, 1));
 	};
 
 	const addToCart = () => {
@@ -46,11 +60,11 @@ export const ItemDetails = () => {
 				{/* Titel erstellen */}
 				<h4 className={styles.pageTitle}>{item.name}</h4>
 				{/* Name als props von der ID, damit immer korrekter Produktname verwendet wird */}
-				<LikeButton />
+				<LikeButton id={id} initialLiked={isLiked} />
 			</div>
 			<article className={styles.imageSection}>
 				<img src={item.image} alt={item.title} />
-				<h3 className={styles.quantityIndicator}>{quantity}</h3>
+				<h3 className={styles.quantityIndicator}>{quantity}kg</h3>
 				{/* <h3>{props.quantity}</h3> */}
 				<h2 className={styles.priceIndicator}>
 					{item.price.value} {item.price.unit}
@@ -58,8 +72,8 @@ export const ItemDetails = () => {
 				<h3 className={styles.nameIndicator}>{item.name}</h3>
 				<div className={styles.ratingSection}>
 					<img src={starImage} alt="rating star" />
-					<h3 className={styles.ratingIndicator}>{item.rating}</h3>
-					<h3 className={styles.reviewIndicator}>({item.numOfRatings})</h3>
+					<h3 className={styles.ratingIndicator}>{item.overallRating.toFixed(2)}</h3>
+					<h3 className={styles.reviewIndicator}>({item.ratings.length})</h3>
 				</div>
 			</article>
 			<hr></hr>
@@ -69,7 +83,7 @@ export const ItemDetails = () => {
 					<button className={styles.minusQuantity} onClick={decrementQuantity}>
 						-
 					</button>
-					<p className={styles.numberQuantity}>{quantity}</p>
+					<p className={styles.numberQuantity}>{quantity} kg</p>
 					<button className={styles.plusQuantity} onClick={incrementQuantity}>
 						+
 					</button>

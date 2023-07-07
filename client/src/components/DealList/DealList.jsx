@@ -20,16 +20,18 @@ export const DealList = ({ amount, offset = 0 }) => {
 
 	return (
 		<div className={styles.DealList}>
-			{products.map((item) => (
-				<DealItems
-					key={item._id}
-					image={item.image}
-					name={item.name}
-					price={item.price}
-					rating={item.ratings}
-					id={item._id}
-				/>
-			))}
+			{products.map((item) => {
+				return (
+					<DealItems
+						key={item._id}
+						image={item.image}
+						name={item.name}
+						price={item.price}
+						rating={item.overallRating.toFixed(2)}
+						id={item._id}
+					/>
+				);
+			})}
 		</div>
 	);
 };

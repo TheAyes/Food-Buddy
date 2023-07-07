@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import search from "../../pics/suche.png";
 import styles from "./SearchBar.module.scss";
 import data from "../../data/grocery-data.json";
@@ -91,4 +91,3 @@ export const SearchBar = ({ onSelectItem }) => {
 		</div>
 	);
 };
-

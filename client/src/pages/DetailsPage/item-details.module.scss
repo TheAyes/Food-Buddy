@@ -9,7 +9,7 @@
 	.upperPart {
 		display: flex;
 		justify-content: space-between;
-		margin-top: 2.5rem;
+		margin-top: 2rem;
 
 
 		.pageTitle {
@@ -18,7 +18,7 @@
 		}
 
 		img {
-			width: 10%;
+			width: 7%;
 		}
 	}
 
@@ -26,17 +26,17 @@
 		margin-top: 3rem;
 
 		img {
-			width: 90%;
-			margin-bottom: 2.3rem;
+			width: 60%;
+			margin-bottom: 1rem;
 			border-radius: 10px;
 		}
 
 		.quantityIndicator {
 			font-size: $fz-small-2;
 			background-color: $bc-1;
-			width: 10%;
+			width: 13%;
 			padding: 1.5rem 4.5rem;
-			margin: 0 auto 2.5rem auto;
+			margin: 0 auto 1.6rem auto;
 			border-radius: 7px;
 			color: $fc-2;
 			display: flex;
@@ -46,20 +46,20 @@
 
 		.priceIndicator {
 			color: $fc-5;
-			margin-bottom: 1.5rem;
+			margin-bottom: 1rem;
 		}
 
 		.nameIndicator {
 			font-size: $fz-small-4;
 			color: $fc-5;
-			margin-bottom: 1.5rem;
+			margin-bottom: 1rem;
 		}
 	}
 
 	.ratingSection {
 		display: flex;
 		justify-content: center;
-		margin-bottom: 2.5rem;
+		margin-bottom: 1rem;
 
 		img {
 			width: $fz-small-4;
@@ -83,19 +83,19 @@
 	}
 
 	.quantitySection {
-		margin-top: 2.1rem;
+		margin-top: 2rem;
 
 		.quantityTitle {
 			font-size: $fz-small-4;
 			color: $fc-4;
-			margin-bottom: 1.5rem;
+			margin-bottom: 1rem;
 		}
 
 		.selectQuantity {
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			margin-bottom: 3.5rem;
+			margin-bottom: 2rem;
 
 			.minusQuantity,
 			.plusQuantity {
@@ -103,7 +103,7 @@
 				align-items: center;
 				justify-content: center;
 				font-size: $fz-large-1;
-				padding: 3.2rem;
+				padding: 2.6rem;
 				width: 2rem;
 				height: 2rem;
 				border-radius: 999vw;
@@ -128,7 +128,7 @@
 
 			.numberQuantity {
 				font-size: $fz-large-1;
-				margin: 0 9rem;
+				margin: 0 6.7rem;
 			}
 		}
 
@@ -139,7 +139,7 @@
 
 			img {
 				width: 7%;
-				margin-bottom: 2rem;
+				margin-bottom: 1rem;
 				cursor: pointer;
 			}
 
@@ -149,7 +149,7 @@
 				justify-content: center;
 				background-color: $bc-1;
 				color: $fc-2;
-				transform: translate(96%, -230%);
+				transform: translate(96%, -190%);
 				font-size: $fz-small-3;
 				padding: 1.39rem;
 				width: 2rem;
