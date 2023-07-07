@@ -6,13 +6,12 @@ import styles from "./DealItems.module.scss";
 export const DealItems = (props) => {
 	const { image, name, price } = props;
 	const { value, unit } = price;
-	console.log(props);
 
 	return (
 		<div className={styles.DealItems}>
 			<LikeButton className={styles.likeButton} />
 			<div>
-				<Link to={`/item/${props.id}`} >
+				<Link to={`/item/${props.id}`}>
 					<img src={props.image} alt="image" className={styles.itemImages} />
 					<p className={styles.productName}>{props.name}</p>
 					<div className={styles.flex}>
@@ -24,6 +23,6 @@ export const DealItems = (props) => {
 					</div>
 				</Link>
 			</div>
-		</div >
+		</div>
 	);
 };
