@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import styles from "./cart-page.module.scss";
 import { useState } from "react";
 import styles from "./cart-page.module.scss";
 
