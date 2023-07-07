@@ -34,6 +34,15 @@ export const ProfilePage = () => {
 					Authorization: `Bearer ${userState.get.accessToken}`
 				}
 			});
+			const { data } = await axios.post(
+				"/api/user",
+				{},
+				{
+					headers: {
+						Authorization: `Bearer ${userState.get.accessToken}`
+					}
+				}
+			);
 			console.log("axios data:", data);
 			setInitialState((prevState) => {
 				return { ...prevState, ...data.user };
