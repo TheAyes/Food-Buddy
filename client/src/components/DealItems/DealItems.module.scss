@@ -1,42 +1,48 @@
 @import "../../global.scss";
 
 .DealItems {
-    // .likeButton {
-    // 	width: 3.5rem;
-    // 	padding: 7px;
-    // }
+
+    img {
+        width: 14%;
+    }
 
     div {
         text-align: center;
-    }
 
-    .itemImages {
-        height: 9rem;
-        width: 65%;
-        border-radius: 20px;
-        object-fit: cover;
-    }
 
-    .productName {
-        font-size: $fz-medium-1;
-        color: $fc-5;
-        font-weight: 300; // Wird noch Variable für vergeben $fw-light
-        padding-bottom: 2rem;
-    }
+        .itemImages {
+            height: 9rem;
+            width: 50%;
+            border-radius: 20px;
+            object-fit: cover;
+        }
 
-    .star {
-        height: 1.5rem;
-        margin-left: 50px;
-    }
+        .productName {
+            font-size: $fz-medium-1;
+            color: $fc-5;
+            font-weight: 300; // Wird noch Variable für vergeben $fw-light
+            padding-bottom: 2rem;
+        }
 
-    p {
-        color: $fc-5;
-        font-size: $fz-small-3;
-        font-weight: 500; // wird noch Variable für vergeben $fw-regular
-    }
+        .star {
+            height: 1.5rem;
+            margin-left: 50px;
+        }
 
-    .flex {
-        display: flex;
-        justify-content: space-around;
+        p {
+            color: $fc-5;
+            font-size: $fz-small-3;
+            font-weight: 500; // wird noch Variable für vergeben $fw-regular
+        }
+
+        .flex {
+            display: flex;
+            justify-content: space-around;
+
+            img {
+                width: 1.4rem;
+                height: 1.4rem;
+            }
+        }
     }
 }
