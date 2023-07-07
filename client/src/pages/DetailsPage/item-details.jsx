@@ -50,7 +50,7 @@ export const ItemDetails = () => {
 			</div>
 			<article className={styles.imageSection}>
 				<img src={item.image} alt={item.title} />
-				<h3 className={styles.quantityIndicator}>{quantity}</h3>
+				<h3 className={styles.quantityIndicator}>{quantity}kg</h3>
 				{/* <h3>{props.quantity}</h3> */}
 				<h2 className={styles.priceIndicator}>
 					{item.price.value} {item.price.unit}
@@ -69,7 +69,7 @@ export const ItemDetails = () => {
 					<button className={styles.minusQuantity} onClick={decrementQuantity}>
 						-
 					</button>
-					<p className={styles.numberQuantity}>{quantity}</p>
+					<p className={styles.numberQuantity}>{quantity} kg</p>
 					<button className={styles.plusQuantity} onClick={incrementQuantity}>
 						+
 					</button>
