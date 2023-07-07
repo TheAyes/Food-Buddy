@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import styles from "./item-details.module.scss";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 // Bilder Import
 import starImage from "../../pics/star.svg";
@@ -12,6 +13,7 @@ import { GoBackButton } from "../../components/GoBackButton/GoBackButton";
 import { AddToCartComponent } from "../../components/AddToCartComponent/AddToCartComponent";
 import { LikeButton } from "../../components/LikeButton/LikeButton";
 import { UserContext } from "../../app.jsx";
+import { NavBar } from "../../components/NavBar/NavBar";
 
 export const ItemDetails = () => {
 	const [quantity, setQuantity] = useState(1);
@@ -73,7 +75,7 @@ export const ItemDetails = () => {
 				<div className={styles.ratingSection}>
 					<img src={starImage} alt="rating star" />
 					<h3 className={styles.ratingIndicator}>{item.overallRating.toFixed(2)}</h3>
-					<h3 className={styles.reviewIndicator}>({item.ratings.length})</h3>
+					<h3 className={styles.reviewIndicator}>({item.ratings.length} Reviews) </h3>
 				</div>
 			</article>
 			<hr></hr>
@@ -88,12 +90,21 @@ export const ItemDetails = () => {
 						+
 					</button>
 				</div>
+				<div className={styles.pricingSection}>
+					<label>Total:</label>
+					<p>
+						{(item.price.value * quantity).toFixed(2)} {item.price.unit}
+					</p>
+				</div>
 				<article className={styles.shoppingSection}>
-					<img src={cartImage} alt="cart image" />
+					<Link to="/user/cart">
+						<img className={styles.cartImageStyle} src={cartImage} alt="cart image" />
+					</Link>
 					<p className={styles.quantityCart}></p>
-					<AddToCartComponent quantity={quantity} addToCart={addToCart} />
 				</article>
+				<AddToCartComponent quantity={quantity} addToCart={addToCart} />
 			</div>
+			<NavBar />
 		</section>
 	);
 };

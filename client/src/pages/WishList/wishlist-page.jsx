@@ -8,7 +8,7 @@ import { NavBar } from "../../components/NavBar/NavBar.jsx";
 
 // Import Images
 import emptyWishlist from "../../pics/emptyWishlist.svg";
-import trashCan from "../../pics/trashCan.svg";
+// import trashCan from "../../pics/trashCan.svg";
 import { UserContext } from "../../app.jsx";
 import axios from "axios";
 
@@ -56,7 +56,7 @@ export const WishlistPage = () => {
 					<GoBackButton />
 					<h4>Wishlist</h4>
 				</article>
-				<img className={styles.trashCan} src={trashCan} alt="trash can" />
+				{/* <img className={styles.trashCan} src={trashCan} alt="trash can" /> */}
 			</div>
 			{wishlist.length <= 0 && <img className={styles.emptyWishImage} src={emptyWishlist} alt="empty Wishlist" />}
 			<div className={styles.wishlistContainer}>
@@ -70,6 +70,7 @@ export const WishlistPage = () => {
 						numOfRatings={item.ratings.length}
 						price={item.price.value}
 						onLikeButtonClick={handleLikeButtonClick}
+						isLiked={true} // Setze isLiked auf true, da sich der Artikel in der Wishlist befindet
 					/>
 				))}
 			</div>

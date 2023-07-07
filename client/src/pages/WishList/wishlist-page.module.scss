@@ -1,11 +1,13 @@
 @import "../../global.scss";
 
 .wishlistPage {
+
     .headerWishlist {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 3%;
+        margin: 3vh auto;
+
 
         .leftContainer {
             display: flex;

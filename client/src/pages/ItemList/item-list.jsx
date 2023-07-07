@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import styles from "./ItemList.module.scss";
 import axios from "axios";
 import PropTypes from "prop-types";
+import { GoBackButton } from "../../components/GoBackButton/GoBackButton.jsx";
+import { NavBar } from "../../components/NavBar/NavBar.jsx";
 
 export const ItemList = ({
 	category = "",
@@ -76,7 +78,12 @@ export const ItemList = ({
 
 	return (
 		<div className={styles.parentContainer}>
-			<SearchBar onSelectItem={handleSelectItem} />
+			<div className={styles.headContainer}>
+				<GoBackButton />
+				<article className={styles.searchBar}>
+					<SearchBar onSelectItem={handleSelectItem} />
+				</article>
+			</div>
 			<div className={styles.ItemList}>
 				{filteredData.map((item) => (
 					<ProductItems
@@ -89,6 +96,7 @@ export const ItemList = ({
 					/>
 				))}
 			</div>
+			<NavBar />
 		</div>
 	);
 };
