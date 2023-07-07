@@ -4,6 +4,7 @@ import styles from './wishlist-page.module.scss';
 //Import Components
 import { GoBackButton } from "../../components/GoBackButton/GoBackButton.jsx";
 import { WishItem } from '../../components/WishItem/WishItem.jsx';
+import { NavBar } from '../../components/NavBar/NavBar.jsx';
 
 // Import Images
 import emptyWishlist from "../../pics/emptyWishlist.svg";
@@ -47,6 +48,7 @@ export const WishlistPage = () => {
                     />
                 ))}
             </div>
+            <NavBar />
         </section>
     );
 };

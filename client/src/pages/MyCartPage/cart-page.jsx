@@ -8,6 +8,7 @@ import { WishItem } from '../../components/WishItem/WishItem.jsx';
 // Import Images
 import trashCan from "../../pics/trashCan.svg";
 import emptyCart from "../../pics/emptyCart.svg"
+import { NavBar } from '../../components/NavBar/NavBar';
 
 export const CartPage = () => {
 	const [cartItems, setCartItems] = useState([]);
@@ -48,6 +49,7 @@ export const CartPage = () => {
 				))}
 			</div>
 			<button className={styles.checkoutButton}>CHECK OUT</button>
+			<NavBar />
 		</section>
 	);
 };
