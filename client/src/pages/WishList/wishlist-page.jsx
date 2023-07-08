@@ -1,8 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import styles from "./wishlist-page.module.scss";
 
-import { CartItem } from "../../components/CartItem/CartItem.jsx"
-
 //Import Components
 import { GoBackButton } from "../../components/GoBackButton/GoBackButton.jsx";
 import { WishItem } from "../../components/WishItem/WishItem.jsx";
@@ -70,11 +68,10 @@ export const WishlistPage = () => {
 						numOfRatings={item.ratings.length}
 						price={item.price.value}
 						onLikeButtonClick={handleLikeButtonClick}
-						isLiked={true} // Setze isLiked auf true, da sich der Artikel in der Wishlist befindet
+						isLiked={true}
 					/>
 				))}
 			</div>
-			<CartItem />
 			<NavBar />
 		</section>
 	);
