@@ -17,25 +17,6 @@
                 align-self: center;
             }
         }
-
-        .trashCan {
-            width: 4.5%;
-            margin-left: auto;
-
-            &:hover {
-                filter: brightness(85%);
-                transform: scale(1.1);
-                font-weight: $fw-regular;
-                transform: scale(1.1);
-                transition: transform 0.3s, filter 0.4s;
-                opacity: 50%;
-            }
-
-            &:active {
-                opacity: 100%;
-            }
-
-        }
     }
 
     .emptyWishImage {
