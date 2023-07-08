@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import styles from "./wishlist-page.module.scss";
 
+import { CartItem } from "../../components/CartItem/CartItem.jsx"
+
 //Import Components
 import { GoBackButton } from "../../components/GoBackButton/GoBackButton.jsx";
 import { WishItem } from "../../components/WishItem/WishItem.jsx";
@@ -72,6 +74,7 @@ export const WishlistPage = () => {
 					/>
 				))}
 			</div>
+			<CartItem />
 			<NavBar />
 		</section>
 	);
