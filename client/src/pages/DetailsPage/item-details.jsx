@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import styles from "./item-details.module.scss";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 // Bilder Import
 import starImage from "../../pics/star.svg";
@@ -21,6 +21,7 @@ export const ItemDetails = () => {
 	const [item, setItem] = useState(null);
 	const userState = useContext(UserContext);
 	const [isLiked, setIsLiked] = useState(false);
+	const [cartItems, setCartItems] = useState([]);
 
 	useEffect(() => {
 		axios.get(`/api/products/${id}`).then((response) => {
@@ -39,6 +40,23 @@ export const ItemDetails = () => {
 		})();
 	}, [id]);
 
+	useEffect(() => {
+		axios.get(`/api/products/${id}`).then((response) => {
+			setItem(response.data);
+		});
+
+		(async () => {
+			const userInfo = await axios.get("/api/user", {
+				headers: {
+					Authorization: `Bearer ${userState.get.accessToken}`
+				}
+			});
+			if (userInfo.data.user.cart.includes(id)) {
+				setCartItems((prevItems) => [...prevItems, item]);
+			}
+		})();
+	}, [id]);
+
 	if (!item) {
 		return <div>Loading...</div>;
 	}
@@ -51,9 +69,11 @@ export const ItemDetails = () => {
 		setQuantity((previousQuantity) => Math.max(previousQuantity - 1, 1));
 	};
 
-	const addToCart = () => {
-		console.log(`Menge ${quantity} zum Einkaufswagen hinzugefügt!`);
+	const addToCart = (product) => {
+		setCartItems((prevItems) => [...prevItems, product]);
 	};
+
+	console.log(cartItems);
 
 	return (
 		<section className={styles.itemDetails}>
@@ -102,9 +122,10 @@ export const ItemDetails = () => {
 					</Link>
 					<p className={styles.quantityCart}></p>
 				</article>
-				<AddToCartComponent quantity={quantity} addToCart={addToCart} />
+				<AddToCartComponent id={id} quantity={quantity} onAddToCart={addToCart} />
 			</div>
 			<NavBar />
 		</section>
 	);
 };
+
