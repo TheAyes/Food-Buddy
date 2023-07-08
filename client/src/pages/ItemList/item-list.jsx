@@ -4,6 +4,9 @@ import { SearchBar } from "../../components/SearchBar/SearchBar.jsx";
 import styles from "./ItemList.module.scss";
 import axios from "axios";
 import PropTypes from "prop-types";
+import { GoBackButton } from "../../components/GoBackButton/GoBackButton.jsx";
+import { NavBar } from "../../components/NavBar/NavBar.jsx";
+import { useLocation } from "react-router-dom";
 
 export const ItemList = ({
 	category = "",
@@ -31,11 +34,16 @@ export const ItemList = ({
 	};
 	const [filteredData, setFilteredData] = useState([]);
 
+	const { search } = useLocation();
+	const query = new URLSearchParams(search);
+	const categoryFromUrl = query.get("category") || "";
+	const _category = category || categoryFromUrl;
+
 	useEffect(() => {
 		const params = new URLSearchParams();
 
 		// Append parameters if they exist
-		if (category) params.append("category", category);
+		if (_category) params.append("category", _category);
 		if (nameFilter) params.append("nameFilter", nameFilter);
 		if (minPrize) params.append("minPrize", minPrize);
 		if (maxPrize) params.append("maxPrize", maxPrize);
@@ -54,7 +62,7 @@ export const ItemList = ({
 			}
 		})(); // <-- Siehe funktionsklammern
 	}, [
-		category,
+		_category,
 		nameFilter,
 		minPrize,
 		maxPrize,
@@ -75,7 +83,12 @@ export const ItemList = ({
 
 	return (
 		<div className={styles.parentContainer}>
-			<SearchBar onSelectItem={handleSelectItem} />
+			<div className={styles.headContainer}>
+				<GoBackButton />
+				<article className={styles.searchBar}>
+					<SearchBar onSelectItem={handleSelectItem} />
+				</article>
+			</div>
 			<div className={styles.ItemList}>
 				{filteredData.map((item) => (
 					<ProductItems
@@ -88,6 +101,7 @@ export const ItemList = ({
 					/>
 				))}
 			</div>
+			<NavBar />
 		</div>
 	);
 };

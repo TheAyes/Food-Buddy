@@ -23,7 +23,6 @@ export const addProduct = async (req, res) => {
 
 export const getProducts = async (req, res) => {
 	try {
-		const category = req.query.category;
 		const nameFilter = req.query.name;
 		const minPrize = req.query.minPrize ? Number(req.query.minPrize) : undefined;
 		const maxPrize = req.query.maxPrize ? Number(req.query.maxPrize) : undefined;
@@ -35,8 +34,9 @@ export const getProducts = async (req, res) => {
 		let filter = {};
 		let productIds = [];
 
-		if (category) {
-			const category = await Category.findOne({ name: category }).populate("products");
+		if (req.query.category) {
+			const category = await Category.findOne({ _id: req.query.category }).populate("products");
+
 			if (!category) {
 				return res.status(404).json({ message: "Category not found" });
 			}

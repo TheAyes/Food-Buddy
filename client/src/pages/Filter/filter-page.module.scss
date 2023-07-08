@@ -1,0 +1,133 @@
+@import "../../global.scss";
+
+.filterPage {
+    h1 {
+        font-size: $fz-medium-2;
+        margin-left: 2rem;
+    }
+
+    h3 {
+        font-size: $fz-medium-1;
+        font-weight: normal;
+        margin: 2rem auto;
+        padding: 1vh 1vw;
+        background-color: $bc-2;
+        border-radius: 4px;
+        text-align: center;
+        width: 20%;
+        font-weight: $fw-regular;
+    }
+
+    h4 {
+        color: $fc-5;
+        font-size: $fz-medium-1;
+    }
+
+    h5 {
+        font-size: $fz-medium-1;
+        color: rgb(88, 84, 84);
+
+        &:hover {
+            color: $fc-4;
+            cursor: pointer;
+
+        }
+    }
+
+    p {
+        font-size: $fz-small-5;
+        background-color: $bc-1;
+        color: $gc-2;
+        padding: 0.4vh 0.4vw;
+        margin: 0.4vh 0.4vw;
+        border-radius: 4px;
+        width: 19%;
+        text-align: center;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $bc-2;
+            color: $fc-3;
+        }
+
+        &.clicked {
+            background-color: rgb(13, 70, 13);
+            color: white;
+        }
+    }
+
+
+    .headerFilterPage {
+        display: flex;
+        align-items: center;
+        margin: 2vh 0;
+    }
+
+    .filterArea {
+        width: 90%;
+        margin: 0 auto;
+
+        .sortContainer {
+            .sortArea {
+                display: flex;
+                justify-content: space-between;
+                font-size: $fz-small-5;
+                margin-bottom: 2vh;
+            }
+
+            .choiceFilter {
+                display: flex;
+            }
+        }
+
+        .priceContainer {
+            margin: 4vh 0;
+
+            h4 {
+                margin-bottom: 3vh;
+            }
+
+            input {
+                width: 100%;
+            }
+        }
+
+        .categoryContainer {
+            h4 {
+                margin-bottom: 3vh;
+            }
+
+            article {
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+
+        button {
+            font-size: $fz-small-5;
+            width: 80%;
+            height: 7vh;
+            margin: 8vh 10%;
+            background-color: $bc-2;
+            border-color: transparent;
+            border-radius: 10px;
+
+            &:hover {
+                background-color: #DEFFE4;
+                color: $fc-3;
+                transform: scale(1.01);
+                transition: transform 0.4s;
+                font-weight: $fw-medium;
+                cursor: pointer;
+            }
+
+            &:active {
+                background-color: $bc-1;
+                box-shadow: 0 0 5px #DEFFE4, 0 0 10px #DEFFE4, 0 0 20px #DEFFE4, 0 0 30px #DEFFE4;
+                color: $fc-2;
+                font-weight: $fw-bold;
+            }
+        }
+    }
+
+}
