@@ -1,10 +1,10 @@
-import styles from "./CategoryBarImage.module.scss"
+import styles from "./CategoryBarImage.module.scss";
 import { Link } from "react-router-dom";
-import meat from "../../pics/meatLOGO.jpg"
-import bread from "../../pics/breadLOGO.jpg"
-import vegetables from "../../pics/vegetablesLOGO.jpg"
-import seafood from "../../pics/seafoodLOGO.jpg"
-import fruits from "../../pics/fruitLOGO.jpg"
+import meat from "../../pics/meatLOGO.jpg";
+import bread from "../../pics/breadLOGO.jpg";
+import vegetables from "../../pics/vegetablesLOGO.jpg";
+import seafood from "../../pics/seafoodLOGO.jpg";
+import fruits from "../../pics/fruitLOGO.jpg";
 
 export const CategoryBarImage = () => {
 	return (
@@ -34,6 +34,6 @@ export const CategoryBarImage = () => {
 				<div className="shadow"></div>
 				Fruits
 			</Link>
-		</div>);
+		</div>
+	);
 };
-

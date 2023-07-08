@@ -1,38 +1,49 @@
-@import "../../variable.scss";
+@import "../../global.scss";
 
 .ProductItems {
+	margin-bottom: 1.5em;
+
+
+	img {
+		width: 14%;
+	}
+
 	div {
 		text-align: center;
-	}
 
-	.itemImages {
-		height: 9rem;
-		width: 65%;
-		border-radius: 20px;
-		object-fit: cover;
-	}
+		.itemImages {
+			height: 9rem;
+			width: 50%;
+			border-radius: 20px;
+			object-fit: cover;
+		}
 
-	.productName {
-		font-size: $fz-medium-1;
-		color: $fc-5;
-		font-weight: 300; // Wird noch Variable für vergeben $fw-light
-		padding-bottom: 2rem;
-	}
+		.productName {
+			font-size: $fz-medium-1;
+			color: $fc-5;
+			font-weight: 300; // Wird noch Variable für vergeben $fw-light
+			padding-bottom: 2rem;
+		}
 
-	.star {
-		height: 1.5rem;
-		margin-left: 50px;
-	}
+		.star {
+			height: 1.5rem;
+			margin-left: 50px;
+		}
 
-	p {
-		color: $fc-5;
-		font-size: $fz-small-3;
-		font-weight: 500; // wird noch Variable für vergeben $fw-regular
-	}
+		p {
+			color: $fc-5;
+			font-size: $fz-small-3;
+			font-weight: 500; // wird noch Variable für vergeben $fw-regular
+		}
 
-	.flex {
-		display: flex;
-		justify-content: space-around;
+		.flex {
+			display: flex;
+			justify-content: space-around;
+
+			img {
+				width: 1.4rem;
+				height: 1.4rem;
+			}
+		}
 	}
 }
-

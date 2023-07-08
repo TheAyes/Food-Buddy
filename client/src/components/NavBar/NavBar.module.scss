@@ -1,43 +1,44 @@
 @import "../../global.scss";
 
 .NavBar {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 1rem 0;
-    border-radius: 1.5rem 1.5rem 0 0;
-    background: linear-gradient(180deg, rgba(245, 245, 255, 1) 29%, rgba(255, 255, 255, 1) 52%);
-    position: sticky;
-    bottom: 0;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	padding: 1rem 0;
+	margin-top: 4rem;
+	border-radius: 1.5rem 1.5rem 0 0;
+	background: linear-gradient(180deg, rgba(245, 245, 255, 1) 29%, rgba(255, 255, 255, 1) 52%);
+	position: sticky;
+	bottom: 0;
 
-    a {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-family: $ff-roboto;
-        font-size: $fz-small-4;
-        color: $fc-3;
-        width: 8rem;
-        position: relative;
+	a {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		font-family: $ff-roboto;
+		font-size: $fz-small-4;
+		color: $fc-3;
+		width: 8rem;
+		position: relative;
 
-        img {
-            height: 3.5rem;
-            margin-bottom: 0.5rem;
-        }
+		img {
+			height: 3.5rem;
+			margin-bottom: 0.5rem;
+		}
 
-        &:nth-of-type(3) {
-            position: relative;
-            margin-top: -5%;
-            width: 10rem;
+		&:nth-of-type(3) {
+			position: relative;
+			margin-top: -5%;
+			width: 10rem;
 
-            img {
-                width: 90%;
-                height: auto;
-            }
-        }
-    }
+			img {
+				width: 90%;
+				height: auto;
+			}
+		}
+	}
 }
 
 .selected {
-    filter: invert(67%) sepia(40%) saturate(608%) hue-rotate(85deg) brightness(96%) contrast(90%);
+	filter: invert(67%) sepia(40%) saturate(608%) hue-rotate(85deg) brightness(96%) contrast(90%);
 }

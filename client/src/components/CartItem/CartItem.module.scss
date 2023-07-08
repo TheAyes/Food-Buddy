@@ -1,107 +1,107 @@
 @import "../../global.scss";
 
 .cartItem {
-    background: rgb(154, 231, 157);
-    background: linear-gradient(47deg,
-            rgba(154, 231, 157, 1) 0%,
-            rgba(255, 255, 255, 1) 35%,
-            rgba(172, 244, 189, 1) 83%);
-    border-radius: 2vw;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 30% 35% 35%;
-    align-items: center;
-    width: 80%;
+	background: rgb(154, 231, 157);
+	background: linear-gradient(47deg,
+		rgba(154, 231, 157, 1) 0%,
+		rgba(255, 255, 255, 1) 35%,
+		rgba(172, 244, 189, 1) 83%);
+	border-radius: 2vw;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 30% 35% 35%;
+	align-items: center;
+	width: 80%;
 
-    img {
-        width: 100%;
-        aspect-ratio: 1/1;
-        border-radius: 2vw;
-        margin-right: 2.3rem;
-    }
+	img {
+		width: 100%;
+		aspect-ratio: 1/1;
+		border-radius: 2vw;
+		margin-right: 2.3rem;
+	}
 
-    .infoSection {
-        margin-left: 1rem;
+	.infoSection {
+		margin-left: 1rem;
 
-        .nameIndicator {
-            width: 35%;
-            font-size: $fz-medium-2;
-            color: $fc-5;
-            margin-bottom: 1rem;
-        }
+		.nameIndicator {
+			width: 35%;
+			font-size: $fz-medium-2;
+			color: $fc-5;
+			margin-bottom: 1rem;
+		}
 
-        .ratingSection {
-            display: flex;
-            color: $fc-4;
-            margin: 1rem 0;
+		.ratingSection {
+			display: flex;
+			color: $fc-4;
+			margin: 1rem 0;
 
-            img {
-                width: 10%;
-            }
+			img {
+				width: 10%;
+			}
 
-            .ratingIndicator {
-                font-size: $fz-medium-1;
-                margin: 0 1rem 0 -1rem;
-            }
+			.ratingIndicator {
+				font-size: $fz-medium-1;
+				margin: 0 1rem 0 -1rem;
+			}
 
-            .reviewIndicator {
-                font-size: $fz-medium-1;
-            }
-        }
+			.reviewIndicator {
+				font-size: $fz-medium-1;
+			}
+		}
 
-        .priceSection {
-            display: flex;
+		.priceSection {
+			display: flex;
 
-            .priceIndicator {
-                font-size: $fz-medium-2;
-                color: $fc-5;
-            }
+			.priceIndicator {
+				font-size: $fz-medium-2;
+				color: $fc-5;
+			}
 
-            img {
-                width: 5vw;
-                margin-left: 2rem;
-            }
-        }
-    }
+			img {
+				width: 5vw;
+				margin-left: 2rem;
+			}
+		}
+	}
 
-    .selectQuantity {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-right: 1rem;
+	.selectQuantity {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-right: 1rem;
 
-        .minusQuantity,
-        .plusQuantity {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: $fz-large-1;
-            padding: 3rem;
-            width: 2rem;
-            height: 2rem;
-            border-radius: 999vw;
-            border-color: transparent;
+		.minusQuantity,
+		.plusQuantity {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: $fz-large-1;
+			padding: 3rem;
+			width: 2rem;
+			height: 2rem;
+			border-radius: 999vw;
+			border-color: transparent;
 
-            &:hover {
-                background-color: #deffe4;
-                color: $fc-3;
-                transform: scale(1.1);
-                transition: transform 0.4s;
-                cursor: pointer;
-            }
+			&:hover {
+				background-color: #deffe4;
+				color: $fc-3;
+				transform: scale(1.1);
+				transition: transform 0.4s;
+				cursor: pointer;
+			}
 
-            &:active {
-                background-color: $bc-1;
-                box-shadow: 0 0 5px #deffe4, 0 0 10px #deffe4, 0 0 20px #deffe4,
-                    0 0 30px #deffe4;
-                color: $fc-2;
-                font-weight: $fw-regular;
-            }
-        }
+			&:active {
+				background-color: $bc-1;
+				box-shadow: 0 0 5px #deffe4, 0 0 10px #deffe4, 0 0 20px #deffe4,
+				0 0 30px #deffe4;
+				color: $fc-2;
+				font-weight: $fw-regular;
+			}
+		}
 
-        .numberQuantity {
-            font-size: $fz-medium-2;
-            margin: 0 2.6rem;
-        }
-    }
+		.numberQuantity {
+			font-size: $fz-medium-2;
+			margin: 0 2.6rem;
+		}
+	}
 }

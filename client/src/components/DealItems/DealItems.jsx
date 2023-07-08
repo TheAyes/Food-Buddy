@@ -6,22 +6,23 @@ import styles from "./DealItems.module.scss";
 export const DealItems = (props) => {
 	const { image, name, price } = props;
 	const { value, unit } = price;
-	console.log(props);
 
 	return (
-		<Link to={`/item/${props.id}`} className={styles.DealItems}>
-			<LikeButton className={styles.likeButton} />
+		<div className={styles.DealItems}>
+			<LikeButton className={styles.likeButton} id={props.id} />
 			<div>
-				<img src={props.image} alt="image" className={styles.itemImages} />
-				<p className={styles.productName}>{props.name}</p>
-				<div className={styles.flex}>
-					<p>
-						{value} {unit}
-					</p>
-					<img src={star} className={styles.star} />
-					<p> {props.rating}</p>
-				</div>
+				<Link to={`/item/${props.id}`}>
+					<img src={props.image} alt="image" className={styles.itemImages} />
+					<p className={styles.productName}>{props.name}</p>
+					<div className={styles.flex}>
+						<p>
+							{value} {unit}
+						</p>
+						<img src={star} className={styles.star} />
+						<p> {props.rating}</p>
+					</div>
+				</Link>
 			</div>
-		</Link>
+		</div>
 	);
 };

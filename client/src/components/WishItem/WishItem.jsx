@@ -1,32 +1,33 @@
-import React, { useState } from 'react';
-import styles from './WishItem.module.scss';
+import React, { useState } from "react";
+import styles from "./WishItem.module.scss";
 
 // Import Komponenten
-import { LikeButton } from '../LikeButton/LikeButton';
+import { LikeButton } from "../LikeButton/LikeButton.jsx";
 
 // Import Images
 import starImage from "../../pics/star.svg";
 
-export const WishItem = ({ id, name, rating, numOfRatings, price, onLikeButtonClick }) => {
+export const WishItem = ({ id, name, rating, numOfRatings, price, onLikeButtonClick, image }) => {
 	const [quantity, setQuantity] = useState(0);
 	const [isLiked, setIsLiked] = useState(false);
 
 	const incrementQuantity = () => {
-		setQuantity(previousQuantity => previousQuantity + 1);
+		setQuantity((previousQuantity) => previousQuantity + 1);
 	};
 
 	const decrementQuantity = () => {
-		setQuantity(previousQuantity => Math.max(previousQuantity - 1, 0));
+		setQuantity((previousQuantity) => Math.max(previousQuantity - 1, 0));
 	};
 
 	const handleLikeButtonClick = () => {
 		setIsLiked(!isLiked);
 		onLikeButtonClick(id, !isLiked);
+
 	};
 
 	return (
 		<section className={styles.wishItem}>
-			<img src="https://source.unsplash.com/random/1600x900" alt={name} />
+			<img src={image} alt={name} />
 			<div className={styles.infoSection}>
 				<p className={styles.nameIndicator}>{name}</p>
 				<div className={styles.ratingSection}>
@@ -36,17 +37,17 @@ export const WishItem = ({ id, name, rating, numOfRatings, price, onLikeButtonCl
 				</div>
 				<div className={styles.priceSection}>
 					<p className={styles.priceIndicator}>{price}</p>
-					<LikeButton
-						className={styles.likeButton}
-						isLiked={isLiked}
-						onClick={handleLikeButtonClick}
-					/>
+					<LikeButton className={styles.likeButton} initialLiked={isLiked} onClick={handleLikeButtonClick} id={id} />
 				</div>
 			</div>
 			<div className={styles.selectQuantity}>
-				<button className={styles.minusQuantity} onClick={decrementQuantity}>-</button>
-				<p className={styles.numberQuantity}>{quantity}</p>
-				<button className={styles.plusQuantity} onClick={incrementQuantity}>+</button>
+				<button className={styles.minusQuantity} onClick={decrementQuantity}>
+					-
+				</button>
+				<p className={styles.numberQuantity}>{quantity} kg</p>
+				<button className={styles.plusQuantity} onClick={incrementQuantity}>
+					+
+				</button>
 			</div>
 		</section>
 	);

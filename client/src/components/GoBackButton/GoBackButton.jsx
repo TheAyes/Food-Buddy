@@ -6,8 +6,5 @@ import styles from "./GoBackButton.module.scss";
 export const GoBackButton = () => {
 	const navigate = useNavigate();
 
-	return (
-		<button className={styles.goBackButton} onClick={() => navigate(-1)}>
-		</button>
-	);
+	return <button className={styles.goBackButton} onClick={() => navigate(-1)}></button>;
 };

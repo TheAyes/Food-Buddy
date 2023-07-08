@@ -88,7 +88,9 @@ export const ProfilePage = () => {
 		<div className={styles.profilePage}>
 			<header>
 				<article>
-					<GoBackButton />
+					<div>
+						<GoBackButton />
+					</div>
 					<p>Profile</p>
 				</article>
 				<figure>
