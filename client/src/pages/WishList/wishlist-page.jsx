@@ -55,7 +55,6 @@ export const WishlistPage = () => {
 					<GoBackButton />
 					<h4>Wishlist</h4>
 				</article>
-				{/* <img className={styles.trashCan} src={trashCan} alt="trash can" /> */}
 			</div>
 			{wishlist.length <= 0 && <img className={styles.emptyWishImage} src={emptyWishlist} alt="empty Wishlist" />}
 			<div className={styles.wishlistContainer}>
