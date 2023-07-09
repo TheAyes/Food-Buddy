@@ -226,6 +226,7 @@ export const addProductToCart = async (req, res) => {
 	try {
 		const user = req.user;
 		const { quantity } = req.query || 1;
+		console.table({ name: "quantity", value: quantity, type: typeof quantity });
 
 		const product = await Product.findById(req.params.id).exec();
 
@@ -233,10 +234,11 @@ export const addProductToCart = async (req, res) => {
 			res.status(404).json({ message: "user or product not found." });
 		}
 
-		user.cart.push({ product: product._id, quantity });
+		user.cart.push({ product: product._id, quantity: Number(quantity) });
 		await user.save(); // save user after updating cart
 		res.json(user);
 	} catch (error) {
+		console.log(error);
 		res.status(500).json(error);
 	}
 };

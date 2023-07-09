@@ -35,6 +35,10 @@ export const ItemDetails = () => {
 			if (userInfo.data.user.wishlist.includes(id)) {
 				setIsLiked(true);
 			}
+
+			if (userInfo.data.user.cart?.length > 0) {
+				userState.set({ ...userState.get, cart: userInfo.data.user.cart });
+			}
 		})();
 	}, [id]);
 
@@ -53,7 +57,7 @@ export const ItemDetails = () => {
 	const addToCart = () => {
 		(async () => {
 			const result = await axios.post(
-				`/api/products/${id}/cart`,
+				`/api/products/${id}/cart?quantity=${quantity}`,
 				{},
 				{
 					headers: {
@@ -61,8 +65,9 @@ export const ItemDetails = () => {
 					}
 				}
 			);
-			if (result.status === 200) {
-				setIsLiked(result.data.wishlist.includes(id));
+			if (result.status === 200 && result.data.cart) {
+				setQuantity(1);
+				userState.set({ ...userState.get, cart: result.data.cart });
 			}
 		})();
 	};
@@ -112,7 +117,9 @@ export const ItemDetails = () => {
 					<Link to="/user/cart">
 						<img className={styles.cartImageStyle} src={cartImage} alt="cart image" />
 					</Link>
-					<p className={styles.quantityCart}></p>
+					<p className={styles.quantityCart}>
+						{userState.get.cart.reduce((total, item) => total + item.quantity, 0) || 0}
+					</p>
 				</article>
 				<AddToCartComponent quantity={quantity} addToCart={addToCart} />
 			</div>
