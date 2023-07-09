@@ -35,7 +35,6 @@ export const CartPage = () => {
 
 	return (
 		<section className={styles.cartPage}>
-			<FilterPage />
 			<div className={styles.headerCart}>
 				<article className={styles.leftContainer}>
 					<GoBackButton />

@@ -1,4 +1,3 @@
-import { GoBackButton } from "../../components/GoBackButton/GoBackButton";
 import styles from "../Filter/filter-page.module.scss";
 import { useState } from 'react';
 
@@ -30,7 +29,7 @@ export const FilterPage = () => {
 		<>
 			<section className={styles.filterPage}>
 				<div className={styles.headerFilterPage}>
-					<GoBackButton />
+
 					<h1>Filters</h1>
 				</div>
 
