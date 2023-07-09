@@ -7,9 +7,9 @@ import { LikeButton } from "../LikeButton/LikeButton.jsx";
 // Import Images
 import starImage from "../../pics/star.svg";
 
-export const WishItem = ({ id, name, rating, numOfRatings, price, onLikeButtonClick, image }) => {
+export const WishItem = ({ id, name, rating, numOfRatings, price, onLikeButtonClick, image, isLikedProp = false }) => {
 	const [quantity, setQuantity] = useState(0);
-	const [isLiked, setIsLiked] = useState(false);
+	const [isLiked, setIsLiked] = useState(isLikedProp);
 
 	const incrementQuantity = () => {
 		setQuantity((previousQuantity) => previousQuantity + 1);
@@ -22,7 +22,6 @@ export const WishItem = ({ id, name, rating, numOfRatings, price, onLikeButtonCl
 	const handleLikeButtonClick = () => {
 		setIsLiked(!isLiked);
 		onLikeButtonClick(id, !isLiked);
-
 	};
 
 	return (
@@ -37,7 +36,12 @@ export const WishItem = ({ id, name, rating, numOfRatings, price, onLikeButtonCl
 				</div>
 				<div className={styles.priceSection}>
 					<p className={styles.priceIndicator}>{price}</p>
-					<LikeButton className={styles.likeButton} initialLiked={isLiked} onClick={handleLikeButtonClick} id={id} />
+					<LikeButton
+						className={styles.likeButton}
+						initialLiked={isLiked}
+						onClick={handleLikeButtonClick}
+						id={id}
+					/>
 				</div>
 			</div>
 			<div className={styles.selectQuantity}>

@@ -19,7 +19,8 @@ export const App = () => {
 	const [userState, setUserState] = useState({
 		accessToken: localStorage.getItem("access-token"),
 		refreshToken: localStorage.getItem("refresh-token"),
-		cart: []
+		cart: [],
+		wishlist: []
 	});
 	const location = useLocation();
 	console.log(userState);
@@ -31,7 +32,8 @@ export const App = () => {
 					return {
 						accessToken: localStorage.getItem("access-token"),
 						refreshToken: localStorage.getItem("refresh-token"),
-						cart: prevState.cart
+						cart: prevState.cart,
+						wishlist: prevState.wishlist
 					};
 				});
 			}
@@ -58,7 +60,8 @@ export const App = () => {
 				return {
 					accessToken: response.data.accessToken,
 					refreshToken: response.data.refreshToken,
-					cart: userInfo.data.user.cart
+					cart: userInfo.data.user.cart,
+					wishlist: userInfo.data.user.wishlist
 				};
 			});
 		})();

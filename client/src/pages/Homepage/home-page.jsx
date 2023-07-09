@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { CategoryBarImage } from "../../components/CategoryBarImage/CategoryBarImage";
 import { DealList } from "../../components/DealList/DealList";
@@ -15,7 +15,7 @@ export const HomePage = () => {
 		setShowDropdown(!showDropdown);
 	};
 
-	const filterButtonClass = `${styles.filterButton} ${showDropdown ? styles.rotate : ''}`;
+	const filterButtonClass = `${styles.filterButton} ${showDropdown ? styles.rotate : ""}`;
 
 	return (
 		<div className={styles.Homepage}>

@@ -9,8 +9,8 @@ import { WishItem } from "../../components/WishItem/WishItem.jsx";
 import trashCan from "../../pics/trashCan.svg";
 import emptyCart from "../../pics/emptyCart.svg";
 import { NavBar } from "../../components/NavBar/NavBar";
-import { FilterPage } from "../Filter/filter-page";
 import { UserContext } from "../../app.jsx";
+import axios from "axios";
 
 export const CartPage = () => {
 	const [cartItems, setCartItems] = useState([]);
@@ -40,7 +40,26 @@ export const CartPage = () => {
 					<GoBackButton />
 					<h4>My Cart</h4>
 				</article>
-				<img className={styles.trashCan} src={trashCan} alt="Mülleimer" />
+
+				<button
+					className={styles.trashCan}
+					onClick={(event) => {
+						(async () => {
+							const response = await axios.delete(`/api/user/cart`, {
+								headers: {
+									Authorization: `Bearer ${userState.get.accessToken}`
+								}
+							});
+
+							if (response.status === 200) {
+								setCartItems([]);
+							}
+						})();
+					}}
+				>
+					<p>Remove All</p>
+					<img src={trashCan} alt="Mülleimer" />
+				</button>
 			</div>
 			{cartItems.length <= 0 && <img className={styles.emptyCartImage} src={emptyCart} alt="empty Wishlist" />}
 			<div className={styles.cartContainer}>
@@ -52,9 +71,10 @@ export const CartPage = () => {
 							id={item.product._id}
 							name={item.product.name}
 							image={item.product.image}
-							rating={item.product.overallRating.toFixed(2)}
+							rating={item.product.overallRating?.toFixed(2)}
 							numOfRatings={item.product.ratings.length}
 							price={item.product.price.value}
+							quantity={item.quantity}
 							onLikeButtonClick={handleLikeButtonClick}
 						/>
 					);

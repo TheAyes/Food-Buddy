@@ -242,3 +242,31 @@ export const addProductToCart = async (req, res) => {
 		res.status(500).json(error);
 	}
 };
+
+export const removeProductFromCart = async (req, res) => {
+	try {
+		const user = req.user;
+
+		if (!user) {
+			return res.status(404).json({ message: "user not found." });
+		}
+
+		if (req.query.id) {
+			const index = user.cart.findIndex((item) => item._id === req.query.id);
+
+			if (index !== -1) {
+				let updatedCart = [...user.cart];
+				updatedCart.splice(index, 1);
+				user.cart = updatedCart;
+			}
+		} else {
+			user.cart = [];
+		}
+
+		await user.save(); // save user after updating cart
+		return res.json(user);
+	} catch (error) {
+		console.log(error); // log error
+		return res.status(500).json({ message: "An error occurred." });
+	}
+};

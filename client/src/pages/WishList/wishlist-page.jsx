@@ -65,10 +65,10 @@ export const WishlistPage = () => {
 						name={item.name}
 						image={item.image}
 						rating={item.overallRating.toFixed(2)}
-						numOfRatings={item.ratings.length}
+						numOfRatings={item.ratings?.length}
 						price={item.price.value}
 						onLikeButtonClick={handleLikeButtonClick}
-						isLiked={true}
+						isLikedProp={userState.wishlist.some((current) => current._id === item._id)}
 					/>
 				))}
 			</div>

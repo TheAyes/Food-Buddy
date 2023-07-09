@@ -20,6 +20,7 @@ import {
 	getProductDeals,
 	getProducts,
 	rateProduct,
+	removeProductFromCart,
 	updateDeals,
 	updateProductById,
 	wishlistProduct
@@ -273,6 +274,18 @@ const endpointsBuilder = [
 		bodyStructure: {},
 		middlewares: [authenticateUser],
 		function: async (req, res) => addProductToCart(req, res)
+	},
+	{
+		method: "DELETE",
+		path: "/api/user/cart",
+		urlParams: [],
+		queryParams: ["id"],
+		headStructure: {
+			Authorization: `Bearer JWT_TOKEN_HERE`
+		},
+		bodyStructure: {},
+		middlewares: [authenticateUser],
+		function: async (req, res) => removeProductFromCart(req, res)
 	},
 	{
 		method: "GET",

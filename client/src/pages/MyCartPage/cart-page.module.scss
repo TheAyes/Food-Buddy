@@ -18,9 +18,25 @@
 			}
 		}
 
+
 		.trashCan {
-			width: 4.5%;
-			margin-left: auto;
+			aspect-ratio: 1/1;
+			width: 3.5rem;
+			padding: 4px;
+			background: none;
+			border: none;
+
+			display: flex;
+			align-items: center;
+			gap: 8px;
+
+			width: max-content;
+			height: max-content;
+
+			p {
+				font-size: $fz-small-3;
+				white-space: nowrap;
+			}
 
 			&:hover {
 				filter: brightness(85%);
@@ -36,7 +52,13 @@
 				opacity: 100%;
 			}
 
+			img {
+				width: 2.5rem;
+			}
+
 		}
+
+
 	}
 
 	.emptyCartImage {
