@@ -21,12 +21,13 @@
 				background-image: url("../../pics/deal40.jpeg");
 			}
 
-			p {
+			a {
 				font-family: $ff-roboto;
 				color: $fc-2;
 				font-size: $fz-large-2;
 				font-weight: $fw-bold;
-				text-shadow: rgb(0, 0, 0) 1px 0 10px;;
+				text-shadow: rgb(0, 0, 0) 1px 0 10px;
+				text-decoration: none;
 			}
 		}
 	}
@@ -44,7 +45,7 @@
 		align-items: center;
 		border-radius: 1rem;
 
-		p {
+		a {
 			text-align: center;
 			color: $fc-2;
 			font-family: $ff-roboto;
@@ -52,6 +53,7 @@
 			font-weight: $fw-bold;
 			text-shadow: rgb(0, 0, 0) 1px 0 10px;
 			margin: 0 3rem;
+			text-decoration: none;
 		}
 	}
 
@@ -67,7 +69,7 @@
 		align-items: center;
 		border-radius: 1rem;
 
-		p {
+		a {
 			text-align: center;
 			color: $fc-2;
 			font-family: $ff-roboto;
@@ -75,6 +77,7 @@
 			font-weight: $fw-bold;
 			text-shadow: rgb(0, 0, 0) 1px 0 10px;
 			margin: 0 3rem;
+			text-decoration: none;
 		}
 	}
 
@@ -90,7 +93,7 @@
 		align-items: center;
 		border-radius: 1rem;
 
-		p {
+		a {
 			text-align: center;
 			color: $fc-2;
 			font-family: $ff-roboto;
@@ -98,6 +101,7 @@
 			font-weight: $fw-bold;
 			text-shadow: rgb(0, 0, 0) 1px 0 10px;
 			margin: 0 3rem;
+			text-decoration: none;
 		}
 	}
 
@@ -113,7 +117,7 @@
 		align-items: center;
 		border-radius: 1rem;
 
-		p {
+		a {
 			text-align: center;
 			color: $fc-2;
 			font-family: $ff-roboto;
@@ -121,6 +125,7 @@
 			font-weight: $fw-bold;
 			text-shadow: rgb(0, 0, 0) 1px 0 10px;
 			margin: 0 3rem;
+			text-decoration: none;
 		}
 	}
 
@@ -136,7 +141,7 @@
 		align-items: center;
 		border-radius: 1rem;
 
-		p {
+		a {
 			text-align: center;
 			color: $fc-2;
 			font-family: $ff-roboto;
@@ -144,6 +149,7 @@
 			font-weight: $fw-bold;
 			text-shadow: rgb(0, 0, 0) 1px 0 10px;
 			margin: 0 3rem;
+			text-decoration: none;
 		}
 	}
 }
