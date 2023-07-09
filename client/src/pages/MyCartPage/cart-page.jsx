@@ -72,8 +72,8 @@ export const CartPage = () => {
 							name={item.product.name}
 							image={item.product.image}
 							rating={item.product.overallRating?.toFixed(2)}
-							numOfRatings={item.product.ratings.length}
-							price={item.product.price.value}
+							numOfRatings={item.product.ratings?.length}
+							price={item.product.price?.value}
 							quantity={item.quantity}
 							onLikeButtonClick={handleLikeButtonClick}
 						/>
