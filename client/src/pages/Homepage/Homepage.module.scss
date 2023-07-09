@@ -1,7 +1,41 @@
 @import "../../global.scss";
 
 .Homepage {
-	section {
+	&>div.containerFilter {
+		position: relative;
+
+		.containerFilter2 {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			.upperPart {
+				.filterButton {
+					width: 4rem;
+					height: 4rem;
+					border-radius: 4px;
+					background-color: $gc-2;
+					transition: background-color 0.3s, transform 0.3s;
+					border: none;
+
+					&:hover {
+						background-color: $gc-1;
+						filter: invert(11%);
+					}
+
+					&.rotate {
+						transform: rotate(90deg);
+					}
+				}
+			}
+
+			.searchBarContainer {
+				width: 85%;
+			}
+		}
+	}
+
+	&>section {
 		display: flex;
 		justify-content: space-around;
 		margin: 3rem 0;
@@ -26,11 +60,10 @@
 				color: $fc-2;
 				font-size: $fz-large-2;
 				font-weight: $fw-bold;
-				text-shadow: rgb(0, 0, 0) 1px 0 10px;;
+				text-shadow: 1px 0 10px rgb(0, 0, 0);
 			}
 		}
 	}
-
 
 	.fruitsBanner {
 		width: 100%;
@@ -50,7 +83,7 @@
 			font-family: $ff-roboto;
 			font-size: $fz-medium-2;
 			font-weight: $fw-bold;
-			text-shadow: rgb(0, 0, 0) 1px 0 10px;
+			text-shadow: 1px 0 10px rgb(0, 0, 0);
 			margin: 0 3rem;
 		}
 	}
@@ -73,7 +106,7 @@
 			font-family: $ff-roboto;
 			font-size: $fz-medium-2;
 			font-weight: $fw-bold;
-			text-shadow: rgb(0, 0, 0) 1px 0 10px;
+			text-shadow: 1px 0 10px rgb(0, 0, 0);
 			margin: 0 3rem;
 		}
 	}
@@ -96,7 +129,7 @@
 			font-family: $ff-roboto;
 			font-size: $fz-medium-2;
 			font-weight: $fw-bold;
-			text-shadow: rgb(0, 0, 0) 1px 0 10px;
+			text-shadow: 1px 0 10px rgb(0, 0, 0);
 			margin: 0 3rem;
 		}
 	}
@@ -119,10 +152,11 @@
 			font-family: $ff-roboto;
 			font-size: $fz-medium-2;
 			font-weight: $fw-bold;
-			text-shadow: rgb(0, 0, 0) 1px 0 10px;
+			text-shadow: 1px 0 10px rgb(0, 0, 0);
 			margin: 0 3rem;
 		}
 	}
+
 
 	.meatBanner {
 		width: 100%;

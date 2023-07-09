@@ -4,6 +4,9 @@ import { SearchBar } from "../../components/SearchBar/SearchBar.jsx";
 import styles from "./ItemList.module.scss";
 import axios from "axios";
 import PropTypes from "prop-types";
+import { GoBackButton } from "../../components/GoBackButton/GoBackButton.jsx";
+import { NavBar } from "../../components/NavBar/NavBar.jsx";
+import { useLocation } from "react-router-dom";
 
 export const ItemList = ({
 	category = "",
@@ -31,12 +34,17 @@ export const ItemList = ({
 	};
 	const [filteredData, setFilteredData] = useState([]);
 
+	const { search } = useLocation();
+	const query = new URLSearchParams(search);
+	const _category = category || query.get("category") || "";
+	const _nameFilter = nameFilter || query.get("nameFilter") || "";
+
 	useEffect(() => {
 		const params = new URLSearchParams();
 
 		// Append parameters if they exist
-		if (category) params.append("category", category);
-		if (nameFilter) params.append("nameFilter", nameFilter);
+		if (_category) params.append("category", _category);
+		if (_nameFilter) params.append("nameFilter", _nameFilter);
 		if (minPrize) params.append("minPrize", minPrize);
 		if (maxPrize) params.append("maxPrize", maxPrize);
 		if (minRating) params.append("minRating", minRating);
@@ -52,10 +60,10 @@ export const ItemList = ({
 			} catch (error) {
 				console.error("Error:", error);
 			}
-		})(); // <-- Siehe funktionsklammern
+		})();
 	}, [
-		category,
-		nameFilter,
+		_category,
+		_nameFilter,
 		minPrize,
 		maxPrize,
 		minRating,
@@ -75,19 +83,27 @@ export const ItemList = ({
 
 	return (
 		<div className={styles.parentContainer}>
-			<SearchBar onSelectItem={handleSelectItem} />
-			<div className={styles.ItemList}>
-				{filteredData.map((item) => (
-					<ProductItems
-						key={item._id}
-						_id={item._id}
-						image={item.image}
-						name={item.name}
-						price={item.price}
-						rating={item.rating}
-					/>
-				))}
+			<div className={styles.headContainer}>
+				<GoBackButton />
+				<article className={styles.searchBar}>
+					<SearchBar onSelectItem={handleSelectItem} />
+				</article>
 			</div>
+			<div className={styles.ItemList}>
+				{filteredData.map((item, index) => {
+					return (
+						<ProductItems
+							key={item._id || index}
+							_id={item._id}
+							image={item.image}
+							name={item.name}
+							price={item.price}
+							rating={item.overallRating?.toFixed(2)}
+						/>
+					);
+				})}
+			</div>
+			<NavBar />
 		</div>
 	);
 };

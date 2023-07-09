@@ -9,7 +9,7 @@ export const DealItems = (props) => {
 
 	return (
 		<div className={styles.DealItems}>
-			<LikeButton className={styles.likeButton} />
+			<LikeButton className={styles.likeButton} id={props.id} />
 			<div>
 				<Link to={`/item/${props.id}`}>
 					<img src={props.image} alt="image" className={styles.itemImages} />

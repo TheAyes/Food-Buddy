@@ -3,9 +3,9 @@
 .cartItem {
 	background: rgb(154, 231, 157);
 	background: linear-gradient(47deg,
-		rgba(154, 231, 157, 1) 0%,
-		rgba(255, 255, 255, 1) 35%,
-		rgba(172, 244, 189, 1) 83%);
+			rgba(154, 231, 157, 1) 0%,
+			rgba(255, 255, 255, 1) 35%,
+			rgba(172, 244, 189, 1) 83%);
 	border-radius: 2vw;
 	margin: 0 auto;
 	display: grid;
@@ -16,7 +16,7 @@
 	img {
 		width: 100%;
 		aspect-ratio: 1/1;
-		border-radius: 2vw;
+		border-radius: 20px;
 		margin-right: 2.3rem;
 	}
 
@@ -58,7 +58,7 @@
 			}
 
 			img {
-				width: 5vw;
+				width: 3.1rem;
 				margin-left: 2rem;
 			}
 		}
@@ -76,7 +76,7 @@
 			align-items: center;
 			justify-content: center;
 			font-size: $fz-large-1;
-			padding: 3rem;
+			padding: 2rem;
 			width: 2rem;
 			height: 2rem;
 			border-radius: 999vw;
@@ -93,7 +93,7 @@
 			&:active {
 				background-color: $bc-1;
 				box-shadow: 0 0 5px #deffe4, 0 0 10px #deffe4, 0 0 20px #deffe4,
-				0 0 30px #deffe4;
+					0 0 30px #deffe4;
 				color: $fc-2;
 				font-weight: $fw-regular;
 			}

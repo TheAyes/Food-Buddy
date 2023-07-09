@@ -1,19 +1,18 @@
 @import "../../global.scss";
 
 .profilePage {
-
-	& > header {
+	&>header {
 		background: $bc-1;
 		padding: 2rem;
 
 		border-radius: 0 0 4rem 4rem;
 
-		& > article {
+		&>article {
 			display: flex;
 			align-items: center;
 			gap: 8px;
 
-			& > button {
+			&>button {
 				aspect-ratio: 1/1;
 				width: 3rem;
 				height: auto;
@@ -24,26 +23,26 @@
 				background: none;
 				border: none;
 
-				& > img {
+				&>img {
 					flex: 1;
 					max-width: 100%;
 				}
 			}
 
-			& > p {
+			&>p {
 				font-weight: $fw-regular;
 				font-size: $fz-medium-1;
 			}
 		}
 
-		& > figure {
+		&>figure {
 			aspect-ratio: 1/1;
 			height: auto;
 			width: 15rem;
 			position: relative;
 			margin: 5rem auto;
 
-			& > img {
+			&>img {
 				aspect-ratio: inherit;
 				max-width: 100%;
 				object-fit: cover;
@@ -51,7 +50,7 @@
 				border-radius: 999vw;
 			}
 
-			& > button {
+			&>button {
 				content: "";
 				position: absolute;
 				display: flex;
@@ -75,15 +74,13 @@
 					height: auto;
 				}
 
-				&:hover {
-
-				}
+				&:hover {}
 			}
 		}
 
 	}
 
-	& > form {
+	&>form {
 		display: flex;
 		flex-direction: column;
 
@@ -107,7 +104,9 @@
 					padding-block: 0.75rem 0.5rem;
 				}
 
-				input, textarea, select {
+				input,
+				textarea,
+				select {
 					padding: 1rem;
 
 					border-radius: 0.75rem;
@@ -133,12 +132,12 @@
 			}
 		}
 
-		section > fieldset {
+		section>fieldset {
 			display: flex;
 			justify-content: center;
 			gap: 2rem;
 
-			& > input {
+			&>input {
 				padding: 1.7rem;
 				background: $bc-1;
 

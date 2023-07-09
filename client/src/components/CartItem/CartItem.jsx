@@ -40,7 +40,7 @@ export const CartItem = ({ id, name, rating, numOfRatings, price, onLikeButtonCl
 				<button className={styles.minusQuantity} onClick={decrementQuantity}>
 					-
 				</button>
-				<p className={styles.numberQuantity}>{quantity}</p>
+				<p className={styles.numberQuantity}>{quantity} kg</p>
 				<button className={styles.plusQuantity} onClick={incrementQuantity}>
 					+
 				</button>

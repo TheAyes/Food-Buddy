@@ -1,13 +1,41 @@
+import React, { useState } from 'react';
 import { CategoryBarImage } from "../../components/CategoryBarImage/CategoryBarImage";
 import { DealList } from "../../components/DealList/DealList";
 import { NavBar } from "../../components/NavBar/NavBar";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
 import styles from "./Homepage.module.scss";
+import FilterIcon from "../../pics/FilterIcon.svg";
+import { FilterPage } from "../Filter/filter-page.jsx";
 
 export const HomePage = () => {
+	const [showDropdown, setShowDropdown] = useState(false);
+
+	const toggleDropdown = () => {
+		setShowDropdown(!showDropdown);
+	};
+
+	const filterButtonClass = `${styles.filterButton} ${showDropdown ? styles.rotate : ''}`;
+
 	return (
 		<div className={styles.Homepage}>
-			<SearchBar />
+			<div className={styles.containerFilter}>
+				<div className={styles.containerFilter2}>
+					<div className={styles.upperPart}>
+						<button className={filterButtonClass} onClick={toggleDropdown}>
+							<img src={FilterIcon} alt="Filter Icon" id="filterIcon" />
+						</button>
+					</div>
+					<div className={styles.searchBarContainer}>
+						<SearchBar />
+					</div>
+				</div>
+				{showDropdown && (
+					<div className={styles.dropdownMenu}>
+						<FilterPage />
+					</div>
+				)}
+			</div>
+
 			<section>
 				<div>
 					<p>Get 20% OFF</p>
