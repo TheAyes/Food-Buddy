@@ -68,7 +68,7 @@ export const WishlistPage = () => {
 						numOfRatings={item.ratings?.length}
 						price={item.price.value}
 						onLikeButtonClick={handleLikeButtonClick}
-						isLikedProp={userState.wishlist.some((current) => current._id === item._id)}
+						isLikedProp={userState.wishlist?.some((current) => current._id === item._id)}
 					/>
 				))}
 			</div>
