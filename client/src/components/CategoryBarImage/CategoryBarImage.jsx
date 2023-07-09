@@ -5,10 +5,16 @@ import bread from "../../pics/breadLOGO.jpg";
 import vegetables from "../../pics/vegetablesLOGO.jpg";
 import seafood from "../../pics/seafoodLOGO.jpg";
 import fruits from "../../pics/fruitLOGO.jpg";
+import allFoods from "../../pics/allfoodsLOGO.jpg"
 
 export const CategoryBarImage = () => {
 	return (
 		<div className={styles.CategoryBarImage}>
+			<Link to="/itemlist">
+				<img src={allFoods} alt="grocerie mix" />
+				<div className="shadow"></div>
+				All
+			</Link>
 			<Link to="/itemlist?category=649d50bd924b2f32645d0f24">
 				<img src={meat} alt="meat" />
 				<div className="shadow"></div>
