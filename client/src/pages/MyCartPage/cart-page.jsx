@@ -9,7 +9,6 @@ import { WishItem } from "../../components/WishItem/WishItem.jsx";
 import trashCan from "../../pics/trashCan.svg";
 import emptyCart from "../../pics/emptyCart.svg";
 import { NavBar } from "../../components/NavBar/NavBar";
-import { FilterPage } from "../Filter/filter-page";
 
 export const CartPage = () => {
 	const [cartItems, setCartItems] = useState([]);
@@ -29,7 +28,6 @@ export const CartPage = () => {
 
 	return (
 		<section className={styles.cartPage}>
-			<FilterPage />
 			<div className={styles.headerCart}>
 				<article className={styles.leftContainer}>
 					<GoBackButton />
