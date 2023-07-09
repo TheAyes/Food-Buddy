@@ -98,7 +98,7 @@ export const ItemList = ({
 							image={item.image}
 							name={item.name}
 							price={item.price}
-							rating={item.rating}
+							rating={item.overallRating?.toFixed(2)}
 						/>
 					);
 				})}

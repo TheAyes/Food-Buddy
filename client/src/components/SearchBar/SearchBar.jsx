@@ -7,7 +7,6 @@ import data from "../../data/grocery-data.json";
 export const SearchBar = ({ onSelectItem }) => {
 	const [input, setInput] = useState("");
 	const [filteredData, setFilteredData] = useState([]);
-	const [searchTerm, setSearchTerm] = useState("");
 	const [suggestions, setSuggestions] = useState([]);
 	const inputRef = useRef(null);
 	const location = useLocation();
@@ -44,7 +43,7 @@ export const SearchBar = ({ onSelectItem }) => {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		
+
 		await handleSearch();
 		if (filteredData.length > 0) {
 			onSelectItem(filteredData[0]);
