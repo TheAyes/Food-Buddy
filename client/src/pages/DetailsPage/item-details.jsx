@@ -1,8 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import styles from "./item-details.module.scss";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import { Link } from 'react-router-dom';
 
 // Bilder Import
 import starImage from "../../pics/star.svg";
@@ -52,7 +51,20 @@ export const ItemDetails = () => {
 	};
 
 	const addToCart = () => {
-		console.log(`Menge ${quantity} zum Einkaufswagen hinzugefügt!`);
+		(async () => {
+			const result = await axios.post(
+				`/api/products/${id}/cart`,
+				{},
+				{
+					headers: {
+						Authorization: `Bearer ${userState.get.accessToken}`
+					}
+				}
+			);
+			if (result.status === 200) {
+				setIsLiked(result.data.wishlist.includes(id));
+			}
+		})();
 	};
 
 	return (

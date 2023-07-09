@@ -225,13 +225,15 @@ export const wishlistProduct = async (req, res) => {
 export const addProductToCart = async (req, res) => {
 	try {
 		const user = req.user;
+		const { quantity } = req.query || 1;
+
 		const product = await Product.findById(req.params.id).exec();
 
 		if (!user || !product) {
 			res.status(404).json({ message: "user or product not found." });
 		}
 
-		user.cart.push(product.id);
+		user.cart.push({ product: product._id, quantity });
 		await user.save(); // save user after updating cart
 		res.json(user);
 	} catch (error) {

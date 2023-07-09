@@ -36,15 +36,15 @@ export const ItemList = ({
 
 	const { search } = useLocation();
 	const query = new URLSearchParams(search);
-	const categoryFromUrl = query.get("category") || "";
-	const _category = category || categoryFromUrl;
+	const _category = category || query.get("category") || "";
+	const _nameFilter = nameFilter || query.get("nameFilter") || "";
 
 	useEffect(() => {
 		const params = new URLSearchParams();
 
 		// Append parameters if they exist
 		if (_category) params.append("category", _category);
-		if (nameFilter) params.append("nameFilter", nameFilter);
+		if (_nameFilter) params.append("nameFilter", _nameFilter);
 		if (minPrize) params.append("minPrize", minPrize);
 		if (maxPrize) params.append("maxPrize", maxPrize);
 		if (minRating) params.append("minRating", minRating);
@@ -60,10 +60,10 @@ export const ItemList = ({
 			} catch (error) {
 				console.error("Error:", error);
 			}
-		})(); // <-- Siehe funktionsklammern
+		})();
 	}, [
 		_category,
-		nameFilter,
+		_nameFilter,
 		minPrize,
 		maxPrize,
 		minRating,
@@ -90,16 +90,18 @@ export const ItemList = ({
 				</article>
 			</div>
 			<div className={styles.ItemList}>
-				{filteredData.map((item) => (
-					<ProductItems
-						key={item._id}
-						_id={item._id}
-						image={item.image}
-						name={item.name}
-						price={item.price}
-						rating={item.rating}
-					/>
-				))}
+				{filteredData.map((item, index) => {
+					return (
+						<ProductItems
+							key={item._id || index}
+							_id={item._id}
+							image={item.image}
+							name={item.name}
+							price={item.price}
+							rating={item.rating}
+						/>
+					);
+				})}
 			</div>
 			<NavBar />
 		</div>
