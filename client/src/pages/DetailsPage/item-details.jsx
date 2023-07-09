@@ -1,8 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import styles from "./item-details.module.scss";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import { Link } from 'react-router-dom';
 
 // Bilder Import
 import starImage from "../../pics/star.svg";
@@ -36,6 +35,10 @@ export const ItemDetails = () => {
 			if (userInfo.data.user.wishlist.includes(id)) {
 				setIsLiked(true);
 			}
+
+			if (userInfo.data.user.cart?.length > 0) {
+				userState.set({ ...userState.get, cart: userInfo.data.user.cart });
+			}
 		})();
 	}, [id]);
 
@@ -52,7 +55,21 @@ export const ItemDetails = () => {
 	};
 
 	const addToCart = () => {
-		console.log(`Menge ${quantity} zum Einkaufswagen hinzugefügt!`);
+		(async () => {
+			const result = await axios.post(
+				`/api/products/${id}/cart?quantity=${quantity}`,
+				{},
+				{
+					headers: {
+						Authorization: `Bearer ${userState.get.accessToken}`
+					}
+				}
+			);
+			if (result.status === 200 && result.data.cart) {
+				setQuantity(1);
+				userState.set({ ...userState.get, cart: result.data.cart });
+			}
+		})();
 	};
 
 	return (
@@ -100,7 +117,9 @@ export const ItemDetails = () => {
 					<Link to="/user/cart">
 						<img className={styles.cartImageStyle} src={cartImage} alt="cart image" />
 					</Link>
-					<p className={styles.quantityCart}></p>
+					<p className={styles.quantityCart}>
+						{userState.get.cart.reduce((total, item) => total + item.quantity, 0) || 0}
+					</p>
 				</article>
 				<AddToCartComponent quantity={quantity} addToCart={addToCart} />
 			</div>

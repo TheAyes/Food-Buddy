@@ -42,8 +42,10 @@ export const SearchBar = ({ onSelectItem }) => {
 		}
 	};
 
-	const handleClick = () => {
-		handleSearch();
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+		
+		await handleSearch();
 		if (filteredData.length > 0) {
 			onSelectItem(filteredData[0]);
 		}
@@ -69,15 +71,18 @@ export const SearchBar = ({ onSelectItem }) => {
 
 	return (
 		<div className={styles.SearchBarParent}>
-			<div className={styles.inputWrapper}>
-				<img src={search} alt="search" onClick={handleClick} />
+			<form className={styles.inputWrapper} onSubmit={handleSubmit}>
+				<button type="submit">
+					<img src={search} alt="search" />
+				</button>
+
 				<input
 					type="text"
 					placeholder="Search for Product..."
 					value={input}
 					onChange={(e) => handleChange(e.target.value)}
 				/>
-			</div>
+			</form>
 			{suggestions.length > 0 && (
 				<ul className={styles.suggestions}>
 					{suggestions.map((item, index) => (

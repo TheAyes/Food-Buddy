@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./cart-page.module.scss";
 
 // Import Components
@@ -9,9 +9,16 @@ import { WishItem } from "../../components/WishItem/WishItem.jsx";
 import trashCan from "../../pics/trashCan.svg";
 import emptyCart from "../../pics/emptyCart.svg";
 import { NavBar } from "../../components/NavBar/NavBar";
+import { FilterPage } from "../Filter/filter-page";
+import { UserContext } from "../../app.jsx";
 
 export const CartPage = () => {
 	const [cartItems, setCartItems] = useState([]);
+	const userState = useContext(UserContext);
+
+	useEffect(() => {
+		setCartItems(userState.get.cart);
+	}, []);
 
 	const handleLikeButtonClick = (itemId, isLiked) => {
 		if (isLiked) {
@@ -35,19 +42,23 @@ export const CartPage = () => {
 				</article>
 				<img className={styles.trashCan} src={trashCan} alt="Mülleimer" />
 			</div>
-			<img className={styles.emptyCartImage} src={emptyCart} alt="empty Wishlist" />
+			{cartItems.length <= 0 && <img className={styles.emptyCartImage} src={emptyCart} alt="empty Wishlist" />}
 			<div className={styles.cartContainer}>
-				{cartItems.map((item) => (
-					<WishItem
-						key={item.id}
-						id={item.id}
-						name={item.name}
-						rating={item.rating}
-						numOfRatings={item.numOfRatings}
-						price={item.price}
-						onLikeButtonClick={handleLikeButtonClick}
-					/>
-				))}
+				{cartItems.map((item) => {
+					console.log(item);
+					return (
+						<WishItem
+							key={item.product._id}
+							id={item.product._id}
+							name={item.product.name}
+							image={item.product.image}
+							rating={item.product.overallRating.toFixed(2)}
+							numOfRatings={item.product.ratings.length}
+							price={item.product.price.value}
+							onLikeButtonClick={handleLikeButtonClick}
+						/>
+					);
+				})}
 			</div>
 			<button className={styles.checkoutButton}>CHECK OUT</button>
 			<NavBar />

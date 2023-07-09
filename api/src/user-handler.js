@@ -5,7 +5,7 @@ export const getUserData = async (req, res) => {
 
 	if (!user) return res.status(401).json({ error: "Unauthorized" });
 
-	const updatedUser = await User.findById(req.user?._id);
+	const updatedUser = await User.findById(req.user?._id).populate("cart.product");
 
 	// Convert the mongoose document to a plain object
 	let userObject = updatedUser.toObject();
