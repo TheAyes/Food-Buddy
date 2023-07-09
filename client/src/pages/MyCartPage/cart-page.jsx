@@ -82,7 +82,7 @@ export const CartPage = () => {
 					);
 				})}
 			</div>
-			<button className={styles.checkoutButton}>CHECK OUT</button>
+			<button className={styles.checkoutButton}>CHECK OUT (TOTAL: 20,97 €)</button>
 			<NavBar />
 		</section>
 	);
