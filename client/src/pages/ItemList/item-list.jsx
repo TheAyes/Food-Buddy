@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import { GoBackButton } from "../../components/GoBackButton/GoBackButton.jsx";
 import { NavBar } from "../../components/NavBar/NavBar.jsx";
 import { useLocation } from "react-router-dom";
+import GrünerBalken from "../../components/GrünerBalken/GrünerBalken.jsx";
 
 export const ItemList = ({
 	category = "",
@@ -83,6 +84,7 @@ export const ItemList = ({
 
 	return (
 		<div className={styles.parentContainer}>
+			<GrünerBalken />
 			<div className={styles.headContainer}>
 				<GoBackButton />
 				<article className={styles.searchBar}>
@@ -118,3 +120,4 @@ ItemList.defaultProps = {
 	minNumberOfRatings: "undefined",
 	maxNumberOfRatings: "undefined"
 };
+

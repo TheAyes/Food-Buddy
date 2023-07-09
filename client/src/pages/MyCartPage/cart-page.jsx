@@ -6,11 +6,12 @@ import { GoBackButton } from "../../components/GoBackButton/GoBackButton.jsx";
 import { WishItem } from "../../components/WishItem/WishItem.jsx";
 
 // Import Images
-import trashCan from "../../pics/trashCan.svg";
+import trashCan from "../../pics/trashcan.svg";
 import emptyCart from "../../pics/emptyCart.svg";
 import { NavBar } from "../../components/NavBar/NavBar";
 import { UserContext } from "../../app.jsx";
 import axios from "axios";
+import GrünerBalken from "../../components/GrünerBalken/GrünerBalken";
 
 export const CartPage = () => {
 	const [cartItems, setCartItems] = useState([]);
@@ -35,6 +36,7 @@ export const CartPage = () => {
 
 	return (
 		<section className={styles.cartPage}>
+			<GrünerBalken />
 			<div className={styles.headerCart}>
 				<article className={styles.leftContainer}>
 					<GoBackButton />
@@ -85,3 +87,4 @@ export const CartPage = () => {
 		</section>
 	);
 };
+

@@ -7,6 +7,7 @@ import { SearchBar } from "../../components/SearchBar/SearchBar";
 import styles from "./Homepage.module.scss";
 import FilterIcon from "../../pics/FilterIcon.svg";
 import { FilterPage } from "../Filter/filter-page.jsx";
+import GrünerBalken from "../../components/GrünerBalken/GrünerBalken";
 
 export const HomePage = () => {
 	const [showDropdown, setShowDropdown] = useState(false);
@@ -19,6 +20,7 @@ export const HomePage = () => {
 
 	return (
 		<div className={styles.Homepage}>
+			<GrünerBalken />
 			<div className={styles.containerFilter}>
 				<div className={styles.containerFilter2}>
 					<div className={styles.upperPart}>
@@ -70,3 +72,4 @@ export const HomePage = () => {
 		</div>
 	);
 };
+

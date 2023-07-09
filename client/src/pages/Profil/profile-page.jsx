@@ -4,6 +4,7 @@ import { GoBackButton } from "../../components/GoBackButton/GoBackButton.jsx";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { UserContext } from "../../app.jsx";
+import GrünerBalken from "../../components/GrünerBalken/GrünerBalken";
 
 export const ProfilePage = () => {
 	const userState = useContext(UserContext);
@@ -296,3 +297,4 @@ export const ProfilePage = () => {
 		</div>
 	);
 };
+

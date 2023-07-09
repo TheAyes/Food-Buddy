@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./landPageTwo.module.scss";
-import logoGreen from "../../pics/logoGreen.svg";
+import logoGreen from "../../pics/LogoGreen.svg";
 
 export const LandPageTwo = () => {
 	return (

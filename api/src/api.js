@@ -65,6 +65,12 @@ try {
 
 const endpointsBuilder = [
 	{
+		method: "GET",
+		path: "/api/health",
+		middlewares: [],
+		function: (req, res) => res.status(200).send("OK")
+	},
+	{
 		method: "POST",
 		path: "/api/user/register",
 		urlParams: [],
