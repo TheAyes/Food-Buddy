@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
+import axios from "axios";
+
+import styles from "./ItemList.module.scss";
+import PropTypes from "prop-types";
+
 import { ProductItems } from "../../components/ProductItems/ProductItems.jsx";
 import { SearchBar } from "../../components/SearchBar/SearchBar.jsx";
-import styles from "./ItemList.module.scss";
-import axios from "axios";
-import PropTypes from "prop-types";
 import { GoBackButton } from "../../components/GoBackButton/GoBackButton.jsx";
 import { NavBar } from "../../components/NavBar/NavBar.jsx";
-import { useLocation } from "react-router-dom";
 
 export const ItemList = ({
 	category = "",
@@ -33,11 +35,43 @@ export const ItemList = ({
 		offset: PropTypes.number
 	};
 	const [filteredData, setFilteredData] = useState([]);
-
+	const [items, setItems] = useState([]);
+	const location = useLocation();
 	const { search } = useLocation();
 	const query = new URLSearchParams(search);
 	const categoryFromUrl = query.get("category") || "";
 	const _category = category || categoryFromUrl;
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const searchParams = new URLSearchParams(location.search);
+			const queryParams = {};
+
+			// Überprüfe die Filterparameter und füge sie zum queryParams-Objekt hinzu
+			if (searchParams.has("minPrize")) {
+				queryParams.minPrize = searchParams.get("minPrize");
+			}
+			if (searchParams.has("maxPrize")) {
+				queryParams.maxPrize = searchParams.get("maxPrize");
+			}
+			if (searchParams.has("categories")) {
+				queryParams.categories = searchParams.get("categories");
+			}
+			if (searchParams.has("maxRating")) {
+				queryParams.maxRating = searchParams.get("maxRating");
+			}
+
+			// API-Anfrage mit den Filterparametern
+			try {
+				const response = await axios.get(`/api/items?${new URLSearchParams(queryParams).toString()}`);
+				setItems(response.data);
+			} catch (error) {
+				console.error("Error fetching items:", error);
+			}
+		};
+
+		fetchData();
+	}, [location.search]);
 
 	useEffect(() => {
 		const params = new URLSearchParams();
@@ -116,3 +150,4 @@ ItemList.defaultProps = {
 	minNumberOfRatings: "undefined",
 	maxNumberOfRatings: "undefined"
 };
+

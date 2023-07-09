@@ -14,6 +14,7 @@ import { LandPageTwo } from "./pages/LandPageTwo/land-page-two.jsx";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { WishlistPage } from "./pages/WishList/wishlist-page.jsx";
+import { FilterPage } from "./pages/Filter/filter-page.jsx";
 
 export const UserContext = createContext(null);
 export const App = () => {
@@ -54,6 +55,7 @@ export const App = () => {
 	}, [location.pathname, userState.refreshToken]);
 	return (
 		<>
+			<FilterPage />
 			<UserContext.Provider value={{ get: userState, set: setUserState }}>
 				<Routes>
 					<Route path="/" index element={<LandingPage />} />
@@ -73,3 +75,4 @@ export const App = () => {
 		</>
 	);
 };
+
