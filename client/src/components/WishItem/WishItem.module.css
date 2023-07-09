@@ -1,0 +1,142 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+h1 {
+  font-size: 4.4rem;
+}
+
+h2 {
+  font-size: 4.1rem;
+}
+
+h3 {
+  font-size: 3.6rem;
+}
+
+h4 {
+  font-size: 2.4rem;
+}
+
+h5 {
+  font-size: 2.2rem;
+}
+
+h6 {
+  font-size: 1.8rem;
+}
+
+p {
+  font-size: 1.2rem;
+}
+
+a {
+  color: #777777;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.wishItem {
+  background: rgb(154, 231, 157);
+  background: linear-gradient(47deg, rgb(154, 231, 157) 0%, rgb(255, 255, 255) 35%, rgb(172, 244, 189) 83%);
+  border-radius: 20px;
+  margin: 1vh auto;
+  display: grid;
+  grid-template-columns: 30% 35% 35%;
+  align-items: center;
+  width: 80%;
+}
+.wishItem img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 20px;
+  margin-right: 2.3rem;
+}
+.wishItem .infoSection {
+  margin-left: 1rem;
+}
+.wishItem .infoSection .nameIndicator {
+  width: 35%;
+  font-size: 2.4rem;
+  color: #2c3066;
+  margin-bottom: 1rem;
+}
+.wishItem .infoSection .ratingSection {
+  display: flex;
+  color: #777777;
+  margin: 1rem 0;
+}
+.wishItem .infoSection .ratingSection img {
+  width: 10%;
+}
+.wishItem .infoSection .ratingSection .ratingIndicator {
+  font-size: 2.2rem;
+  margin: 0 1rem 0 -1rem;
+}
+.wishItem .infoSection .ratingSection .reviewIndicator {
+  font-size: 2.2rem;
+}
+.wishItem .infoSection .priceSection {
+  display: flex;
+}
+.wishItem .infoSection .priceSection .priceIndicator {
+  font-size: 2.4rem;
+  color: #2c3066;
+}
+.wishItem .infoSection .priceSection img {
+  width: 3.1rem;
+  margin-left: 2rem;
+}
+.wishItem .selectQuantity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+}
+.wishItem .selectQuantity .minusQuantity,
+.wishItem .selectQuantity .plusQuantity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.6rem;
+  padding: 2rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999vw;
+  border-color: transparent;
+}
+.wishItem .selectQuantity .minusQuantity:hover,
+.wishItem .selectQuantity .plusQuantity:hover {
+  background-color: #deffe4;
+  color: #000000;
+  transform: scale(1.1);
+  transition: transform 0.4s;
+  cursor: pointer;
+}
+.wishItem .selectQuantity .minusQuantity:active,
+.wishItem .selectQuantity .plusQuantity:active {
+  background-color: #40aa54;
+  box-shadow: 0 0 5px #deffe4, 0 0 10px #deffe4, 0 0 20px #deffe4, 0 0 30px #deffe4;
+  color: #ffffff;
+  font-weight: 400;
+}
+.wishItem .selectQuantity .numberQuantity {
+  font-size: 2.4rem;
+  margin: 0 2.6rem;
+}/*# sourceMappingURL=WishItem.module.css.map */

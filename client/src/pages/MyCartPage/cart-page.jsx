@@ -11,6 +11,7 @@ import emptyCart from "../../pics/emptyCart.svg";
 import { NavBar } from "../../components/NavBar/NavBar";
 import { FilterPage } from "../Filter/filter-page";
 import { UserContext } from "../../app.jsx";
+import GrünerBalken from "../../components/GrünerBalken/GrünerBalken";
 
 export const CartPage = () => {
 	const [cartItems, setCartItems] = useState([]);
@@ -35,6 +36,7 @@ export const CartPage = () => {
 
 	return (
 		<section className={styles.cartPage}>
+			<GrünerBalken />
 			<div className={styles.headerCart}>
 				<article className={styles.leftContainer}>
 					<GoBackButton />

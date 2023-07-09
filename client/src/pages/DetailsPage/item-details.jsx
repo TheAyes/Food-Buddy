@@ -13,6 +13,7 @@ import { AddToCartComponent } from "../../components/AddToCartComponent/AddToCar
 import { LikeButton } from "../../components/LikeButton/LikeButton";
 import { UserContext } from "../../app.jsx";
 import { NavBar } from "../../components/NavBar/NavBar";
+import GrünerBalken from "../../components/GrünerBalken/GrünerBalken";
 
 export const ItemDetails = () => {
 	const [quantity, setQuantity] = useState(1);
@@ -74,6 +75,7 @@ export const ItemDetails = () => {
 
 	return (
 		<section className={styles.itemDetails}>
+			<GrünerBalken />
 			<div className={styles.upperPart}>
 				<GoBackButton />
 				{/* Titel erstellen */}
@@ -127,3 +129,4 @@ export const ItemDetails = () => {
 		</section>
 	);
 };
+

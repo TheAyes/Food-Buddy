@@ -12,6 +12,7 @@ import emptyWishlist from "../../pics/emptyWishlist.svg";
 import { UserContext } from "../../app.jsx";
 import axios from "axios";
 import trashCan from "../../pics/trashcan.svg";
+import GrünerBalken from "../../components/GrünerBalken/GrünerBalken";
 
 export const WishlistPage = () => {
 	const [wishlist, setWishlist] = useState([]);
@@ -52,6 +53,7 @@ export const WishlistPage = () => {
 
 	return (
 		<section className={styles.wishlistPage}>
+			<GrünerBalken />
 			<div className={styles.headerWishlist}>
 				<article className={styles.leftContainer}>
 					<GoBackButton />
@@ -78,3 +80,4 @@ export const WishlistPage = () => {
 		</section>
 	);
 };
+

@@ -1,18 +1,21 @@
 import { GoBackButton } from "../../components/GoBackButton/GoBackButton";
+import GrünerBalken from "../../components/GrünerBalken/GrünerBalken";
 import { NavBar } from "../../components/NavBar/NavBar";
 import styles from "./order-history-page.module.scss";
-
 
 export const OrderHistoryPage = () => {
 	return (
 		<>
 			<section className={styles.orderHistory}>
+				<GrünerBalken />
 				<div className={styles.headerOrderHistory}>
 					<GoBackButton />
 					<h4>Order History</h4>
 				</div>
 				<div className={styles.listContainer}>
-					<a href="#" className={styles.listAll}>All</a>
+					<a href="#" className={styles.listAll}>
+						All
+					</a>
 				</div>
 				<div className={styles.allOrders}>
 					<article className={styles.orderBox}>
@@ -64,5 +67,6 @@ export const OrderHistoryPage = () => {
 				<NavBar />
 			</section>
 		</>
-	)
+	);
 };
+
