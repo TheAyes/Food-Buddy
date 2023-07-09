@@ -63,11 +63,11 @@ export const CartPage = () => {
 			</div>
 			{cartItems.length <= 0 && <img className={styles.emptyCartImage} src={emptyCart} alt="empty Wishlist" />}
 			<div className={styles.cartContainer}>
-				{cartItems.map((item) => {
+				{cartItems.map((item, index) => {
 					console.log(item);
 					return (
 						<WishItem
-							key={item.product._id}
+							key={item.product._id + index}
 							id={item.product._id}
 							name={item.product.name}
 							image={item.product.image}
