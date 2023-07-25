@@ -13,7 +13,8 @@
 		"client:start": "cd client && npm run start",
 		"client:build": "cd client && npm run build",
 		"start": "concurrently -n \"api,client\" \"npm run api:start\" \"npm run client:start\"",
-		"inst": "npm install && cd api && npm install && cd ../ && cd client && npm install"
+		"inst": "npm install && cd api && npm install && cd ../ && cd client && npm install",
+		"build": "npm i"
 	},
 	"dependencies": {
 		"@fontsource/roboto": "^5.0.3",
@@ -23,3 +24,4 @@
 		"uuid": "^9.0.0"
 	}
 }
+
