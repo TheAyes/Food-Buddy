@@ -1,7 +1,41 @@
 @import "../../global.scss";
 
 .Homepage {
-	section {
+	&>div.containerFilter {
+		position: relative;
+
+		.containerFilter2 {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			.upperPart {
+				.filterButton {
+					width: 4rem;
+					height: 4rem;
+					border-radius: 4px;
+					background-color: $gc-2;
+					transition: background-color 0.3s, transform 0.3s;
+					border: none;
+
+					&:hover {
+						background-color: $gc-1;
+						filter: invert(11%);
+					}
+
+					&.rotate {
+						transform: rotate(90deg);
+					}
+				}
+			}
+
+			.searchBarContainer {
+				width: 85%;
+			}
+		}
+	}
+
+	&>section {
 		display: flex;
 		justify-content: space-around;
 		margin: 3rem 0;
@@ -21,16 +55,16 @@
 				background-image: url("../../pics/deal40.jpeg");
 			}
 
-			p {
+			a {
 				font-family: $ff-roboto;
 				color: $fc-2;
 				font-size: $fz-large-2;
 				font-weight: $fw-bold;
-				text-shadow: rgb(0, 0, 0) 1px 0 10px;;
+				text-shadow: rgb(0, 0, 0) 1px 0 10px;
+				text-decoration: none;
 			}
 		}
 	}
-
 
 	.fruitsBanner {
 		width: 100%;
@@ -44,7 +78,7 @@
 		align-items: center;
 		border-radius: 1rem;
 
-		p {
+		a {
 			text-align: center;
 			color: $fc-2;
 			font-family: $ff-roboto;
@@ -52,6 +86,7 @@
 			font-weight: $fw-bold;
 			text-shadow: rgb(0, 0, 0) 1px 0 10px;
 			margin: 0 3rem;
+			text-decoration: none;
 		}
 	}
 
@@ -67,7 +102,7 @@
 		align-items: center;
 		border-radius: 1rem;
 
-		p {
+		a {
 			text-align: center;
 			color: $fc-2;
 			font-family: $ff-roboto;
@@ -75,6 +110,7 @@
 			font-weight: $fw-bold;
 			text-shadow: rgb(0, 0, 0) 1px 0 10px;
 			margin: 0 3rem;
+			text-decoration: none;
 		}
 	}
 
@@ -90,7 +126,7 @@
 		align-items: center;
 		border-radius: 1rem;
 
-		p {
+		a {
 			text-align: center;
 			color: $fc-2;
 			font-family: $ff-roboto;
@@ -98,6 +134,7 @@
 			font-weight: $fw-bold;
 			text-shadow: rgb(0, 0, 0) 1px 0 10px;
 			margin: 0 3rem;
+			text-decoration: none;
 		}
 	}
 
@@ -113,7 +150,7 @@
 		align-items: center;
 		border-radius: 1rem;
 
-		p {
+		a {
 			text-align: center;
 			color: $fc-2;
 			font-family: $ff-roboto;
@@ -121,6 +158,7 @@
 			font-weight: $fw-bold;
 			text-shadow: rgb(0, 0, 0) 1px 0 10px;
 			margin: 0 3rem;
+			text-decoration: none;
 		}
 	}
 
@@ -136,7 +174,7 @@
 		align-items: center;
 		border-radius: 1rem;
 
-		p {
+		a {
 			text-align: center;
 			color: $fc-2;
 			font-family: $ff-roboto;
@@ -144,6 +182,7 @@
 			font-weight: $fw-bold;
 			text-shadow: rgb(0, 0, 0) 1px 0 10px;
 			margin: 0 3rem;
+			text-decoration: none;
 		}
 	}
 }

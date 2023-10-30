@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./cart-page.module.scss";
 
 // Import Components
@@ -9,9 +9,17 @@ import { WishItem } from "../../components/WishItem/WishItem.jsx";
 import trashCan from "../../pics/trashcan.svg";
 import emptyCart from "../../pics/emptyCart.svg";
 import { NavBar } from "../../components/NavBar/NavBar";
+import { UserContext } from "../../app.jsx";
+import axios from "axios";
+import GrünerBalken from "../../components/GrünerBalken/GrünerBalken";
 
 export const CartPage = () => {
 	const [cartItems, setCartItems] = useState([]);
+	const userState = useContext(UserContext);
+
+	useEffect(() => {
+		setCartItems(userState.get.cart);
+	}, []);
 
 	const handleLikeButtonClick = (itemId, isLiked) => {
 		if (isLiked) {
@@ -28,29 +36,55 @@ export const CartPage = () => {
 
 	return (
 		<section className={styles.cartPage}>
+			<GrünerBalken />
 			<div className={styles.headerCart}>
 				<article className={styles.leftContainer}>
 					<GoBackButton />
 					<h4>My Cart</h4>
 				</article>
-				<img className={styles.trashCan} src={trashCan} alt="Mülleimer" />
+
+				<button
+					className={styles.trashCan}
+					onClick={(event) => {
+						(async () => {
+							const response = await axios.delete(`/api/user/cart`, {
+								headers: {
+									Authorization: `Bearer ${userState.get.accessToken}`
+								}
+							});
+
+							if (response.status === 200) {
+								setCartItems([]);
+							}
+						})();
+					}}
+				>
+					<p>Remove All</p>
+					<img src={trashCan} alt="Mülleimer" />
+				</button>
 			</div>
-			<img className={styles.emptyCartImage} src={emptyCart} alt="empty Wishlist" />
+			{cartItems.length <= 0 && <img className={styles.emptyCartImage} src={emptyCart} alt="empty Wishlist" />}
 			<div className={styles.cartContainer}>
-				{cartItems.map((item) => (
-					<WishItem
-						key={item.id}
-						id={item.id}
-						name={item.name}
-						rating={item.rating}
-						numOfRatings={item.numOfRatings}
-						price={item.price}
-						onLikeButtonClick={handleLikeButtonClick}
-					/>
-				))}
+				{cartItems.map((item, index) => {
+					console.log(item);
+					return (
+						<WishItem
+							key={item.product._id + index}
+							id={item.product._id}
+							name={item.product.name}
+							image={item.product.image}
+							rating={item.product.overallRating?.toFixed(2)}
+							numOfRatings={item.product.ratings?.length}
+							price={item.product.price?.value}
+							quantity={item.quantity}
+							onLikeButtonClick={handleLikeButtonClick}
+						/>
+					);
+				})}
 			</div>
-			<button className={styles.checkoutButton}>CHECK OUT</button>
+			<button className={styles.checkoutButton}>CHECK OUT (TOTAL: 20,97 €)</button>
 			<NavBar />
 		</section>
 	);
 };
+

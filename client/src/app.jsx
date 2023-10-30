@@ -19,17 +19,22 @@ export const UserContext = createContext(null);
 export const App = () => {
 	const [userState, setUserState] = useState({
 		accessToken: localStorage.getItem("access-token"),
-		refreshToken: localStorage.getItem("refresh-token")
+		refreshToken: localStorage.getItem("refresh-token"),
+		cart: [],
+		wishlist: []
 	});
 	const location = useLocation();
+	console.log(userState);
 
 	useEffect(() => {
 		(async () => {
 			if (!userState.accessToken || !userState.refreshToken) {
-				setUserState(() => {
+				setUserState((prevState) => {
 					return {
 						accessToken: localStorage.getItem("access-token"),
-						refreshToken: localStorage.getItem("refresh-token")
+						refreshToken: localStorage.getItem("refresh-token"),
+						cart: prevState.cart,
+						wishlist: prevState.wishlist
 					};
 				});
 			}
@@ -43,12 +48,22 @@ export const App = () => {
 				}
 			);
 
+			const userInfo = await axios.get("/api/user", {
+				headers: {
+					Authorization: `Bearer ${userState.accessToken}`
+				}
+			});
+
 			localStorage.setItem("access-token", response.data.accessToken);
 			localStorage.setItem("refresh-token", response.data.refreshToken);
 
-			setUserState({
-				accessToken: response.data.accessToken,
-				refreshToken: response.data.refreshToken
+			setUserState(() => {
+				return {
+					accessToken: response.data.accessToken,
+					refreshToken: response.data.refreshToken,
+					cart: userInfo.data.user.cart,
+					wishlist: userInfo.data.user.wishlist
+				};
 			});
 		})();
 	}, [location.pathname, userState.refreshToken]);

@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import styles from "./WishItem.module.scss";
 
 // Import Komponenten
-import { LikeButton } from "../LikeButton/LikeButton";
+import { LikeButton } from "../LikeButton/LikeButton.jsx";
 
 // Import Images
 import starImage from "../../pics/star.svg";
 
-export const WishItem = ({ id, name, rating, numOfRatings, price, onLikeButtonClick, image }) => {
+export const WishItem = ({ id, name, rating, numOfRatings, price, onLikeButtonClick, image, isLikedProp = false }) => {
 	const [quantity, setQuantity] = useState(0);
-	const [isLiked, setIsLiked] = useState(false);
+	const [isLiked, setIsLiked] = useState(isLikedProp);
 
 	const incrementQuantity = () => {
 		setQuantity((previousQuantity) => previousQuantity + 1);
@@ -36,14 +36,19 @@ export const WishItem = ({ id, name, rating, numOfRatings, price, onLikeButtonCl
 				</div>
 				<div className={styles.priceSection}>
 					<p className={styles.priceIndicator}>{price}</p>
-					<LikeButton className={styles.likeButton} isLiked={isLiked} onClick={handleLikeButtonClick} />
+					<LikeButton
+						className={styles.likeButton}
+						initialLiked={isLiked}
+						onClick={handleLikeButtonClick}
+						id={id}
+					/>
 				</div>
 			</div>
 			<div className={styles.selectQuantity}>
 				<button className={styles.minusQuantity} onClick={decrementQuantity}>
 					-
 				</button>
-				<p className={styles.numberQuantity}>{quantity}</p>
+				<p className={styles.numberQuantity}>{quantity} kg</p>
 				<button className={styles.plusQuantity} onClick={incrementQuantity}>
 					+
 				</button>

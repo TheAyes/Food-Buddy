@@ -1,0 +1,15 @@
+@charset "UTF-8";
+.grünerBalken_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80px;
+  background-color: rgb(64, 170, 84);
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+.grünerBalken_container img {
+  width: 6rem;
+  padding: 5px;
+}/*# sourceMappingURL=GrünerBalken.module.css.map */

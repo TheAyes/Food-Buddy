@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import styles from "./item-details.module.scss";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 // Bilder Import
@@ -12,6 +12,8 @@ import { GoBackButton } from "../../components/GoBackButton/GoBackButton";
 import { AddToCartComponent } from "../../components/AddToCartComponent/AddToCartComponent";
 import { LikeButton } from "../../components/LikeButton/LikeButton";
 import { UserContext } from "../../app.jsx";
+import { NavBar } from "../../components/NavBar/NavBar";
+import GrünerBalken from "../../components/GrünerBalken/GrünerBalken";
 
 export const ItemDetails = () => {
 	const [quantity, setQuantity] = useState(1);
@@ -34,6 +36,10 @@ export const ItemDetails = () => {
 			if (userInfo.data.user.wishlist.includes(id)) {
 				setIsLiked(true);
 			}
+
+			if (userInfo.data.user.cart?.length > 0) {
+				userState.set({ ...userState.get, cart: userInfo.data.user.cart });
+			}
 		})();
 	}, [id]);
 
@@ -50,11 +56,26 @@ export const ItemDetails = () => {
 	};
 
 	const addToCart = () => {
-		console.log(`Menge ${quantity} zum Einkaufswagen hinzugefügt!`);
+		(async () => {
+			const result = await axios.post(
+				`/api/products/${id}/cart?quantity=${quantity}`,
+				{},
+				{
+					headers: {
+						Authorization: `Bearer ${userState.get.accessToken}`
+					}
+				}
+			);
+			if (result.status === 200 && result.data.cart) {
+				setQuantity(1);
+				userState.set({ ...userState.get, cart: result.data.cart });
+			}
+		})();
 	};
 
 	return (
 		<section className={styles.itemDetails}>
+			<GrünerBalken />
 			<div className={styles.upperPart}>
 				<GoBackButton />
 				{/* Titel erstellen */}
@@ -73,7 +94,7 @@ export const ItemDetails = () => {
 				<div className={styles.ratingSection}>
 					<img src={starImage} alt="rating star" />
 					<h3 className={styles.ratingIndicator}>{item.overallRating.toFixed(2)}</h3>
-					<h3 className={styles.reviewIndicator}>({item.ratings.length})</h3>
+					<h3 className={styles.reviewIndicator}>({item.ratings.length} Reviews) </h3>
 				</div>
 			</article>
 			<hr></hr>
@@ -88,12 +109,24 @@ export const ItemDetails = () => {
 						+
 					</button>
 				</div>
+				<div className={styles.pricingSection}>
+					<label>Total:</label>
+					<p>
+						{(item.price.value * quantity).toFixed(2)} {item.price.unit}
+					</p>
+				</div>
 				<article className={styles.shoppingSection}>
-					<img src={cartImage} alt="cart image" />
-					<p className={styles.quantityCart}></p>
-					<AddToCartComponent quantity={quantity} addToCart={addToCart} />
+					<Link to="/user/cart">
+						<img className={styles.cartImageStyle} src={cartImage} alt="cart image" />
+					</Link>
+					<p className={styles.quantityCart}>
+						{userState.get.cart.reduce((total, item) => total + item.quantity, 0) || 0}
+					</p>
 				</article>
+				<AddToCartComponent quantity={quantity} addToCart={addToCart} />
 			</div>
+			<NavBar />
 		</section>
 	);
 };
+

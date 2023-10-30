@@ -23,7 +23,6 @@ export const addProduct = async (req, res) => {
 
 export const getProducts = async (req, res) => {
 	try {
-		const category = req.query.category;
 		const nameFilter = req.query.name;
 		const minPrize = req.query.minPrize ? Number(req.query.minPrize) : undefined;
 		const maxPrize = req.query.maxPrize ? Number(req.query.maxPrize) : undefined;
@@ -35,8 +34,9 @@ export const getProducts = async (req, res) => {
 		let filter = {};
 		let productIds = [];
 
-		if (category) {
-			const category = await Category.findOne({ name: category }).populate("products");
+		if (req.query.category) {
+			const category = await Category.findOne({ _id: req.query.category }).populate("products");
+
 			if (!category) {
 				return res.status(404).json({ message: "Category not found" });
 			}
@@ -225,16 +225,48 @@ export const wishlistProduct = async (req, res) => {
 export const addProductToCart = async (req, res) => {
 	try {
 		const user = req.user;
+		const { quantity } = req.query || 1;
+		console.table({ name: "quantity", value: quantity, type: typeof quantity });
+
 		const product = await Product.findById(req.params.id).exec();
 
 		if (!user || !product) {
 			res.status(404).json({ message: "user or product not found." });
 		}
 
-		user.cart.push(product.id);
+		user.cart.push({ product: product._id, quantity: Number(quantity) });
 		await user.save(); // save user after updating cart
 		res.json(user);
 	} catch (error) {
+		console.log(error);
 		res.status(500).json(error);
+	}
+};
+
+export const removeProductFromCart = async (req, res) => {
+	try {
+		const user = req.user;
+
+		if (!user) {
+			return res.status(404).json({ message: "user not found." });
+		}
+
+		if (req.query.id) {
+			const index = user.cart.findIndex((item) => item._id === req.query.id);
+
+			if (index !== -1) {
+				let updatedCart = [...user.cart];
+				updatedCart.splice(index, 1);
+				user.cart = updatedCart;
+			}
+		} else {
+			user.cart = [];
+		}
+
+		await user.save(); // save user after updating cart
+		return res.json(user);
+	} catch (error) {
+		console.log(error); // log error
+		return res.status(500).json({ message: "An error occurred." });
 	}
 };
